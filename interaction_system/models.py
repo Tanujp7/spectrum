@@ -49,7 +49,7 @@ class Qualification(models.Model):
     def __str__(self):
         return (self.qualification_name + ' ' + self.qualification_stream)
     
-class Profile(models.Model):
+class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
     birth_date = models.DateField(null=True, blank=True)
@@ -81,7 +81,7 @@ class Profile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        UserProfile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
@@ -107,11 +107,18 @@ class Book(models.Model):
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher)
     publication_year = models.SmallIntegerField(validators=[MinValueValidator(1600), MaxValueValidator(2100)])
-    tags = TaggableManager()
 
     def __str__(self):
         return self.title 
 
+class BookProfile(models.Model):
+    book = models.OneToOneField(Book, on_delete=models.CASCADE)
+    tags = TaggableManager()
+    description = models.CharField(max_length=1024)
+    
+    def __str__(self):
+        return self.book.title
+    
 class BookRating(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

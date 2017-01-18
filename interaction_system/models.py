@@ -4,18 +4,75 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from taggit.managers import TaggableManager
+
+from django.core.validators import MinLengthValidator, MaxLengthValidator, MinValueValidator, MaxValueValidator
+
 from .fields import UpperCaseCharField
 
-# Create your models here.
+
+class Location(models.Model):
+    city = models.CharField(max_length=50, null=True)
+    state = models.CharField(max_length=50, null=True)
+    country = models.CharField(max_length=50, null=True)
+    CONTINENTS = (
+        ('Africa', 'Africa'),
+        ('Antarctica', 'Antarctica'),
+        ('Asia', 'Asia'),
+        ('Australia', 'Australia'),
+        ('Europe', 'Europe'),
+        ('North America', 'North America'),
+        ('South America', 'South America')
+    )
+    continent = models.CharField(max_length=15, choices=CONTINENTS,null=False)
+
+    def __str__(self):
+        return (self.city + ', ' + self.state + ', ' + self.country + ', ' + self.continent)
+
+
+class BookUID(models.Model):
+    BOOK_UID_TYPES = (
+        ('ISBN10', 'ISBN10'),
+        ('ISBN13', 'ISBN13'),
+        ('ASIN', 'Amazon UID')
+    )
+    uid_type = models.CharField(max_length=10, choices=BOOK_UID_TYPES)
+    uid = models.CharField(max_length=64, unique=True)
+    
+    def __str__(self):
+        return (self.uid_type + ' ' + self.uid)
+    
+class Qualification(models.Model):
+    qualification_name = models.CharField(max_length=60, null=True)
+    qualification_stream = models.CharField(max_length=60, null=True)
+
+    def __str__(self):
+        return (self.qualification_name + ' ' + self.qualification_stream)
+    
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    location = models.CharField(max_length=30, blank=True)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
     birth_date = models.DateField(null=True, blank=True)
-    gender = models.CharField(max_length=1, blank=True)
-    highest_qualification = models.CharField(max_length=50, blank=True)
-    qualification_stream = models.CharField(max_length=50, blank=True)
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+    )
+    gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES)
+    highest_qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE, null=True)
     occupation = models.CharField(max_length=100, blank=True)
-    reading_frequency = models.CharField(max_length=50, blank=True)
+    ALMOST_NEVER = 5
+    SOMETIMES = 15
+    FEW_TIMES_A_MONTH = 50
+    FEW_TIMES_A_WEEK = 150
+    ALMOST_EVERYDAY = 300
+    READING_FREQUENCY_CHOICES = (
+        (ALMOST_NEVER, 'Almost Never (0-5 times a year)'),
+        (SOMETIMES, 'Sometimes (6-15 times a year)'),
+        (FEW_TIMES_A_MONTH, 'Few times a month (Once a week)'),
+        (FEW_TIMES_A_WEEK, 'Few times a week (2-4 times a week)'),
+        (ALMOST_EVERYDAY, 'Almost Everyday (6 times a week)')
+    )
+    reading_frequency = models.CharField(max_length=50, choices=READING_FREQUENCY_CHOICES)
 
     def __str__(self):
         return self.user
@@ -32,29 +89,36 @@ def save_user_profile(sender, instance, **kwargs):
     
 class Publisher(models.Model):
     name = models.CharField(max_length=30)
-    address = models.CharField(max_length=50)
-    city = models.CharField(max_length=60)
-    state_province = models.CharField(max_length=30)
-    country = models.CharField(max_length=50)
-    website = models.URLField()
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
 
 class Author(models.Model):
     full_name = models.CharField(max_length=100)
-    email = models.EmailField()
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return '%s %s' % (self.first_name, self.last_name)
+        return self.full_name
 
 class Book(models.Model):
-    uid = models.CharField(max_length=128, unique=True)
+    uid = models.ManyToManyField(BookUID)
     title = models.CharField(max_length=256)
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher)
-    publication_date = models.DateField()
-    
+    publication_year = models.SmallIntegerField(validators=[MinValueValidator(1600), MaxValueValidator(2100)])
+    tags = TaggableManager()
 
     def __str__(self):
         return self.title 
+
+class BookRating(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.SmallIntegerField(choices=[(i, i) for i in range(1, 6)], default=1)
+    
+    class Meta:
+        unique_together = ('user', 'book')
+    
+    def __str__(self):
+        return (str(self.book.title) + ' - rated by - ' + str(self.user))

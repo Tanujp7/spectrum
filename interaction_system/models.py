@@ -121,4 +121,26 @@ class BookRating(models.Model):
         unique_together = ('user', 'book')
     
     def __str__(self):
-        return (str(self.book.title) + ' - rated by - ' + str(self.user))
+        return (str(self.rating) + '* - ' + str(self.book.title) + ' - rated by - ' + str(self.user))
+
+class BookLikeDislike(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    like = models.SmallIntegerField(choices=[(i, i) for i in range(-1, 2)], default=0)
+    
+    class Meta:
+        unique_together = ('user', 'book')
+    
+    def __str__(self):
+        return (str(self.like) + '* - ' + str(self.book.title) + ' - by - ' + str(self.user))
+    
+class AuthorLikeDislike(models.Model):
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    like = models.SmallIntegerField(choices=[(i, i) for i in range(-1, 2)], default=0)
+    
+    class Meta:
+        unique_together = ('user', 'author')
+    
+    def __str__(self):
+        return (str(self.like) + '* - ' + str(self.author.full_name) + ' - by - ' + str(self.user))

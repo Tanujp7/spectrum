@@ -39,6 +39,9 @@ class BookUID(models.Model):
     uid_type = models.CharField(max_length=10, choices=BOOK_UID_TYPES)
     uid = models.CharField(max_length=64, unique=True)
     
+    class Meta:
+        verbose_name = 'Book UID'
+    
     def __str__(self):
         return (self.uid_type + ' ' + self.uid)
     
@@ -102,7 +105,7 @@ class Author(models.Model):
         return self.full_name
 
 class Book(models.Model):
-    uid = models.ManyToManyField(BookUID)
+    uid = models.ManyToManyField(BookUID, verbose_name = 'Book UID')
     title = models.CharField(max_length=256)
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher)
@@ -116,6 +119,9 @@ class BookProfile(models.Model):
     tags = TaggableManager()
     description = models.CharField(max_length=1024)
     
+    class Meta:
+        verbose_name = 'Book Profile'
+        
     def __str__(self):
         return self.book.title
     
@@ -126,6 +132,7 @@ class BookRating(models.Model):
     
     class Meta:
         unique_together = ('user', 'book')
+        verbose_name = 'Book Rating'
     
     def __str__(self):
         return (str(self.rating) + '* - ' + str(self.book.title) + ' - rated by - ' + str(self.user))
@@ -137,9 +144,22 @@ class BookLikeDislike(models.Model):
     
     class Meta:
         unique_together = ('user', 'book')
+        verbose_name = 'Book Like/Dislike'
+        verbose_name_plural = 'Book Likes/Dislikes'
     
     def __str__(self):
         return (str(self.like) + '* - ' + str(self.book.title) + ' - by - ' + str(self.user))
+    
+class BookInterestLog(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    interest_score = models.SmallIntegerField(default=0)
+    
+    class Meta:
+        verbose_name = 'Book Interest Log'
+    
+    def __str__(self):
+        return (str(self.interest_score) + '* - ' + str(self.book.title) + ' - by - ' + str(self.user))
     
 class AuthorLikeDislike(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
@@ -148,6 +168,8 @@ class AuthorLikeDislike(models.Model):
     
     class Meta:
         unique_together = ('user', 'author')
+        verbose_name = 'Author Like/Dislike'
+        verbose_name_plural = 'Author Likes/Dislikes'
     
     def __str__(self):
         return (str(self.like) + '* - ' + str(self.author.full_name) + ' - by - ' + str(self.user))

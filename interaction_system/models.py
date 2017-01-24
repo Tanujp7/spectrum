@@ -12,9 +12,9 @@ from .fields import UpperCaseCharField
 
 
 class Location(models.Model):
-    city = models.CharField(max_length=50, null=True)
-    state = models.CharField(max_length=50, null=True)
-    country = models.CharField(max_length=50, null=True)
+    city = models.CharField(max_length=50, null=True, blank=True)
+    state = models.CharField(max_length=50, null=True, blank=True)
+    country = models.CharField(max_length=50, null=True, blank=True)
     CONTINENTS = (
         ('Africa', 'Africa'),
         ('Antarctica', 'Antarctica'),
@@ -88,7 +88,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    instance.userprofile.save()
     
 class Publisher(models.Model):
     name = models.CharField(max_length=30)

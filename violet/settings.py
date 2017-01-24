@@ -133,3 +133,7 @@ STATICFILES_DIRS = [
 # taggit
 
 TAGGIT_CASE_INSENSITIVE = True
+
+# Google Book API Key
+
+GOOGLE_BOOK_API_KEY = 'AIzaSyBu5U4sGNZeywhxkAcwgsF1xoBMMu7Oi4M'

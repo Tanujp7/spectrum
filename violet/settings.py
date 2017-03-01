@@ -138,7 +138,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_collect')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    '/home/graphene/survey.protovault.xyz/static',
+    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'static'),
 ]
 
 # taggit

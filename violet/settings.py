@@ -197,7 +197,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'updated_time',
         ],
         'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': lambda request: 'en-US',
+        'LOCALE_FUNC': lambda request: 'en-IN',
         'VERIFIED_EMAIL': False,
         'VERSION': 'v2.4',
     }

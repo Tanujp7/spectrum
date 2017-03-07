@@ -6,5 +6,5 @@ from django.core.urlresolvers import reverse_lazy
 from .views import BookRatingList
 
 urlpatterns = [
-    url(r'^inventory/material/$', BookRatingList.as_view(), name='book_rating_list'),
+    url(r'^book_rating/$', BookRatingList.as_view(), name='book_rating_list'),
 ]

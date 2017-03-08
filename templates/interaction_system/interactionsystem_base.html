@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% block mod_title %}{% endblock mod_title %} // Interaction System{% endblock page_title %}
+{% block page_head %}{% endblock page_head %}
+
+{% block page_content %}
+          <nav class="navbar navbar-dark bg-inverse module-navbar">
+              <span class="navbar-brand">{% block mod_navbar_brand %}{% endblock mod_navbar_brand %}</span>
+              <ul class="nav navbar-nav">
+                  <li class="nav-item {% block mod_create_link_active %}{% endblock mod_create_link_active %}">
+                      <a class="nav-link" href="{% block mod_create_link %}{% endblock mod_create_link %}">Create</a>
+                  </li>
+                  <li class="nav-item {% block mod_manage_link_active %}{% endblock mod_manage_link_active %}">
+                      <a class="nav-link" href="{% block mod_manage_link %}{% endblock mod_manage_link %}">Manage</a>
+                  </li>
+              </ul>
+              <form class="form-inline pull-xs-right" action="{% block mod_search_action %}{% endblock mod_search_action %}">
+                  <input class="form-control" type="text" placeholder="{% block mod_search_placeholder %}{% endblock mod_search_placeholder %}" name="q" value="{{ request.GET.q }}" disabled>
+                  <button class="btn btn-outline-secondary disabled" type="submit">Search</button>
+              </form>
+          </nav>
+          {% block mod_content %}{% endblock mod_content %}
+{% endblock page_content %}

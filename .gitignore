@@ -2,3 +2,4 @@
 migrations/*.py
 __pycache__/*.py
 /static_collect/
+.DS_Store

@@ -11,7 +11,7 @@ class BookRatingList(LoginRequiredMixin, ListView):
     model = BookRating
     paginate_by = 8
 
-class UserProfile(LoginRequiredMixin):
+class UserProfile(LoginRequiredMixin, View):
     greeting = "Good Day!"
 
     def get(self, request):

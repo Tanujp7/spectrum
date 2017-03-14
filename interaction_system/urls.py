@@ -7,5 +7,5 @@ from .views import BookRatingList, UserProfile
 
 urlpatterns = [
     url(r'^book_rating/$', BookRatingList.as_view(), name='book_rating_list'),
-    url(r'^about/$', UserProfile.as_view())
+    url(r'^user_profile/$', UserProfile.as_view(), name='user_profile')
 ]

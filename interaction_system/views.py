@@ -13,7 +13,7 @@ class BookRatingList(LoginRequiredMixin, ListView):
 
 class UserProfile(LoginRequiredMixin, View):
     greeting = "Good Day!"
-    template_name = 'user_profile.html'
+    template_name = 'interaction_system/user_profile.html'
 
     def get(self, request):
         return render(request, self.template_name)

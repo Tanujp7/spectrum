@@ -33,4 +33,5 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='allauth/index.html')),
     url(r'^accounts/profile/$', TemplateView.as_view(template_name='allauth/profile.html')),
     url(r'^accounts/email/$', TemplateView.as_view(template_name='allauth/email.html')),
+    url(r'^accounts/login/$', TemplateView.as_view(template_name='allauth/login.html')),
 ]

@@ -5,7 +5,11 @@ from .models import BookRating
 from django.views import View
 from vanilla import CreateView, DeleteView, ListView, UpdateView, DetailView, FormView
 
-# Create your views here.
+from allauth.account.views import LoginView
+
+
+class AuthLoginView(LoginView):
+    template_name = 'allauth/login.html'
 
 class BookRatingList(LoginRequiredMixin, ListView):
     model = BookRating

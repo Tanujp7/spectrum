@@ -16,10 +16,6 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from django.views.generic.base import TemplateView
-admin.autodiscover()
-
-from .views import AuthLoginView
 
 urlpatterns = [
     # Linking Django Admin's url file
@@ -31,9 +27,4 @@ urlpatterns = [
     # Linking interaction_system's url file
     url(r'^', include('interaction_system.urls')),
 
-    # django-allauth
-    url(r'^$', TemplateView.as_view(template_name='allauth/index.html')),
-    url(r'^accounts/profile/$', TemplateView.as_view(template_name='allauth/profile.html')),
-    url(r'^accounts/email/$', TemplateView.as_view(template_name='allauth/email.html')),
-    url(r'^accounts/login/$', AuthLoginView.as_view())
 ]

@@ -21,10 +21,10 @@ urlpatterns = [
     # Linking Django Admin's url file
     url(r'^admin/', admin.site.urls),
 
-    # Linking django-allauth's url file
-    url(r'^accounts/', include('allauth.urls')),
-
     # Linking interaction_system's url file
     url(r'^', include('interaction_system.urls')),
+
+    # Linking django-allauth's url file
+    url(r'^accounts/', include('allauth.urls')),
 
 ]

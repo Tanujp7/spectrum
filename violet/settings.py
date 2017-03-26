@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Recommendation Apps
+    'interaction_system',
+
     # Required by : Django-allauth
     'django.contrib.sites',
     'allauth',
@@ -47,7 +50,6 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
     'taggit',
-    'interaction_system'
 ]
 
 MIDDLEWARE = [

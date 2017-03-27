@@ -18,12 +18,9 @@
 
       {% if messages %}
       <div>
-        <strong>Messages:</strong>
-        <ul>
           {% for message in messages %}
             <div class="alert alert-info" role="alert">{{message}}</div>
           {% endfor %}
-        </ul>
       </div>
       {% endif %}
 

@@ -1,7 +1,7 @@
 {% extends "allauth/base.html" %}
 {% block page_title %}Login{% endblock page_title %}
 {% block body %}
-      <form class="justify-content-center d-inline-flex p-2">
+      <form class="justify-content-center w-25 p-3">
         {% csrf_token %}
         <div class="form-group login" method="POST" action="{% url 'account_login' %}">
           <label for="exampleInputEmail1">Email address</label>

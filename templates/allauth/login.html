@@ -2,9 +2,9 @@
 {% block page_title %}Login{% endblock page_title %}
 {% block body %}
       <div class="w-50 p-3 d-flex flex-row">
-        <form>
+        <form class="login" method="POST" action="{% url 'account_login' %}">
           {% csrf_token %}
-          <div class="form-group login" method="POST" action="{% url 'account_login' %}">
+          <div class="form-group" >
             <label for="exampleInputEmail1">Email address</label>
             <input name="login" type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
           </div>

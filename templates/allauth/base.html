@@ -21,19 +21,40 @@
         <strong>Messages:</strong>
         <ul>
           {% for message in messages %}
-          <li>{{message}}</li>
+            <div class="alert alert-info" role="alert">{{message}}</div>
           {% endfor %}
         </ul>
       </div>
       {% endif %}
 
-      {% if user.is_authenticated %}
-    	<li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-    	<li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-    	{% else %}
-    	<li><a href="{% url 'account_login' %}">Sign In</a></li>
-    	<li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-    	{% endif %}
+      <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Spectrum</a>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_email' %}">Change E-mail</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+            </li>
+            {% endif %}
+          </ul>
+          <span class="navbar-text">
+            Navbar text with an inline element
+          </span>
+        </div>
+      </nav>
 
       {% block body %}{% endblock body %}
 

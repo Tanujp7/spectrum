@@ -1,28 +1,30 @@
 {% extends "allauth/base.html" %}
 {% block page_title %}Login{% endblock page_title %}
 {% block body %}
-      <form class="justify-content-center w-25 p-3">
-        {% csrf_token %}
-        <div class="form-group login" method="POST" action="{% url 'account_login' %}">
-          <label for="exampleInputEmail1">Email address</label>
-          <input name="login" type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-          <label for="InputPassword">Password</label>
-          <input name="password" type="password" class="form-control" id="InputPassword" placeholder="Password">
-        </div>
-        <div class="form-group">
-          <label for="id_remember">Remember Me:</label>
-          <input id="id_remember" name="remember" type="checkbox" />
-        </div>
+      <div class="justify-content-center w-25 p-3">
+        <form>
+          {% csrf_token %}
+          <div class="form-group login" method="POST" action="{% url 'account_login' %}">
+            <label for="exampleInputEmail1">Email address</label>
+            <input name="login" type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="InputPassword">Password</label>
+            <input name="password" type="password" class="form-control" id="InputPassword" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <label for="id_remember">Remember Me:</label>
+            <input id="id_remember" name="remember" type="checkbox" />
+          </div>
 
 
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
 
-        <a class="button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a><br/>
-        <button type="submit" class="btn btn-primary primaryAction">Submit</button>
-      </form>
+          <a class="button secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a><br/>
+          <button type="submit" class="btn btn-primary primaryAction">Submit</button>
+        </form>
+      </div>
 {% endblock %}

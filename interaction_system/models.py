@@ -1,7 +1,7 @@
 from django.db import models
 
 from django.contrib.auth.models import User
-from items import models.Book
+from spectrum.items.models import Book
 
 class BookRating(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)

@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<h1>Google Book Search</h1>
+<h2 class="text-center">Google Book Search</h2><br/>
 
 <form class="login" method="GET" action="{% url 'book_search' %}">
   <div class="form-group row">
@@ -21,10 +21,29 @@
 </form>
 
 
-<h2 class="text-center title">{{ query|default:" " }}</h2>
-<div class="query">
-  <p>{{ results|default:" " }}</p>
-</div>
+<h3 class="title">{{ query|default:" " }}</h3>
+{% if results %}
+  <div class="query">
+    {% for item in results %}
+      <div class="card" style="width: 20rem;">
+        <img class="card-img-top" src="" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title">Card title</h4>
+          <p class="card-text">{{item}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        <div class="card-block">
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% results %}
 
 {% endblock content %}
 

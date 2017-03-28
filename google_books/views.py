@@ -13,7 +13,7 @@ class Search(View):
         except:
             query = ''
         if (query != '' and query is not None):
-            results = "Something '" + query + "'"
+            results = query
         else:
-            results = "Nothing '" + str(query) + "'"
-        return render(request, self.template_name, {'r': results})
+            results = None
+        return render(request, self.template_name, {'query': results})

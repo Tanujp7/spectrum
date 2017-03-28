@@ -26,7 +26,7 @@
   <div class="query row">
     {% for item in results %}
       <div class="col-sm-3">
-        <div class="card">
+        <div class="card" style="width: 20rem;">
           <img class="card-img-top" height="200rem" src="{{ item.thumbnail|default:"https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" }}">
           <div class="card-block">
             <h4 class="card-title">{{item.title}}</h4>
@@ -39,7 +39,10 @@
             <li class="list-group-item">ISBN </li>
           </ul>
           <div class="card-block">
-            <a href="#" class="card-link">Add to database</a>
+            <a href="#" class="btn btn-primary">Add to database</a>
+          </div>
+          <div class="card-footer text-muted">
+            Pgs. {{ item.page_count|default:"-" }} | 
           </div>
         </div>
       </div>

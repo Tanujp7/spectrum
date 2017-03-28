@@ -39,6 +39,11 @@ INSTALLED_APPS = [
 
     # Recommendation Apps
     'interaction_system',
+    'google_books',
+    'people',
+    'items',
+    'uform',
+
 
     # Required by : Django-allauth
     'django.contrib.sites',

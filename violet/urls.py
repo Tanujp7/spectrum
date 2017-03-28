@@ -24,6 +24,9 @@ urlpatterns = [
     # Linking interaction_system's url file
     url(r'^', include('interaction_system.urls')),
 
+    # Linking google_books' url file
+    url(r'^', include('google_books.urls')),
+
     # Linking django-allauth's url file
     url(r'^accounts/', include('allauth.urls')),
 

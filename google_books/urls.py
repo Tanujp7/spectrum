@@ -4,5 +4,5 @@ from .views import Search
 
 
 urlpatterns = [
-    url(r'^book/add/search/$', Search.as_view(), name='book_search'),
+    url(r'^google_books/search/$', Search.as_view(), name='book_search'),
 ]

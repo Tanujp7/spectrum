@@ -27,6 +27,9 @@ urlpatterns = [
     # Linking google_books' url file
     url(r'^', include('google_books.urls')),
 
+    # Linking form's url file
+    url(r'^', include('uform.urls')),
+
     # Linking django-allauth's url file
     url(r'^accounts/', include('allauth.urls')),
 

@@ -25,20 +25,22 @@
 {% if results %}
   <div class="query row">
     {% for item in results %}
-      <div class="card" style="width: 20rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-block">
-          <h4 class="card-title">{{item.title}}</h4>
-          <p class="card-text">{{item}}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
-        <div class="card-block">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+      <div class="col-sm-6">
+        <div class="card">
+          <img class="card-img-top" src="{{ item.thumbnail|default:"https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" }}">
+          <div class="card-block">
+            <h4 class="card-title">{{item.title}}</h4>
+            <h6 class="card-subtitle mb-2">{{item.authors|default:"unknown"}}</h6>
+            <p class="card-text">{{ item.description|default:item.alt_description|default:" " }}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Publisher : </li>
+            <li class="list-group-item">Publication Date : </li>
+            <li class="list-group-item">ISBN </li>
+          </ul>
+          <div class="card-block">
+            <a href="#" class="card-link">Add to database</a>
+          </div>
         </div>
       </div>
     {% endfor %}

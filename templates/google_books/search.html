@@ -34,17 +34,25 @@
             <p class="card-text">{{ item.description|default:item.alt_description|default:" " }}</p>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Publisher : {{ item.publisher|default:" - " }}</li>
-            <li class="list-group-item">Publication Date : {{ item.published_date|default:" - " }}</li>
-            <li class="list-group-item">ISBN {{ item.isbn|default:" - " }}</li>
+            {% if item.publisher %}
+              <li class="list-group-item">Publisher : {{ item.publisher|default:" - " }}</li>
+            {% endif %}
+            {% if item.published_date %}
+              <li class="list-group-item">Publication Date : {{ item.published_date|default:" - " }}</li>
+            {% endif %}
+            {% if item.isbn %}
+              <li class="list-group-item">ISBN : {{ item.isbn|default:" - " }}</li>
+            {% endif %}
             <li class="list-group-item">Categories <strong>{{ item.category|default:" - " }}</strong>; {{ item.tags|default:" - " }}</li>
           </ul>
           <div class="card-block">
             <a href="#" class="btn btn-primary">Add to database</a>
           </div>
           <div class="card-footer text-muted">
-            Pgs. {{ item.page_count|default:"-" }} | Rating : {{ item.avg_rating|default:"-" }} ({{ item.ratings_count|default:"-" }} counts)
-            | {{ item.language|default:"EN?" }} {% if item.sale_amount %}| {{ item.sale_amount.currencyCode }} {{ item.sale_amount.amount }}{% endif %}
+            {% if item.page_count %}Pgs. {{ item.page_count|default:"-" }}{% endif %}
+            {% if item.avg_rating %}| Rating : {{ item.avg_rating|default:"-" }} ({{ item.ratings_count|default:"-" }} counts){% endif %}
+            {% if item.language %}| {{ item.language }}{% endif %}
+            {% if item.sale_amount %}| {{ item.sale_amount.currencyCode }} {{ item.sale_amount.amount }}{% endif %}
           </div>
         </div>
       </div>

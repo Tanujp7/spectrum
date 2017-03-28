@@ -9,7 +9,7 @@ class Search(View):
     def get(self, request):
         results = "Blank"
         try:
-            query = self.kwargs['q']
+            query = request.GET.get('q')
         except:
             query = ''
         if (query != ''):

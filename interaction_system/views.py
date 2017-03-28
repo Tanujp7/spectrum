@@ -11,7 +11,7 @@ from vanilla import CreateView, DeleteView, ListView, UpdateView, DetailView, Fo
 
 from allauth.account.views import LoginView
 
-from .forms import UserProfileForm
+from .forms import UserForm, LocationForm, QualificationForm, ProfileForm
 
 def UserProfileFormView(request):
     if request.method == 'POST':

@@ -44,7 +44,7 @@
           </div>
           <div class="card-footer text-muted">
             Pgs. {{ item.page_count|default:"-" }} | Rating : {{ item.avg_rating|default:"-" }} ({{ item.ratings_count|default:"-" }} counts)
-            | {{ item.language|default:"EN?" }} | {{ item.sale_amount }}
+            | {{ item.language|default:"EN?" }} {% if item.sale_amount %}| {{ item.sale_amount.currencyCode }} {{ item.sale_amount.amount }}{% endif %}
           </div>
         </div>
       </div>

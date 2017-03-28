@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import Permission, User
 from django.contrib.auth.decorators import login_required
 
-from .models import BookRating
+from .models import BookRating, UserProfile, Qualification, Location
 from django.views import View
 from vanilla import CreateView, DeleteView, ListView, UpdateView, DetailView, FormView
 

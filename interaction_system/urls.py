@@ -4,7 +4,11 @@ from django.views.generic import RedirectView
 from django.views.generic.base import TemplateView
 from django.core.urlresolvers import reverse_lazy
 
+# Class Based Views
 from .views import BookRatingList, UserProfile, AuthLoginView
+
+# Function Based Views
+from .views import location_form
 
 
 urlpatterns = [
@@ -16,5 +20,7 @@ urlpatterns = [
     url(r'^accounts/profile/$', TemplateView.as_view(template_name='allauth/profile.html')),
     url(r'^accounts/email/$', TemplateView.as_view(template_name='allauth/email.html')),
     url(r'^accounts/login/$', AuthLoginView.as_view()),
-    url(r'^location/$', location_form.as_view(), name='location_form'),
+
+    # function based views
+    url(r'^location/$', location_form, name='location_form'),
 ]

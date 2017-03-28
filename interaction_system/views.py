@@ -14,16 +14,30 @@ from allauth.account.views import LoginView
 from .forms import UserProfileForm
 
 def UserProfileFormView(request):
-    context = RequestContext(request)
     if request.method == 'POST':
-        form = UserProfileForm(request.POST)
-        if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = request.user
-            profile.save()
+        user_form = UserForm(request.POST, instance=request.user)
+        location_form = LocationForm(request.POST, instance=request.user.location)
+        qualification_form = QualificationForm(request.POST, instance=request.user.qualification)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and location_form.is_valid() and qualification_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            location_form.save()
+            qualification_form.save()
+            profile_form.save()
+            messages.success(request, _('Your profile was successfully saved!'))
+        else:
+            messages.error(request, _('Please correct the error below.'))
     else:
-        form = UserProfileForm()
-    return render_to_response('interaction_system/user_profile.html', {'form': form}, context)
+        user_form = UserForm(instance=request.user)
+        location_form = LocationForm(request.POST, instance=request.user.location)
+        qualification_form = QualificationForm(request.POST, instance=request.user.qualification)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'interaction_system/user_profile.html', {
+        'user_form': user_form,
+        'location_form': location_form
+        'qualification_form': qualification_form
+        'profile_form': profile_form
+    })
 
 class AuthLoginView(LoginView):
     template_name = 'allauth/login.html'

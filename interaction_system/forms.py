@@ -1,9 +1,9 @@
 from django import forms
 
-from .models import Location
+from .models import UserProfile
 
-class LocationForm(forms.ModelForm):
+class UserProfileForm(forms.ModelForm):
 
     class Meta:
-        model = Location
-        fields = ('city', 'state', 'country', 'continent',)
+        model = UserProfile
+        fields = ('user', 'location', 'birth_date', 'gender', 'highest_qualification', 'occupation', 'reading_frequency')

@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 from .views import BookRatingList, UserProfile, AuthLoginView
 
 # Function Based Views
-from .views import location_form
+from .views import UserProfileFormView
 
 
 urlpatterns = [
@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^accounts/login/$', AuthLoginView.as_view()),
 
     # function based views
-    url(r'^location/$', location_form, name='location_form'),
+    url(r'^profile/$', UserProfileFormView, name='UserProfileFormView'),
 ]

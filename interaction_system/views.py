@@ -7,12 +7,22 @@ from vanilla import CreateView, DeleteView, ListView, UpdateView, DetailView, Fo
 
 from allauth.account.views import LoginView
 
-from .forms import LocationForm
+from .forms import UserProfileForm
 
-def location_form(request):
-    form = LocationForm()
-    return render(request, 'interaction_system/location_edit.html', {'form': form})
-    
+def UserProfileFormView(request):
+    context = RequestContext(request)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+        else:
+            print form.errors
+    else:
+        form = UserProfileForm()
+    return render_to_response('interaction_system/user_profile.html', {'form': form}, context)
+
 class AuthLoginView(LoginView):
     template_name = 'allauth/login.html'
 

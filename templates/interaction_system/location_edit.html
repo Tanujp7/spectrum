@@ -1,6 +1,6 @@
 {% extends 'interaction_system/base.html' %}
 
-{% block content %}
+{% block page_content %}
     <h1>New Location</h1>
     <form method="POST" class="location-form">{% csrf_token %}
         {{ form.as_p }}

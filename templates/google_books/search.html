@@ -43,7 +43,12 @@
             {% if item.isbn %}
               <li class="list-group-item">ISBN : {{ item.isbn|default:" - " }}</li>
             {% endif %}
-            <li class="list-group-item">Categories <strong>{{ item.category|default:" - " }}</strong>; {{ item.tags|default:" - " }}</li>
+            {% if item.category %}
+              <li class="list-group-item">Categories : {{ item.category|default:" - " }}</li>
+            {% endif %}
+            {% if item.tags %}
+              <li class="list-group-item">Tags : {{ item.tags|default:" - " }}</li>
+            {% endif %}
           </ul>
           <div class="card-block text-center">
             <a href="#" class="btn btn-primary">Add to database</a>

@@ -13,7 +13,7 @@ class Search(View):
         except:
             query = ''
         if (query != ''):
-            results = "Nothing"
+            results = "Nothing '" + query + "'"
         else:
-            results = "Something " + query
+            results = "Something '" + query + "'"
         return render(request, self.template_name, {'r': results})

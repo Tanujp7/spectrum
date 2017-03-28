@@ -1,7 +1,7 @@
 from django.db import models
 
 from django.contrib.auth.models import User
-from items.models import Book
+from items import models.Book
 
 class BookRating(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)

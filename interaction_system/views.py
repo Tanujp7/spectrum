@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template import RequestContext
+from django.contrib.auth.models import Permission, User
+from django.contrib.auth.decorators import login_required
 
 from .models import BookRating
 from django.views import View

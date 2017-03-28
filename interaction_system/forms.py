@@ -5,5 +5,5 @@ from .models import Location
 class LocationForm(forms.ModelForm):
 
     class Meta:
-        model = Post
+        model = Location
         fields = ('city', 'state', 'country', 'continent',)

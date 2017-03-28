@@ -12,7 +12,7 @@ class Search(View):
             query = request.GET.get('q')
         except:
             query = ''
-        if (query != ''):
+        if (query != '' and query is not None):
             results = "Something '" + query + "'"
         else:
             results = "Nothing '" + str(query) + "'"

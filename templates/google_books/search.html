@@ -17,7 +17,13 @@
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
 </form>
-<h2 class="text-center results">{{ query|default:" " }}</h2>
+
+
+<h2 class="text-center title">{{ query|default:" " }}</h2>
+<div class="query">
+  <p>{{ results|default:" " }}</p>
+</div>
+
 {% endblock content %}
 
 {% block page_scripts %}{% endblock page_scripts %}

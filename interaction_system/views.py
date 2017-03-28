@@ -12,8 +12,10 @@ from vanilla import CreateView, DeleteView, ListView, UpdateView, DetailView, Fo
 from allauth.account.views import LoginView
 
 from .forms import UserForm, LocationForm, QualificationForm, ProfileForm
+from django.forms.models import inlineformset_factory
 
 def UserProfileFormView(request):
+    LocationInlineFormSet = inlineformset_factory(Location, UserProfile, form=LocationForm)
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
         #location_form = LocationForm(request.POST, instance=request.user.location)
@@ -24,18 +26,20 @@ def UserProfileFormView(request):
             user_form.save()
             #location_form.save()
             #qualification_form.save()
-            data=profile_form.save(commit=False)
-            data.location = location
-            data.highest_qualification = highest_qualification
-            data.save()
-            messages.success(request, _('Your profile was successfully saved!'))
-        else:
-            messages.error(request, _('Please correct the error below.'))
+            data=profile_form.save()
+            locationInlineFormSet = LocationInlineFormSet(request.POST, request.FILES, instance=data)
+
+            if locationInlineFormSet.is_valid():
+                locationInlineFormSet.save()
+
+            else:
+                classificationformset = ClassificationInlineFormSet(request.POST, request.FILES, instance=data)
     else:
         user_form = UserForm(instance=request.user)
         #location_form = LocationForm(request.POST, instance=request.user.location)
         #qualification_form = QualificationForm(request.POST, instance=request.user.qualification)
         profile_form = ProfileForm(instance=request.user.userprofile)
+        locationInlineFormSet=LocationInlineFormSet()
     return render(request, 'interaction_system/user_profile.html', {
         'user_form': user_form,
         #'location_form': location_form,

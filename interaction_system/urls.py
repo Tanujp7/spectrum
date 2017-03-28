@@ -17,5 +17,5 @@ urlpatterns = [
     url(r'^accounts/email/$', TemplateView.as_view(template_name='allauth/email.html')),
     url(r'^accounts/login/$', AuthLoginView.as_view())
 
-    url(r'^location/$', views.location_form, name='location_form'),
+    url(r'^accounts/location/$', views.location_form, name='location_form'),
 ]

@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from spectrum.people.models import UserProfile, Qualification
+from people.models import UserProfile, Qualification
 
 class UserForm(forms.ModelForm):
     class Meta:

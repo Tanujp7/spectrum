@@ -34,8 +34,8 @@ def UserProfileFormView(request):
         profile_form = ProfileForm(instance=request.user.profile)
     return render(request, 'interaction_system/user_profile.html', {
         'user_form': user_form,
-        'location_form': location_form
-        'qualification_form': qualification_form
+        'location_form': location_form,
+        'qualification_form': qualification_form,
         'profile_form': profile_form
     })
 

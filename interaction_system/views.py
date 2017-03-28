@@ -24,7 +24,10 @@ def UserProfileFormView(request):
             user_form.save()
             #location_form.save()
             #qualification_form.save()
-            profile_form.save()
+            data=profile_form.save(commit=False)
+            data.location = location
+            data.highest_qualification = highest_qualification
+            data.save()
             messages.success(request, _('Your profile was successfully saved!'))
         else:
             messages.error(request, _('Please correct the error below.'))

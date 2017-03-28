@@ -2,6 +2,13 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
+class Qualification(models.Model):
+    qualification_name = models.CharField(max_length=60, null=True)
+    qualification_stream = models.CharField(max_length=60, null=True)
+
+    def __str__(self):
+        return (self.qualification_name + ' ' + self.qualification_stream)
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=256, blank=True)
@@ -29,10 +36,3 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user
-
-class Qualification(models.Model):
-    qualification_name = models.CharField(max_length=60, null=True)
-    qualification_stream = models.CharField(max_length=60, null=True)
-
-    def __str__(self):
-        return (self.qualification_name + ' ' + self.qualification_stream)

@@ -9,7 +9,6 @@ from .forms import UserForm, QualificationForm, ProfileForm
 from django.forms.models import inlineformset_factory
 
 def UserProfileFormView(request):
-    LocationInlineFormSet = inlineformset_factory(Location, UserProfile, form=LocationForm)
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
         #location_form = LocationForm(request.POST, instance=request.user.location)

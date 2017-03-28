@@ -7,4 +7,13 @@ class Search(View):
     template_name = 'google_books/search.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        results = "Blank"
+        try:
+            query = self.kwargs['q']
+        except:
+            query = ''
+        if (query != ''):
+            results = "Nothing"
+        else:
+            results = "Something"
+        return render(request, self.template_name, {'r': results})

@@ -15,5 +15,5 @@ class Search(View):
         if (query != ''):
             results = "Something '" + query + "'"
         else:
-            results = "Nothing '" + query + "'"
+            results = "Nothing '" + str(query) + "'"
         return render(request, self.template_name, {'r': results})

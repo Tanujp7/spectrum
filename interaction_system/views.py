@@ -17,8 +17,6 @@ def UserProfileFormView(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
-        else:
-            print form.errors
     else:
         form = UserProfileForm()
     return render_to_response('interaction_system/user_profile.html', {'form': form}, context)

@@ -7,7 +7,12 @@ from vanilla import CreateView, DeleteView, ListView, UpdateView, DetailView, Fo
 
 from allauth.account.views import LoginView
 
+from .forms import LocationForm
 
+def location_form(request):
+    form = LocationForm()
+    return render(request, 'interaction_system/location_edit.html', {'form': form})
+    
 class AuthLoginView(LoginView):
     template_name = 'allauth/login.html'
 

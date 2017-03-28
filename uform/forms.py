@@ -1,16 +1,12 @@
 from django import forms
 
-from .models import UserProfile, User, Location, Qualification
+from django.contrib.auth.models import User
+from people.models import UserProfile, Qualification
 
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
-
-class LocationForm(forms.ModelForm):
-    class Meta:
-        model = Location
-        fields = ('city', 'state', 'country', 'continent')
 
 class QualificationForm(forms.ModelForm):
     class Meta:

@@ -30,7 +30,15 @@
           <img class="card-img-top" width="100%" src="{{ item.thumbnail|default:"https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" }}">
           <div class="card-block">
             <h4 class="card-title">{{item.title}}</h4>
-            <h6 class="card-subtitle mb-2">{{item.authors|default:"unknown"}}</h6>
+            <h6 class="card-subtitle mb-2">
+              {% if item.isbn %}
+                {% for a in item.authors %}
+                  <span>{{ a }},</span>
+                {% endfor %}
+              {% else %}
+                  <span>unknown</span>
+              {% endif %}
+            </h6>
             <p class="card-text">{{ item.description|default:item.alt_description|default:" " }}</p>
           </div>
           <ul class="list-group list-group-flush">
@@ -51,7 +59,11 @@
               <li class="list-group-item">Categories : {{ item.category|default:" - " }}</li>
             {% endif %}
             {% if item.tags %}
-              <li class="list-group-item">Tags : {{ item.tags|default:" - " }}</li>
+              <li class="list-group-item">
+              {% for tag in item.tags %}
+                <span>{{ tag }},</span>
+              {% endfor %}
+              </li>
             {% endif %}
           </ul>
           <div class="card-block text-center">

@@ -1,6 +1,6 @@
 import requests
 import json
-import random
+import random, re
 
 class Api(object):
     """Google Books Api
@@ -127,7 +127,9 @@ def extract_details(item):
         "link" : item.get('selfLink')
     }
     if item_dict['thumbnail'] is not None:
-        item_dict.update({'thumbnail' : random.choice(list(item_dict['thumbnail'].keys()))})
+        img_url = item_dict['thumbnail'][random.choice(list(item_dict['thumbnail'].keys()))]
+        img_url = re.sub('(zoom=)\w+', 'zoom=8', img_url)
+        item_dict.update({'thumbnail' : img_url})
     return item_dict
 
 def search(query):

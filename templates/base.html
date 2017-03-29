@@ -66,7 +66,7 @@
         <span class="navbar-brand">{% block sub_navigation_title %}{% endblock sub_navigation_title %}</span>
         {% block sub_navigation %}{% endblock sub_navigation %}
         <form class="form-inline justify-content-end">
-          {% if user.is_authenticated
+          {% if user.is_authenticated %}
           <span class="mr-4 text-white">Logged in as <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong></span>
           <a class="btn btn-secondary" role="button" href="{% url 'account_logout' %}">Log Out</a>
           {% else %}

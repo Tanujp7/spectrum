@@ -62,6 +62,18 @@
 
 
     <div class="container">
+      <nav class="navbar navbar-light bg-faded justify-content-end">
+        <form class="form-inline">
+          {% if user.is_authenticated %}
+          <a class="btn btn-outline-warning" role="button" href="{% url 'account_logout' %}">Log Out</a>
+          {% else %}
+          <div class="btn-group mr-2" role="group">
+            <a class="btn btn-outline-warning" role="button" href="{% url 'account_login' %}">Log In</a>
+            <a class="btn btn-outline-warning" role="button" href="{% url 'account_signup' %}">Sign Up</a>
+          </div>
+          {% endif %}
+        </form>
+      </nav>
       {% if messages %}
       <div>
           {% for message in messages %}
@@ -69,26 +81,6 @@
           {% endfor %}
       </div>
       {% endif %}
-      <nav class="navbar navbar-light bg-faded text-center">
-        <form class="form-inline">
-          <a class="btn btn-outline-warning" role="button" href="{% url 'account_logout' %}">Log Out</a>
-          <a class="btn btn-outline-success" role="button">Smaller button</a>
-        </form>
-      </nav>
-      <ul class="nav justify-content-end">
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
-        </li>
-        {% endif %}
-      </ul>
 
       {% block body %}{% endblock body %}
 

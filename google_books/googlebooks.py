@@ -129,7 +129,7 @@ def extract_details(item):
     if item_dict['thumbnail'] is not None:
         img_url = item_dict['thumbnail'][random.choice(list(item_dict['thumbnail'].keys()))]
         img_url = re.sub('(zoom=)\w+', 'zoom=8', img_url)
-        img_url = re.sub('(&amp;edge=)\w+', '', img_url)
+        img_url = re.sub('(edge=)\w+', 'edge=uncurl', img_url)
         item_dict.update({'thumbnail' : img_url})
     return item_dict
 

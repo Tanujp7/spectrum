@@ -31,8 +31,8 @@
 
             {% if form.email.errors %}
                 <ol>
-                {% for error in form.subject.errors %}
-                    <li><strong>{{ error|escape }}</strong></li>
+                {% for error in form.email.errors %}
+                    <li><strong>Error{{ error|escape }}</strong></li>
                 {% endfor %}
                 </ol>
             {% endif %}

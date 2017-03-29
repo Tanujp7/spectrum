@@ -1,16 +1,18 @@
 {% extends "allauth/base.html" %}
 
 {% load account socialaccount %}
-{% get_providers as socialaccount_providers %}
 
 {% block page_title %}Login{% endblock page_title %}
 {% block body %}
 
+      {% get_providers as socialaccount_providers %}
       {% if socialaccount_providers %}
       <p>Sign in using </p>
       <ul class="nav nav-pills nav-justified">
         {% include "socialaccount/snippets/provider_list.html" with process="login" %}
       </ul>
+
+      {% include "socialaccount/snippets/login_extra.html" %}
 
       {% endif %}
 
@@ -40,10 +42,3 @@
         </form>
       </div>
 {% endblock body %}
-
-
-{% block page_scripts %}
-  {% if socialaccount_providers %}
-    {% include "socialaccount/snippets/login_extra.html" %}
-  {% endif %}
-{% endblock page_scripts %}

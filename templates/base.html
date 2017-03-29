@@ -15,7 +15,6 @@
 
   <body>
 
-
     <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,12 +62,12 @@
 
     <div class="container">
       <nav class="navbar navbar-light bg-primary rounded-bottom">
-        <span class="navbar-brand">{% block sub_navigation_title %}{% endblock sub_navigation_title %}</span>
+        <span class="navbar-brand mr-auto mt-2 mt-md-0">{% block sub_navigation_title %}{% endblock sub_navigation_title %}</span>
         {% block sub_navigation %}{% endblock sub_navigation %}
-        <form class="form-inline justify-content-end">
+        <form class="form-inline my-2 my-lg-0">
           {% if user.is_authenticated %}
-          <span class="mr-4 text-white">Logged in as <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong></span>
-          <a class="btn btn-secondary" role="button" href="{% url 'account_logout' %}">Log Out</a>
+          <span class="mr-sm-2 text-white">Logged in as <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong></span>
+          <a class="btn btn-secondary my-2 my-sm-0" role="button" href="{% url 'account_logout' %}">Log Out</a>
           {% else %}
           <div class="btn-group mr-2" role="group">
             <a class="btn btn-primary" role="button" href="{% url 'account_login' %}">Log In</a>

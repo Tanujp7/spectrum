@@ -67,7 +67,7 @@
         {% block sub_navigation %}{% endblock sub_navigation %}
         <form class="form-inline justify-content-end">
           {% if user.is_authenticated %}
-          <span>{{ request.user.first_name + request.user.last_name }}</span>
+          <span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
           <a class="btn btn-secondary" role="button" href="{% url 'account_logout' %}">Log Out</a>
           {% else %}
           <div class="btn-group mr-2" role="group">

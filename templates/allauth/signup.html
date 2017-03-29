@@ -26,8 +26,8 @@
         <form class="signup" method="POST" action="{% url 'account_signup' %}">
           {% csrf_token %}
           <div class="form-group {% if form.email.errors %}has-danger{% endif %}" >
-            <label for="InputEmail">Email address</label>
-            <input class="form-control-label" name="email" type="email" class="form-control {% if form.email.errors %}form-control-danger{% endif %}" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
+            <label class="form-control-label" for="InputEmail">Email address</label>
+            <input name="email" type="email" class="form-control {% if form.email.errors %}form-control-danger{% endif %}" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
             {% if form.email.errors %}
                 {% for error in form.email.errors %}
                     <div class="form-control-feedback">{{ error|escape }}</div>

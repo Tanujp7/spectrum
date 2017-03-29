@@ -8,9 +8,12 @@
       {% get_providers as socialaccount_providers %}
       {% if socialaccount_providers %}
 
-      <ul class="nav nav-pills justify-content-center">
-        <li>Sign in using : </li>
-        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+      <ul class="text-center mx-auto justify-content-center flex-column">
+        <li>Sign in using </li>
+        <li class="btn-group" role="group" aria-label="Basic example">
+          <a role="button" class="btn btn-primary" href="/accounts/facebook/login/?process=login">Facebook</a>
+          <a role="button" class="btn btn-danger" href="/accounts/google/login/?process=login">Google</a>
+        </li>
       </ul>
 
       {% include "socialaccount/snippets/login_extra.html" %}

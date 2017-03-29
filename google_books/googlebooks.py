@@ -110,30 +110,29 @@ def extract_details(item):
     item_dict = {
         "title" : item.get('volumeInfo', '{}').get('title'),
         "authors" : item.get('volumeInfo', '{}').get('authors'),
-        "publisher" : item.get('publisher'),
-        "published_date" : item.get('publishedDate'),
-        "isbn" : item.get('industryIdentifiers'),
-        "description" : item.get('description'),
+        "publisher" : item.get('volumeInfo', '{}').get('publisher'),
+        "published_date" : item.get('volumeInfo', '{}').get('publishedDate'),
+        "isbn" : item.get('volumeInfo', '{}').get('industryIdentifiers'),
+        "description" : item.get('volumeInfo', '{}').get('description'),
         "alt_description" : item.get('searchInfo', {}).get('textSnippet'),
-        "page_count" : item.get('pageCount'),
-        "category" : item.get('mainCategory'),
-        "tags" : item.get('categories'),
-        "avg_rating" : item.get('averageRating'),
-        "ratings_count" : item.get('ratingsCount'),
-        "thumbnail" : item.get('imageLinks'),
-        "language" : item.get('language'),
-        "sale_country" : item.get('saleInfo', '{}').get('country'),
+        "page_count" : item.get('volumeInfo', '{}').get('pageCount'),
+        "category" : item.get('volumeInfo', '{}').get('mainCategory'),
+        "tags" : item.get('volumeInfo', '{}').get('categories'),
+        "avg_rating" : item.get('volumeInfo', '{}').get('averageRating'),
+        "ratings_count" : item.get('volumeInfo', '{}').get('ratingsCount'),
+        "thumbnail" : item.get('volumeInfo', '{}').get('imageLinks'),
+        "language" : item.get('volumeInfo', '{}').get('language'),
         "sale_amount" : item.get('saleInfo', '{}').get('listPrice'),
-        "link" : item.get('infoLink')
+        "link" : item.get('selfLink')
     }
     return item_dict
 
 def search(query):
     api = Api()
-    response = api.list(q=query, maxResults=9 , key='AIzaSyBSrnWtXVoLIBW0Ner1cQpe93tqKtFqW7g')
+    response = api.list(q=query, maxResults=20 , key='AIzaSyBSrnWtXVoLIBW0Ner1cQpe93tqKtFqW7g')
 
     items = response['items']
     result = []
     for i in items:
         result.append(extract_details(i))
-    return items, result
+    return result

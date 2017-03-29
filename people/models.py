@@ -20,11 +20,11 @@ class UserProfile(models.Model):
     gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES)
     highest_qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE, null=True, blank=True)
     occupation = models.CharField(max_length=100, blank=True)
-    ALMOST_NEVER = 5
-    SOMETIMES = 15
-    FEW_TIMES_A_MONTH = 50
-    FEW_TIMES_A_WEEK = 150
-    ALMOST_EVERYDAY = 300
+    ALMOST_NEVER = '5'
+    SOMETIMES = '15'
+    FEW_TIMES_A_MONTH = '50'
+    FEW_TIMES_A_WEEK = '150'
+    ALMOST_EVERYDAY = '300'
     READING_FREQUENCY_CHOICES = (
         (ALMOST_NEVER, 'Almost Never (0-5 times a year)'),
         (SOMETIMES, 'Sometimes (6-15 times a year)'),

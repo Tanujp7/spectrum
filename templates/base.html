@@ -69,8 +69,13 @@
           {% endfor %}
       </div>
       {% endif %}
-
-      <ul class="nav">
+      <nav class="navbar navbar-light bg-faded text-center">
+        <form class="form-inline">
+          <a class="btn btn-outline-warning" role="button" href="{% url 'account_logout' %}">Log Out</a>
+          <a class="btn btn-outline-success" role="button">Smaller button</a>
+        </form>
+      </nav>
+      <ul class="nav justify-content-end">
         {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>

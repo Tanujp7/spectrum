@@ -136,4 +136,4 @@ def search(query):
     result = []
     for i in items:
         result.append(extract_details(i))
-    return result
+    return items, result

@@ -25,24 +25,25 @@
       <div class="col-md-4 col-sm-12 p-3 mx-auto justify-content-center">
         <form class="signup" method="POST" action="{% url 'account_signup' %}">
           {% csrf_token %}
-          <div class="form-group" >
+          <div class="form-group {% if form.email.errors %}has-danger{% endif %}" >
             <label for="InputEmail">Email address</label>
-            <input name="email" type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
-
+            <input class="form-control-label" name="email" type="email" class="form-control {% if form.email.errors %}form-control-danger{% endif %}" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
             {% if form.email.errors %}
-                <ol>
                 {% for error in form.email.errors %}
-                    <li><strong>Error{{ error|escape }}</strong></li>
+                    <div class="form-control-feedback">{{ error|escape }}</div>
                 {% endfor %}
-                </ol>
             {% endif %}
-
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
-          <div class="form-group">
-            <label for="InputPassword">Password</label>
+          <div class="form-group  {% if form.password.errors %}has-danger{% endif %}">
+            <label class="form-control-label" for="InputPassword">Password</label>
             <input name="password1" type="password" class="form-control mb-3" id="InputPassword" placeholder="Password" required>
             <input name="password2" type="password" class="form-control" id="InputPassword2" placeholder="Password (again)" required>
+            {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                    <div class="form-control-feedback">{{ error|escape }}</div>
+                {% endfor %}
+            {% endif %}
           </div>
 
           {% if redirect_field_value %}

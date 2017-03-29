@@ -35,4 +35,4 @@ class UserProfile(models.Model):
     reading_frequency = models.CharField(max_length=50, choices=READING_FREQUENCY_CHOICES, null=True, blank=True)
 
     def __str__(self):
-        return self.user
+        return self.user.username

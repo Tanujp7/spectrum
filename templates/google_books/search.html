@@ -41,7 +41,11 @@
               <li class="list-group-item">Publication Date : {{ item.published_date|default:" - " }}</li>
             {% endif %}
             {% if item.isbn %}
-              <li class="list-group-item">ISBN : {{ item.isbn|default:" - " }}</li>
+              <li class="list-group-item">
+              {% for id in item.isbn %}
+                <p style="clear:both">{{ id.type }} - {{ id.identifier }}</p>
+              {% endfor %}
+              </li>
             {% endif %}
             {% if item.category %}
               <li class="list-group-item">Categories : {{ item.category|default:" - " }}</li>

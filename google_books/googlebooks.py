@@ -127,7 +127,7 @@ def extract_details(item):
         "link" : item.get('selfLink')
     }
     if item_dict['thumbnail'] is not None:
-        item_dict.update() = random.choice(list(item_dict['thumbnail'].keys()))
+        item_dict.update({'thumbnail' : random.choice(list(item_dict['thumbnail'].keys()))})
     return item_dict
 
 def search(query):

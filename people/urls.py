@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^accounts/email/$', TemplateView.as_view(template_name='allauth/email.html')),
     url(r'^accounts/login/$', AuthLoginView.as_view()),
     url(r'^accounts/logout/$', AuthLogoutView.as_view()),
-    url(r'^accounts/logout/$', AuthSignupView.as_view()),
+    url(r'^accounts/signup/$', AuthSignupView.as_view()),
 ]

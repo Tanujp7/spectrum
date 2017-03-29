@@ -5,5 +5,5 @@ from allauth.account.views import LoginView, LogoutView
 class AuthLoginView(LoginView):
     template_name = 'allauth/login.html'
 
-class AuthLogoutView(LoginView):
+class AuthLogoutView(LogoutView):
     template_name = 'allauth/logout.html'

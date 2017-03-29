@@ -1,14 +1,11 @@
 {% extends "google_books/base.html" %}
 
-{% block page_title %}Search{% endblock page_title %}
+{% block page_title %}Google Book Search{% endblock page_title %}
+{% block sub_navigation_title %}Google Book Search {% if query %}- {{ query|default:" " }}{% endif %}{% endblock sub_navigation_title %}
 
-{% block page_head %}{% endblock page_head %}
+{% block body %}
 
-{% block content %}
-
-<h2 class="text-center">Google Book Search</h2><br/>
-
-<form class="login" method="GET" action="{% url 'book_search' %}">
+<form class="login mb-5" method="GET" action="{% url 'book_search' %}">
   <div class="form-group row">
     <div class="col-sm-12 col-md-10">
       <input name="q" class="form-control" type="search" placeholder="The Three Musketeers / isbn:768621369821 / author:Chetan Bhagat" id="search-input">
@@ -20,8 +17,6 @@
   {% endif %}
 </form>
 
-
-<h3 class="title">{{ query|default:" " }}</h3><br/>
 {% if results %}
   <div class="query row">
     {% for item in results %}
@@ -81,6 +76,6 @@
   </div>
 {% endif %}
 
-{% endblock content %}
+{% endblock body %}
 
 {% block page_scripts %}{% endblock page_scripts %}

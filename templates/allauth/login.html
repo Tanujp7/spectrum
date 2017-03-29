@@ -7,8 +7,9 @@
 
       {% get_providers as socialaccount_providers %}
       {% if socialaccount_providers %}
-      <p>Sign in using </p>
-      <ul class="nav nav-pills nav-justified">
+
+      <ul class="nav nav-pills justify-content-center">
+        <li>Sign in using : </li>
         {% include "socialaccount/snippets/provider_list.html" with process="login" %}
       </ul>
 
@@ -16,7 +17,7 @@
 
       {% endif %}
 
-      <div class="w-50 p-3">
+      <div class="w-50 p-3 mx-auto justify-content-center">
         <form class="login" method="POST" action="{% url 'account_login' %}">
           {% csrf_token %}
           <div class="form-group" >

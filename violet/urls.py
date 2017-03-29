@@ -22,6 +22,12 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     # Linking interaction_system's url file
+    url(r'^', include('people.urls')),
+
+    # Linking interaction_system's url file
+    url(r'^', include('items.urls')),
+
+    # Linking interaction_system's url file
     url(r'^', include('interaction_system.urls')),
 
     # Linking google_books' url file

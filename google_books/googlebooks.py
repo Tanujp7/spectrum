@@ -130,7 +130,7 @@ def extract_details(item):
 
 def search(query):
     api = Api()
-    response = api.list(q=query, maxResults=40 , key='AIzaSyBSrnWtXVoLIBW0Ner1cQpe93tqKtFqW7g')
+    response = api.list(q=query, maxResults=9 , key='AIzaSyBSrnWtXVoLIBW0Ner1cQpe93tqKtFqW7g')
 
     items = response['items']
     result = []

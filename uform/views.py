@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserForm, QualificationForm, ProfileForm
 from django.forms.models import inlineformset_factory
 
+from people.models import UserProfile, Qualification
+
 def UserProfileFormView(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)

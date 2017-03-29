@@ -62,16 +62,18 @@
 
     <div class="container">
       <nav class="navbar navbar-toggleable-sm navbar-inverse bg-primary rounded-bottom">
-        <span class="navbar-brand">{% block sub_navigation_title %}{% endblock sub_navigation_title %}</span>
-        {% block sub_navigation %}{% endblock sub_navigation %}
-        <form class="form-inline justify-content-end">
+        <span class="mr-auto">
+          <span class="navbar-brand">{% block sub_navigation_title %}{% endblock sub_navigation_title %}</span>
+          {% block sub_navigation %}{% endblock sub_navigation %}
+        </span>
+        <form class="form-inline">
           {% if user.is_authenticated %}
           <span class="mr-4 text-white">Logged in as <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong></span>
-          <a class="btn btn-secondary" role="button" href="{% url 'account_logout' %}">Log Out</a>
+          <a class="btn btn-secondary btn-sm" role="button" href="{% url 'account_logout' %}">Log Out</a>
           {% else %}
           <div class="btn-group mr-2" role="group">
-            <a class="btn btn-primary" role="button" href="{% url 'account_login' %}">Log In</a>
-            <a class="btn btn-primary" role="button" href="{% url 'account_signup' %}">Sign Up</a>
+            <a class="btn btn-primary btn-sm" role="button" href="{% url 'account_login' %}">Log In</a>
+            <a class="btn btn-primary btn-sm" role="button" href="{% url 'account_signup' %}">Sign Up</a>
           </div>
           {% endif %}
         </form>

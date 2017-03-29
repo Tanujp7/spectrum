@@ -2,15 +2,15 @@
 
 {% load account socialaccount %}
 
-{% block page_title %}Login{% endblock page_title %}
-{% block sub_navigation_title %}Log In{% endblock sub_navigation_title %}
+{% block page_title %}Sign Up{% endblock page_title %}
+{% block sub_navigation_title %}Sign Up{% endblock sub_navigation_title %}
 {% block body %}
 
       {% get_providers as socialaccount_providers %}
       {% if socialaccount_providers %}
 
       <ul class="nav text-center mx-auto justify-content-center flex-column">
-        <li class="nav-item">Sign in using</li>
+        <li class="nav-item">Sign up using</li>
         <li class="nav-item">&nbsp;</li>
         <li class="btn-group mx-auto" role="group">
           <a role="button" class="btn btn-primary" href="/accounts/facebook/login/?process=login">Facebook</a>
@@ -23,7 +23,7 @@
       {% endif %}
 
       <div class="col-md-4 col-sm-12 p-3 mx-auto justify-content-center">
-        <form class="login" method="POST" action="{% url 'account_login' %}">
+        <form class="signup" method="POST" action="{% url 'account_signup' %}">
           {% csrf_token %}
           <div class="form-group" >
             <label for="exampleInputEmail1">Email address</label>
@@ -45,6 +45,18 @@
 
           <a class="button secondaryAction" href="{% url 'account_reset_password' %}" disabled>Forgot Password?</a><br/>
           <button type="submit" class="btn btn-primary primaryAction">Submit</button>
+        </form><br/><br/><br/><br/>
+        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+          <fieldset class="inlineLabels">
+            {{ form }}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <div class="buttonHolder">
+              <button class="primaryAction" type="submit">Sign Up &raquo;</button>
+            </div>
+          </fieldset>
         </form>
       </div>
 {% endblock body %}

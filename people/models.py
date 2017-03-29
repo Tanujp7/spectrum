@@ -39,7 +39,7 @@ class UserProfile(models.Model):
         str(FEW_TIMES_A_WEEK),
         str(ALMOST_EVERYDAY)
     )
-    reading_frequency = models.CharField(max_length=50, choices=RFC), null=True, blank=True)
+    reading_frequency = models.CharField(max_length=50, choices=RFC, null=True, blank=True)
 
     def __str__(self):
         return self.user.username

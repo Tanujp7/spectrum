@@ -61,23 +61,7 @@
 
 
     <div class="container">
-
-
-
-      <nav class="navbar navbar-light bg-faded">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </nav>
-
-      <nav class="navbar navbar-light bg-primary rounded-bottom">
+      <nav class="navbar navbar-toggleable-sm navbar-inverse bg-primary rounded-bottom">
         <span class="navbar-brand">{% block sub_navigation_title %}{% endblock sub_navigation_title %}</span>
         {% block sub_navigation %}{% endblock sub_navigation %}
         <form class="form-inline justify-content-end">

@@ -18,7 +18,7 @@ class UserProfile(models.Model):
         ('F', 'Female'),
     )
     gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES)
-    highest_qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE, null=True)
+    highest_qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE, null=True, blank=True)
     occupation = models.CharField(max_length=100, blank=True)
     ALMOST_NEVER = 5
     SOMETIMES = 15
@@ -32,7 +32,7 @@ class UserProfile(models.Model):
         (FEW_TIMES_A_WEEK, 'Few times a week (2-4 times a week)'),
         (ALMOST_EVERYDAY, 'Almost Everyday (6 times a week)')
     )
-    reading_frequency = models.CharField(max_length=50, choices=READING_FREQUENCY_CHOICES)
+    reading_frequency = models.CharField(max_length=50, choices=READING_FREQUENCY_CHOICES, null=True, blank=True)
 
     def __str__(self):
         return self.user

@@ -63,7 +63,7 @@
 
     <div class="container">
       <nav class="navbar navbar-light bg-primary rounded-bottom">
-        <span class="navbar-brand">{% block page_title %}{% endblock page_title %}</span>
+        <span class="navbar-brand">{% block sub_navigation_title %}{% endblock sub_navigation_title %}</span>
         {% block sub_navigation %}{% endblock sub_navigation %}
         <form class="form-inline justify-content-end">
           {% if user.is_authenticated %}

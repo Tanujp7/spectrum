@@ -33,13 +33,13 @@ class UserProfile(models.Model):
         (ALMOST_EVERYDAY, 'Almost Everyday (6 times a week)')
     )
     RFC = (
-        str(ALMOST_NEVER),
-        str(SOMETIMES),
-        str(FEW_TIMES_A_MONTH),
-        str(FEW_TIMES_A_WEEK),
-        str(ALMOST_EVERYDAY)
+        ALMOST_NEVER,
+        SOMETIMES,
+        FEW_TIMES_A_MONTH,
+        FEW_TIMES_A_WEEK,
+        ALMOST_EVERYDAY
     )
-    reading_frequency = models.CharField(max_length=50, choices=RFC, null=True, blank=True)
+    reading_frequency = models.IntField(max_length=50, choices=RFC, null=True, blank=True)
 
     def __str__(self):
         return self.user.username

@@ -1,50 +1,5 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-
-    <title>{% block page_title %}{% endblock page_title %} - Spectrum</title>
-
-    <link href="{% static 'css/bootstrap4.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    {% block page_head %}{% endblock page_head %}
-  </head>
-
-  <body>
-    <div class="container">
-
-      {% if messages %}
-      <div>
-          {% for message in messages %}
-            <div class="alert alert-info" role="alert">{{message}}</div>
-          {% endfor %}
-      </div>
-      {% endif %}
-
-      <ul class="nav">
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
-        </li>
-        {% endif %}
-      </ul>
-
-      {% block body %}{% endblock body %}
-
-    </div>
-
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/bootstrap4.min.js' %}"></script>
-    {% block page_scripts %}{% endblock page_scripts %}
-  </body>
-</html>
+{% extends "base.html" %}
+{% block page_title %}{% endblock page_title %}
+{% block page_head %}{% endblock page_head %}
+{% block body %}{% endblock body %}
+{% block page_scripts %}{% endblock page_scripts %}

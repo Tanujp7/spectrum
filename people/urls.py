@@ -3,7 +3,7 @@ from django.conf.urls import url
 from django.views.generic.base import TemplateView
 
 # Class Based Views
-from .views import AuthLoginView, AuthLogoutView
+from .views import AuthLoginView, AuthLogoutView, AuthSignupView
 # Function Based Views
 
 urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^accounts/email/$', TemplateView.as_view(template_name='allauth/email.html')),
     url(r'^accounts/login/$', AuthLoginView.as_view()),
     url(r'^accounts/logout/$', AuthLogoutView.as_view()),
+    url(r'^accounts/logout/$', AuthSignupView.as_view()),
 ]

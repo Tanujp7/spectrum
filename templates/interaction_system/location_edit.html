@@ -1,9 +1,0 @@
-{% extends 'interaction_system/base.html' %}
-
-{% block body %}
-    <h1>New Location</h1>
-    <form method="POST" class="location-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
-{% endblock %}

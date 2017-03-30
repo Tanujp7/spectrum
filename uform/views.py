@@ -21,7 +21,7 @@ def UserProfileFormView(request):
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.userprofile)
-    return render(request, 'interaction_system/user_profile.html', {
+    return render(request, 'uform/user_profile.html', {
         'user_form': user_form,
         'profile_form': profile_form
     })
@@ -34,7 +34,7 @@ def PersonalDetailsFormView(request):
             personaldetails_form.save()
     else:
         personaldetails_form = PersonalDetailsForm(instance=request.user.personaldetails)
-    return render(request, 'interaction_system/user_personaldetails.html', {
+    return render(request, 'uform/user_personaldetails.html', {
         'personaldetails_form': personaldetails_form
     })
 
@@ -46,6 +46,6 @@ def CareerFormView(request):
             career_form.save()
     else:
         career_form = CareerForm(instance=request.user.career)
-    return render(request, 'interaction_system/career.html', {
+    return render(request, 'uform/career.html', {
         'career_form': career_form,
     })

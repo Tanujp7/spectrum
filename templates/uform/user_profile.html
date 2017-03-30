@@ -1,4 +1,4 @@
-{% extends "interaction_system/base.html" %}
+{% extends "uform/base.html" %}
 {% load crispy_forms_tags %}
 
 {% block page_title %}{% block mod_title %}{% endblock mod_title %} // Interaction System - User Profile{% endblock page_title %}
@@ -11,5 +11,5 @@
   {{ qualification_form|crispy }}
 {{ profile_form|crispy }}
     <button type="submit" class="save btn btn-default">Save</button>
-</form> <br> 
+</form> <br>
 {% endblock body %}

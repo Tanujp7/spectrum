@@ -24,7 +24,7 @@ class CareerForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('location', 'birth_date', 'gender', 'reading_frequency')
+        fields = ('location', 'birth_date', 'gender')
         widgets = {
             'birth_date': DateInput()
         }

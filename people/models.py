@@ -14,7 +14,7 @@ class Career(models.Model):
     def __str__(self):
         return (str(self.qualification_stream))
 
-class Hobbies(models.Model):
+class UserHobbies(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
     money = models.CharField(max_length=60, blank=True, null=True)
     def __str__(self):

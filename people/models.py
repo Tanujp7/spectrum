@@ -7,8 +7,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Career(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
-    qualification_name = models.CharField(max_length=60, blank=True, default='student')
-    qualification_stream = models.CharField(max_length=60, blank=True, default='student')
+    qualification_name = models.CharField(max_length=60, blank=True, default='')
+    qualification_stream = models.CharField(max_length=60, blank=True, default='')
     occupation = models.CharField(max_length=100, blank=True)
 
     def __str__(self):

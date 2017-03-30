@@ -144,7 +144,7 @@ def search(query):
         result.append(extract_details(i))
     return result
 
-def retrieve(query):
+def retrieve(volume_id):
     api = Api()
     book = None
     response = api.get(volumeId=volume_id)

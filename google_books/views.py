@@ -26,7 +26,7 @@ class AddBook(View):
         except:
             volume_id = ''
         if (volume_id != '' and volume_id is not None):
-            item = googlebooks.search(volume_id)
+            item = googlebooks.retrieve(volume_id)
         else:
             item = None
         return render(request, self.template_name, {'item' : item})

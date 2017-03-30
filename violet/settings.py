@@ -54,8 +54,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     'widget_tweaks',
+    'crispy_forms',
     'taggit',
 ]
+
+CRISPY_TEMPLATE_PACK='bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

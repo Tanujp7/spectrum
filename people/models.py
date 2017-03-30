@@ -14,24 +14,9 @@ class Career(models.Model):
     def __str__(self):
         return (str(self.qualification_stream))
 
-class Hobby(models.Model):
+class UserHobbies(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
-    working_hrs = models.IntegerField("No. of Working Hours", blank=True, default=0,
-        validators=[
-            MaxValueValidator(24),
-            MinValueValidator(0)
-        ])
-    family_hrs = models.IntegerField("How much time do you spend with your family?", blank=True, default=0,
-        validators=[
-            MaxValueValidator(24),
-            MinValueValidator(0)
-        ])
-    own_hrs = models.IntegerField("How much time do you spend for yourself?", blank=True, default=0,
-        validators=[
-            MaxValueValidator(24),
-            MinValueValidator(0)
-        ])
-
+    money = model.CharField(max_length=60, blank=True, null=True)
     def __str__(self):
         return self.user.username
 

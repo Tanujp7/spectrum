@@ -18,7 +18,7 @@ class UserHobbies(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
     money = models.CharField(max_length=60, blank=True, null=True)
     def __str__(self):
-        return self.user.username
+        return str(self.money)
 
 class PersonalDetails(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')

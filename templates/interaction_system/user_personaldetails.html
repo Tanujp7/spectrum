@@ -1,15 +1,13 @@
 {% extends "interaction_system/base.html" %}
 {% load crispy_forms_tags %}
 
-{% block page_title %}{% block mod_title %}{% endblock mod_title %} // Interaction System - User Profile{% endblock page_title %}
+{% block page_title %}{% block mod_title %}{% endblock mod_title %} // Interaction System - User Personal Details{% endblock page_title %}
 {% block page_head %}{% endblock page_head %}
 
 {% block body %}
-<h1>User Profile</h1>
+<h1>User Personal Details</h1>
 <form method="POST" class="form-horizontal">{% csrf_token %}
-  {{ user_form|crispy }}
-  {{ qualification_form|crispy }}
-{{ profile_form|crispy }}
+  {{ personaldetails_form|crispy }}
     <button type="submit" class="save btn btn-default">Save</button>
 </form> <br>
 {% endblock body %}

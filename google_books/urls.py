@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from django.contrib.auth.decorators import permission_required
 
-from .views import Search, AddBook, AddBookFormView
+from .views import Search, AddBook
 
 
 urlpatterns = [

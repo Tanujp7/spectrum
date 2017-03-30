@@ -33,7 +33,9 @@
                 <span>unknown</span>
             {% endif %}
           </h6>
-          <p class="card-text">{{ item.description|default:item.alt_description|default:" " }}</p>
+          {% with item.alt_description as alt_desc %}
+          <p class="card-text">{{ item.description|default:alt_desc|default:" " }}</p>
+          {% endwith %}
         </div>
         <ul class="list-group list-group-flush">
           {% if item.publisher %}

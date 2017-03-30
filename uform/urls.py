@@ -6,5 +6,6 @@ from .views import UserProfileFormView
 
 urlpatterns = [
     # Function Based Views
-    url(r'^personald/$', UserProfileFormView, name='UserProfileFormView'),
+    url(r'^personal/$', PersonalDetailsFormView, name='PersonalDetailsFormView'),
+    url(r'^profile/$', UserProfileFormView, name='UserProfileFormView'),
 ]

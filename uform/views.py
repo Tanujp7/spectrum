@@ -5,11 +5,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 # Forms
-from .forms import UserForm, QualificationForm, ProfileForm
+from .forms import UserForm, QualificationForm, ProfileForm, PersonalDetailsForm
 from django.forms.models import inlineformset_factory
 
-from people.models import UserProfile, Qualification
+from people.models import UserProfile, Qualification, PersonalDetails
 
+@login_required
 def UserProfileFormView(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
@@ -27,4 +28,16 @@ def UserProfileFormView(request):
         'user_form': user_form,
         'qualification_form': qualification_form,
         'profile_form': profile_form
+    })
+
+@login_required
+def PersonalDetailsFormView(request):
+    if request.method == 'POST':
+        personaldetails_form = PersonalDetailsForm(request.POST, instance=request.user.personaldetails)
+        if personaldetails_form.is_valid():
+            personaldetails_form.save()
+    else:
+        personaldetails_form = PersonalDetailsForm(instance=request.user.personaldetails)
+    return render(request, 'interaction_system/user_personaldetails.html', {
+        'personaldetails_form': personaldetails_form
     })

@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from people.models import UserProfile, Qualification
+from people.models import UserProfile, Qualification, PersonalDetails
 
 class UserForm(forms.ModelForm):
     class Meta:
@@ -17,3 +17,8 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('location', 'birth_date', 'gender', 'occupation', 'reading_frequency')
+
+class PersonalDetailsForm(forms.ModelForm):
+    class Meta:
+        model = PersonalDetails
+        fields = ('marital_status', 'no_of_kids', 'income', 'family_income')

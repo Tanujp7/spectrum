@@ -70,11 +70,11 @@ class UserProfile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
-        Qualification.objects.create(user=instance)
+        Career.objects.create(user=instance)
         PersonalDetails.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
-    instance.qualification.save()
+    instance.career.save()
     instance.personaldetails.save()

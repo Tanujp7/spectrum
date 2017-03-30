@@ -10,7 +10,7 @@ class Qualification(models.Model):
     qualification_stream = models.CharField(max_length=60, blank=True, default='student')
 
     def __str__(self):
-        return (self.qualification_name + ' ' + self.qualification_stream)
+        return (str(self.qualification_stream))
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

@@ -16,4 +16,4 @@ class QualificationForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('birth_date', 'gender', 'occupation', 'reading_frequency')
+        fields = ('birth_date', 'gender', 'highest_qualification', 'occupation', 'reading_frequency')

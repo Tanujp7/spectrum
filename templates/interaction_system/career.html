@@ -7,8 +7,7 @@
 {% block body %}
 <h1>Career Profile</h1>
 <form method="POST" class="form-horizontal">{% csrf_token %}
-  {{ qualification_form|crispy }}
-{{ occupation_form|crispy }}
+  {{ career_form|crispy }}
     <button type="submit" class="save btn btn-default">Save</button>
 </form> <br>
 {% endblock body %}

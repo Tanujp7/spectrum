@@ -15,8 +15,8 @@ class Book(models.Model):
 class BookProfile(models.Model):
     book = models.OneToOneField(Book, on_delete=models.CASCADE)
     description = models.CharField(max_length=1024)
-    authors = TaggableManager()
-    publisher = TaggableManager()
+    authors = models.CharField(max_length=1024)
+    publisher = models.CharField(max_length=256)
     publication_year = models.SmallIntegerField(validators=[MinValueValidator(1600), MaxValueValidator(2100)])
     thumbnail = models.CharField(max_length=1024)
     tags = TaggableManager()

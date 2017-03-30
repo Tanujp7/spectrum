@@ -14,7 +14,7 @@ class Career(models.Model):
     def __str__(self):
         return (str(self.qualification_stream))
 
-class Hobbies(models.Model):
+class Hobby(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
     working_hrs = models.IntegerField("No. of Working Hours", blank=True, default=0,
         validators=[

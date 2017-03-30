@@ -6,8 +6,8 @@ from django.dispatch import receiver
 
 class Qualification(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='3')
-    qualification_name = models.CharField(max_length=60, blank=True)
-    qualification_stream = models.CharField(max_length=60, blank=True)
+    qualification_name = models.CharField(max_length=60, blank=True, default='student')
+    qualification_stream = models.CharField(max_length=60, blank=True, default='student')
 
     def __str__(self):
         return (self.qualification_name + ' ' + self.qualification_stream)

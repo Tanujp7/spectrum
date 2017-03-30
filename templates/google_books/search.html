@@ -63,7 +63,7 @@
           </ul>
           <div class="card-block text-center">
             <div class="btn-group" role="group">
-              <a href="{{ item.id|default:"" }}" class="btn btn-primary" role="button">Add to database</a>
+              <a href="/google_books/add/?volume_id={{ item.id|default:"" }}" class="btn btn-primary" role="button">Add to database</a>
               <a href="{{ item.link|default:"http://google.com/" }}" class="btn btn-secondary" role="button">Link</a>
             </div>
           </div>

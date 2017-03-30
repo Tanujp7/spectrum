@@ -19,4 +19,4 @@ class Search(View):
             results = googlebooks.search(query.replace(" ", "+"))
         else:
             results = None
-        return render(request, self.template_name, {'query' : query, 'results' : results})
+        return render(request, self.template_name, {'query' : query, 'results' : results})(request)

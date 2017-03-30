@@ -67,7 +67,7 @@
     </div>
     <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12 my-3">
       <form method="POST" class="form-horizontal">
-
+        {% csrf_token %}
         <div class="form-group">
           <label for="volume_id" class="form-control-label">Volume ID</label>
           <input class="form-control" name="volume_id" id="volume_id" type="text" value="{{item.id}}"/>

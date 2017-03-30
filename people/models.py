@@ -82,21 +82,6 @@ class UserProfile(models.Model):
         ('F', 'Female'),
     )
     gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES)
-    # highest_qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE, null=True, blank=True)
-    ALMOST_NEVER = '5'
-    SOMETIMES = '15'
-    FEW_TIMES_A_MONTH = '50'
-    FEW_TIMES_A_WEEK = '150'
-    ALMOST_EVERYDAY = '300'
-    READING_FREQUENCY_CHOICES = (
-        (ALMOST_NEVER, 'Almost Never (0-5 times a year)'),
-        (SOMETIMES, 'Sometimes (6-15 times a year)'),
-        (FEW_TIMES_A_MONTH, 'Few times a month (Once a week)'),
-        (FEW_TIMES_A_WEEK, 'Few times a week (2-4 times a week)'),
-        (ALMOST_EVERYDAY, 'Almost Everyday (6 times a week)')
-    )
-    reading_frequency = models.CharField(max_length=50, choices=READING_FREQUENCY_CHOICES, null=True, blank=True)
-
     def __str__(self):
         return self.user.username
 
@@ -106,9 +91,11 @@ def create_user_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
         Career.objects.create(user=instance)
         PersonalDetails.objects.create(user=instance)
+        Hobbies.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
     instance.career.save()
     instance.personaldetails.save()
+    instance.hobbies.save()

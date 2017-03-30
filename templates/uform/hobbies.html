@@ -1,0 +1,15 @@
+{% extends "uform/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}1. Hobbies Form{% endblock page_title %}
+{% block sub_navigation_title %}1. Hobbies Form{% endblock sub_navigation_title %}
+
+{% block body %}
+      <div class="col-md-6 col-sm-12 p-3">
+        <form method="POST" class="form-horizontal">
+          {% csrf_token %}
+          {{ hobbies_form|crispy }}
+          <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+      </div>
+{% endblock body %}

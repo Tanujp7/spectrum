@@ -62,7 +62,10 @@
             {% endif %}
           </ul>
           <div class="card-block text-center">
-            <a href="{{ item.link|default:"http://google.com/" }}" class="btn btn-primary">Add to database</a>
+            <div class="btn-group" role="group">
+              <a href="{{ item.id|default:"" }}" class="btn btn-primary" role="button">Add to database</a>
+              <a href="{{ item.link|default:"http://google.com/" }}" class="btn btn-secondary" role="button">Link</a>
+            </div>
           </div>
           <div class="card-footer text-muted">
             {% if item.page_count %}Pgs. {{ item.page_count|default:"-" }}{% endif %}

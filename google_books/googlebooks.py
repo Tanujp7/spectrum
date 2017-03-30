@@ -109,6 +109,7 @@ class Api(object):
 
 def extract_details(item):
     item_dict = {
+        "id" : item.get('id'),
         "title" : item.get('volumeInfo', '{}').get('title'),
         "authors" : item.get('volumeInfo', '{}').get('authors'),
         "publisher" : item.get('volumeInfo', '{}').get('publisher'),

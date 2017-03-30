@@ -19,62 +19,31 @@
 
 {% if item %}
   <div class="query row">
+  <div class="query row">
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my-3">
-      <div class="card">
-        <img class="card-img-top" width="100%" src="{{ item.thumbnail|default:"https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" }}">
-        <div class="card-block">
-          <h4 class="card-title">{{item.title}}</h4>
-          <h6 class="card-subtitle mb-2">
-            {% if item.isbn %}
-              {% for a in item.authors %}
-                <span>{{ a }},</span>
-              {% endfor %}
-            {% else %}
-                <span>unknown</span>
-            {% endif %}
-          </h6>
-          {% with item.alt_description as alt_desc %}
-          <p class="card-text">{{ item.description|default:alt_desc|default:" " }}</p>
-          {% endwith %}
-        </div>
-        <ul class="list-group list-group-flush">
-          {% if item.publisher %}
-            <li class="list-group-item">Publisher : {{ item.publisher|default:" - " }}</li>
-          {% endif %}
-          {% if item.published_date %}
-            <li class="list-group-item">Publication Date : {{ item.published_date|default:" - " }}</li>
-          {% endif %}
-          {% if item.isbn %}
-            <li class="list-group-item">
-            {% for id in item.isbn %}
-              <p style="clear:both">{{ id.type }} - {{ id.identifier }}</p>
-            {% endfor %}
-            </li>
-          {% endif %}
-          {% if item.category %}
-            <li class="list-group-item">Categories : {{ item.category|default:" - " }}</li>
-          {% endif %}
-          {% if item.tags %}
-            <li class="list-group-item">
-            {% for tag in item.tags %}
-              Tags : <span>{{ tag }},</span>
-            {% endfor %}
-            </li>
-          {% endif %}
-        </ul>
-        <div class="card-block text-center">
-          <div class="btn-group" role="group">
-            <a href="/google_books/add/?volume_id={{ item.id|default:"" }}" class="btn btn-primary" role="button">Add to database</a>
-            <a href="{{ item.link|default:"http://google.com/" }}" class="btn btn-secondary" role="button">Link</a>
-          </div>
-        </div>
-        <div class="card-footer text-muted">
-          {% if item.page_count %}Pgs. {{ item.page_count|default:"-" }}{% endif %}
-          {% if item.avg_rating %}| Rating : {{ item.avg_rating|default:"-" }} ({{ item.ratings_count|default:"-" }} counts){% endif %}
-          {% if item.language %}| {{ item.language }}{% endif %}
-          {% if item.sale_amount %}| {{ item.sale_amount.currencyCode }} {{ item.sale_amount.amount }}{% endif %}
-        </div>
-      </div>
+      <form method="POST" class="form-horizontal">
+        <input type='hidden' name='csrfmiddlewaretoken' value='3M4zUQBrs8OyKmng02ohNm7QxRvnLQnpMqM0jYiZjOuSuyNi8CuepFcFE7wiZ3cM' />
+
+
+        <div id="div_id_uid" class="form-group"> <label for="id_uid" class="form-control-label  requiredField">
+                Uid<span class="asteriskField">*</span> </label> <div class=""> <input class="textinput textInput form-control" id="id_uid" maxlength="256" name="uid" type="text" required /> </div> </div> <div id="div_id_title" class="form-group"> <label for="id_title" class="form-control-label  requiredField">
+                Title<span class="asteriskField">*</span> </label> <div class=""> <input class="textinput textInput form-control" id="id_title" maxlength="256" name="title" type="text" required /> </div> </div>
+
+
+
+        <div id="div_id_book" class="form-group"> <label for="id_book" class="form-control-label  requiredField">
+                Book<span class="asteriskField">*</span> </label> <div class=""> <select class="select form-control" id="id_book" name="book" required>
+        <option value="" selected="selected">---------</option>
+        </select> </div> </div> <div id="div_id_description" class="form-group"> <label for="id_description" class="form-control-label  requiredField">
+                Description<span class="asteriskField">*</span> </label> <div class=""> <input class="textinput textInput form-control" id="id_description" maxlength="1024" name="description" type="text" required /> </div> </div> <div id="div_id_authors" class="form-group"> <label for="id_authors" class="form-control-label  requiredField">
+                Authors<span class="asteriskField">*</span> </label> <div class=""> <input class="textinput textInput form-control" id="id_authors" maxlength="1024" name="authors" type="text" required /> </div> </div> <div id="div_id_publisher" class="form-group"> <label for="id_publisher" class="form-control-label  requiredField">
+                Publisher<span class="asteriskField">*</span> </label> <div class=""> <input class="textinput textInput form-control" id="id_publisher" maxlength="256" name="publisher" type="text" required /> </div> </div> <div id="div_id_publication_year" class="form-group"> <label for="id_publication_year" class="form-control-label  requiredField">
+                Publication year<span class="asteriskField">*</span> </label> <div class=""> <input class="numberinput form-control" id="id_publication_year" name="publication_year" type="number" required /> </div> </div> <div id="div_id_thumbnail" class="form-group"> <label for="id_thumbnail" class="form-control-label  requiredField">
+                Thumbnail<span class="asteriskField">*</span> </label> <div class=""> <input class="textinput textInput form-control" id="id_thumbnail" maxlength="1024" name="thumbnail" type="text" required /> </div> </div> <div id="div_id_tags" class="form-group"> <label for="id_tags" class="form-control-label  requiredField">
+                Tags<span class="asteriskField">*</span> </label> <div class=""> <input class="tagwidget form-control" id="id_tags" name="tags" type="text" required /> <small id="hint_id_tags" class="text-muted">A comma-separated list of tags.</small> </div> </div>
+
+        <button type="submit" class="save btn btn-default">Save</button>
+      </form>
     </div>
   </div>
 {% endif %}

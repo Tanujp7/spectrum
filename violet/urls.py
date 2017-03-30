@@ -16,22 +16,26 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
+    # Home Page
+    url(r'^$', TemplateView.as_view(template_name='home.html')),
+
     # Linking Django Admin's url file
     url(r'^admin/', admin.site.urls),
 
-    # Linking interaction_system's url file
-    url(r'^', include('people.urls')),
+    # Linking people's url file
+    url(r'^accounts/', include('people.urls')),
+
+    # Linking item's url file
+    url(r'^books/', include('items.urls')),
 
     # Linking interaction_system's url file
-    url(r'^', include('items.urls')),
-
-    # Linking interaction_system's url file
-    url(r'^', include('interaction_system.urls')),
+    url(r'^interactions/', include('interaction_system.urls')),
 
     # Linking google_books' url file
-    url(r'^', include('google_books.urls')),
+    url(r'^google_books/', include('google_books.urls')),
 
     # Linking uform's url file
     url(r'^forms/', include('uform.urls')),

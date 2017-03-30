@@ -5,18 +5,6 @@
 
 {% block body %}
 
-<form class="login mb-5" method="GET" action="{% url 'book_search' %}">
-  <div class="form-group row">
-    <div class="col-sm-12 col-md-10">
-      <input name="q" class="form-control" type="search" placeholder="The Three Musketeers / isbn:768621369821 / author:Chetan Bhagat" id="search-input">
-    </div>
-    <button type="submit" class="btn btn-primary">Search</button>
-  </div>
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-</form>
-
 {% if item %}
   <div class="query row">
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my-3">
@@ -82,47 +70,47 @@
 
         <div class="form-group">
           <label for="volume_id" class="form-control-label">Volume ID</label>
-          <input class="form-control" name="volume_id" id="volume_id" type="text" />
+          <input class="form-control" name="volume_id" id="volume_id" type="text" value="{{item.volume_id}}"/>
         </div>
         <div class="form-group">
           <label for="title" class="form-control-label">Title</label>
-          <input class="form-control" name="title" id="title" type="text" />
+          <input class="form-control" name="title" id="title" type="text" value="{{item.title}}" />
         </div>
         <div class="form-group">
           <label for="isbn" class="form-control-label">ISBN</label>
-          <input class="form-control" name="isbn" id="isbn" type="text" />
+          <input class="form-control" name="isbn" id="isbn" type="text" value="{{item.isbn}}" />
         </div>
         <div class="form-group">
           <label for="description" class="form-control-label">Description</label>
-          <textarea class="form-control" name="description" id="description"></textarea>
+          <textarea class="form-control" name="description" id="description">{{item.description}}</textarea>
         </div>
         <div class="form-group">
           <label for="publication_date" class="form-control-label">Publication Date</label>
-          <input class="form-control" name="publication_date" id="publication_date" type="date" />
+          <input class="form-control" name="publication_date" id="publication_date" type="date" value="{{item.publication_date}}" />
         </div>
         <div class="form-group">
           <label for="tags" class="form-control-label">Tags</label>
-          <input class="form-control" name="tags" id="tags" type="text" />
+          <input class="form-control" name="tags" id="tags" type="text" value="{{item.tags}}" />
         </div>
         <div class="form-group">
           <label for="page_count" class="form-control-label">Page Count</label>
-          <input class="form-control" name="page_count" id="page_count" type="number" />
+          <input class="form-control" name="page_count" id="page_count" type="number" value="{{item.page_count}}" />
         </div>
         <div class="form-group">
           <label for="rating" class="form-control-label">Rating</label>
-          <input class="form-control" name="rating" id="rating" type="number" />
+          <input class="form-control" name="rating" id="rating" type="number" value="{{item.rating}}" />
         </div>
         <div class="form-group">
           <label for="rating_count" class="form-control-label">Rating Count</label>
-          <input class="form-control" name="rating_count" id="rating_count" type="number" />
+          <input class="form-control" name="rating_count" id="rating_count" type="number" value="{{item.rating_count}}" />
         </div>
         <div class="form-group">
           <label for="language" class="form-control-label">Language</label>
-          <input class="form-control" name="language" id="language" type="text" />
+          <input class="form-control" name="language" id="language" type="text" value="{{item.language}}" />
         </div>
         <div class="form-group">
           <label for="cost" class="form-control-label">Cost</label>
-          <input class="form-control" name="cost" id="cost" type="text" />
+          <input class="form-control" name="cost" id="cost" type="text" value="{{item.cost}}" />
         </div>
 
         <button type="submit" class="save btn btn-default">Save</button>

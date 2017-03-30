@@ -7,57 +7,56 @@
 
 {% if item %}
   <div class="query row">
-    <div class="row">
-      <div class="col-lg-3 col-xs-6 my-3">
-          <div class="card">
-            <label>
-              <img class="card-img-top" width="100%" src="{{ item.raw_thumbnail }}&amp;zoom=1">
-              <div class="card-footer text-muted">
-                <input type="radio" name="cover_image_link" value="{{ item.raw_thumbnail }}&amp;zoom=1" checked=""/> Zoom Level 1
-              </div>
-            </label>
-          </div>
-      </div>
-      <div class="col-lg-3 col-xs-6 my-3">
-          <div class="card">
-            <label>
-              <img class="card-img-top" width="100%" src="{{ item.raw_thumbnail }}&amp;zoom=2">
-              <div class="card-footer text-muted">
-                <input type="radio" name="cover_image_link" value="{{ item.raw_thumbnail }}&amp;zoom=2"/> Zoom Level 2
-              </div>
-            </label>
-          </div>
-      </div>
-      <div class="col-lg-3 col-xs-6 my-3">
-          <div class="card">
-            <label>
-              <img class="card-img-top" width="100%" src="{{ item.raw_thumbnail }}&amp;zoom=3">
-              <div class="card-footer text-muted">
-                <input type="radio" name="cover_image_link" value="{{ item.raw_thumbnail }}&amp;zoom=3"/> Zoom Level 3
-              </div>
-            </label>
-          </div>
-      </div>
-      <div class="col-lg-3 col-xs-6 my-3">
-          <div class="card">
-            <label>
-              <img class="card-img-top" width="100%" src="{{ item.raw_thumbnail }}&amp;zoom=4">
-              <div class="card-footer text-muted">
-                <input type="radio" name="cover_image_link" value="{{ item.raw_thumbnail }}&amp;zoom=4"/> Zoom Level 4
-              </div>
-            </label>
-          </div>
-      </div>
-    </div>
     <div class="col-sm-12 col-xs-12 my-3">
       <form method="POST" class="form-horizontal">
         {% csrf_token %}
 
-
+        <div class="row">
+          <div class="col-lg-3 col-xs-6 my-3">
+              <div class="card">
+                <label>
+                  <img class="card-img-top" width="100%" src="{{ item.raw_thumbnail }}&amp;zoom=1">
+                  <div class="card-footer text-muted">
+                    <input type="radio" name="cover_image_link" value="{{ item.raw_thumbnail }}&amp;zoom=1" checked=""/> Zoom Level 1
+                  </div>
+                </label>
+              </div>
+          </div>
+          <div class="col-lg-3 col-xs-6 my-3">
+              <div class="card">
+                <label>
+                  <img class="card-img-top" width="100%" src="{{ item.raw_thumbnail }}&amp;zoom=2">
+                  <div class="card-footer text-muted">
+                    <input type="radio" name="cover_image_link" value="{{ item.raw_thumbnail }}&amp;zoom=2"/> Zoom Level 2
+                  </div>
+                </label>
+              </div>
+          </div>
+          <div class="col-lg-3 col-xs-6 my-3">
+              <div class="card">
+                <label>
+                  <img class="card-img-top" width="100%" src="{{ item.raw_thumbnail }}&amp;zoom=3">
+                  <div class="card-footer text-muted">
+                    <input type="radio" name="cover_image_link" value="{{ item.raw_thumbnail }}&amp;zoom=3"/> Zoom Level 3
+                  </div>
+                </label>
+              </div>
+          </div>
+          <div class="col-lg-3 col-xs-6 my-3">
+              <div class="card">
+                <label>
+                  <img class="card-img-top" width="100%" src="{{ item.raw_thumbnail }}&amp;zoom=4">
+                  <div class="card-footer text-muted">
+                    <input type="radio" name="cover_image_link" value="{{ item.raw_thumbnail }}&amp;zoom=4"/> Zoom Level 4
+                  </div>
+                </label>
+              </div>
+          </div>
+        </div>
 
         <div class="form-group">
           <label for="volume_id" class="form-control-label">Volume ID</label>
-          <input class="form-control" name="volume_id" id="volume_id" type="text" value="{{item.id}}"/>
+          <input class="form-control" name="volume_id" id="volume_id" type="text" value="{{item.id}}" disabled/>
         </div>
         <div class="form-group">
           <label for="title" class="form-control-label">Title</label>

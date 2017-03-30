@@ -3,6 +3,9 @@ from django import forms
 from django.contrib.auth.models import User
 from people.models import UserProfile, Qualification, PersonalDetails
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 class UserForm(forms.ModelForm):
     class Meta:
         model = User

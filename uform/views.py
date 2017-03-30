@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 # Forms
-from .forms import UserForm, ProfileForm, PersonalDetailsForm, CareerForm, HobbiesForm
+from .forms import UserForm, ProfileForm, PersonalDetailsForm, CareerForm
 from django.forms.models import inlineformset_factory
 
-from people.models import UserProfile, Career, PersonalDetails, Hobbies
+from people.models import UserProfile, Career, PersonalDetails
 
 @login_required
 def UserProfileFormView(request):
@@ -48,16 +48,4 @@ def CareerFormView(request):
         career_form = CareerForm(instance=request.user.career)
     return render(request, 'uform/career.html', {
         'career_form': career_form,
-    })
-
-@login_required
-def HobbiesFormView(request):
-    if request.method == 'POST':
-        hobbies_form = HobbiesForm(request.POST, instance=request.user.hobbies)
-        if hobbies_form.is_valid():
-            hobbies_form.save()
-    else:
-        hobbies_form = HobbiesForm(instance=request.user.hobbies)
-    return render(request, 'uform/hobbies.html', {
-        'hobbies_form': hobbies_form,
     })

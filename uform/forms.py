@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from people.models import UserProfile, Career, PersonalDetails, Hobbies
+from people.models import UserProfile, Career, PersonalDetails
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -11,11 +11,6 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'email')
 
-class HobbiesForm(forms.ModelForm):
-    class Meta:
-        model = Hobbies
-        fields = ('working_hrs', 'family_hrs', 'own_hrs', 'reading_frequency')
-
 class CareerForm(forms.ModelForm):
     class Meta:
         model = Career
@@ -24,7 +19,7 @@ class CareerForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('location', 'birth_date', 'gender')
+        fields = ('location', 'birth_date', 'gender', 'reading_frequency')
         widgets = {
             'birth_date': DateInput()
         }

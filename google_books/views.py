@@ -1,12 +1,8 @@
 from django.shortcuts import render
 from django.views import View
-from django.contrib.auth.decorators import login_required, permission_required
-from django.utils.decorators import method_decorator
 
 from google_books import googlebooks
 
-@method_decorator(login_required, name='dispatch')
-@method_decorator(permission_required, name='dispatch')
 class Search(View):
     template_name = 'google_books/search.html'
 
@@ -19,4 +15,4 @@ class Search(View):
             results = googlebooks.search(query.replace(" ", "+"))
         else:
             results = None
-        return render(request, self.template_name, {'query' : query, 'results' : results})(request)
+        return render(request, self.template_name, {'query' : query, 'results' : results})

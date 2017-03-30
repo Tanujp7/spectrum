@@ -5,5 +5,5 @@ from .views import Search
 
 
 urlpatterns = [
-    url(r'^search/$', permission_required('items.add_book')(Search.as_view()), name='book_search'),
+    url(r'^search/$', permission_required('items.add_book', raise_exception=True)(Search.as_view()), name='book_search'),
 ]

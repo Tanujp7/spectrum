@@ -1,0 +1,82 @@
+{% extends "google_books/base.html" %}
+
+{% block page_title %}Add Book{% endblock page_title %}
+{% block sub_navigation_title %}Add Book{% endblock sub_navigation_title %}
+
+{% block body %}
+
+<form class="login mb-5" method="GET" action="{% url 'book_search' %}">
+  <div class="form-group row">
+    <div class="col-sm-12 col-md-10">
+      <input name="q" class="form-control" type="search" placeholder="The Three Musketeers / isbn:768621369821 / author:Chetan Bhagat" id="search-input">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </div>
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+</form>
+
+{% if item %}
+  <div class="query row">
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 my-3">
+      <div class="card">
+        <img class="card-img-top" width="100%" src="{{ item.thumbnail|default:"https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" }}">
+        <div class="card-block">
+          <h4 class="card-title">{{item.title}}</h4>
+          <h6 class="card-subtitle mb-2">
+            {% if item.isbn %}
+              {% for a in item.authors %}
+                <span>{{ a }},</span>
+              {% endfor %}
+            {% else %}
+                <span>unknown</span>
+            {% endif %}
+          </h6>
+          <p class="card-text">{{ item.description|default:item.alt_description|default:" " }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          {% if item.publisher %}
+            <li class="list-group-item">Publisher : {{ item.publisher|default:" - " }}</li>
+          {% endif %}
+          {% if item.published_date %}
+            <li class="list-group-item">Publication Date : {{ item.published_date|default:" - " }}</li>
+          {% endif %}
+          {% if item.isbn %}
+            <li class="list-group-item">
+            {% for id in item.isbn %}
+              <p style="clear:both">{{ id.type }} - {{ id.identifier }}</p>
+            {% endfor %}
+            </li>
+          {% endif %}
+          {% if item.category %}
+            <li class="list-group-item">Categories : {{ item.category|default:" - " }}</li>
+          {% endif %}
+          {% if item.tags %}
+            <li class="list-group-item">
+            {% for tag in item.tags %}
+              Tags : <span>{{ tag }},</span>
+            {% endfor %}
+            </li>
+          {% endif %}
+        </ul>
+        <div class="card-block text-center">
+          <div class="btn-group" role="group">
+            <a href="/google_books/add/?volume_id={{ item.id|default:"" }}" class="btn btn-primary" role="button">Add to database</a>
+            <a href="{{ item.link|default:"http://google.com/" }}" class="btn btn-secondary" role="button">Link</a>
+          </div>
+        </div>
+        <div class="card-footer text-muted">
+          {% if item.page_count %}Pgs. {{ item.page_count|default:"-" }}{% endif %}
+          {% if item.avg_rating %}| Rating : {{ item.avg_rating|default:"-" }} ({{ item.ratings_count|default:"-" }} counts){% endif %}
+          {% if item.language %}| {{ item.language }}{% endif %}
+          {% if item.sale_amount %}| {{ item.sale_amount.currencyCode }} {{ item.sale_amount.amount }}{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% endblock body %}
+
+{% block page_scripts %}{% endblock page_scripts %}

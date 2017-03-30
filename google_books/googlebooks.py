@@ -143,3 +143,10 @@ def search(query):
     for i in items:
         result.append(extract_details(i))
     return result
+
+def retrieve(query):
+    api = Api()
+    book = None
+    response = api.get(volumeId=volume_id)
+    book = extract_details(response)
+    return book

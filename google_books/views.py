@@ -16,3 +16,17 @@ class Search(View):
         else:
             results = None
         return render(request, self.template_name, {'query' : query, 'results' : results})
+
+class AddBook(View):
+    template_name = 'google_books/add.html'
+
+    def get(self, request):
+        try:
+            volume_id = request.GET.get('volume_id')
+        except:
+            volume_id = ''
+        if (volume_id != '' and volume_id is not None):
+            item = googlebooks.search(volume_id)
+        else:
+            item = None
+        return render(request, self.template_name, {'item' : item})

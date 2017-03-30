@@ -5,7 +5,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 class Qualification(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     qualification_name = models.CharField(max_length=60, null=True)
     qualification_stream = models.CharField(max_length=60, null=True)
 
@@ -21,7 +20,7 @@ class UserProfile(models.Model):
         ('F', 'Female'),
     )
     gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES)
-    # highest_qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE, null=True, blank=True)
+    highest_qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE, null=True, blank=True)
     occupation = models.CharField(max_length=100, blank=True)
     ALMOST_NEVER = '5'
     SOMETIMES = '15'

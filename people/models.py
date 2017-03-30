@@ -19,6 +19,7 @@ class PersonalDetails(models.Model):
         ('S', 'Single'),
         ('M', 'Married'),
         ('D', 'Divorced'),
+        ('W', 'Widowed'),
     )
     marital_status = models.CharField(max_length=60, blank=True, choices=MARITAL_CHOICES)
     no_of_kids = models.IntegerField(blank=True, default=0,
@@ -28,11 +29,11 @@ class PersonalDetails(models.Model):
         ])
     income = models.IntegerField(blank=True, default=0,
         validators=[
-            MinValueValidator(1)
+            MinValueValidator(0)
         ])
     family_income = models.IntegerField(blank=True, default=0,
         validators=[
-            MinValueValidator(1)
+            MinValueValidator(0)
         ])
     def __str__(self):
         return self.user.username

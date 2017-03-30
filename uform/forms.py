@@ -16,10 +16,15 @@ class QualificationForm(forms.ModelForm):
         model = Qualification
         fields = ('qualification_name', 'qualification_stream')
 
+class OccupationForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('occupation')
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('location', 'birth_date', 'gender', 'occupation', 'reading_frequency')
+        fields = ('location', 'birth_date', 'gender', 'reading_frequency')
         widgets = {
             'birth_date': DateInput()
         }

@@ -1,0 +1,14 @@
+{% extends "interaction_system/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}{% block mod_title %}{% endblock mod_title %} // Interaction System - Career{% endblock page_title %}
+{% block page_head %}{% endblock page_head %}
+
+{% block body %}
+<h1>Career Profile</h1>
+<form method="POST" class="form-horizontal">{% csrf_token %}
+  {{ qualification_form|crispy }}
+{{ occupation_form|crispy }}
+    <button type="submit" class="save btn btn-default">Save</button>
+</form> <br>
+{% endblock body %}

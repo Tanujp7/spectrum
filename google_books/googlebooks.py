@@ -123,6 +123,7 @@ def extract_details(item):
         "avg_rating" : item.get('volumeInfo', '{}').get('averageRating'),
         "ratings_count" : item.get('volumeInfo', '{}').get('ratingsCount'),
         "thumbnail" : item.get('volumeInfo', '{}').get('imageLinks'),
+        "raw_thumbnail" : item.get('volumeInfo', '{}').get('imageLinks'),
         "language" : item.get('volumeInfo', '{}').get('language'),
         "sale_amount" : item.get('saleInfo', '{}').get('listPrice'),
         "link" : item.get('selfLink')
@@ -132,6 +133,11 @@ def extract_details(item):
         img_url = re.sub('(zoom=)\w+', 'zoom=1', img_url)
         img_url = re.sub('(edge=)\w+', 'edge=uncurl', img_url)
         item_dict.update({'thumbnail' : img_url})
+    if item_dict['raw_thumbnail'] is not None:
+        img_url = item_dict['raw_thumbnail'][random.choice(list(item_dict['raw_thumbnail'].keys()))]
+        img_url = re.sub('(zoom=)\w+', '&amp;', img_url)
+        img_url = re.sub('(edge=)\w+', '&amp;', img_url)
+        item_dict.update({'raw_thumbnail' : img_url})
     return item_dict
 
 def search(query):

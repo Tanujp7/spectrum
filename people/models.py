@@ -3,14 +3,39 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Qualification(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default='3')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
     qualification_name = models.CharField(max_length=60, blank=True, default='student')
     qualification_stream = models.CharField(max_length=60, blank=True, default='student')
 
     def __str__(self):
         return (str(self.qualification_stream))
+
+class PersonalDetails(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
+    MARITAL_CHOICES = (
+        ('S', 'Single'),
+        ('M', 'Married'),
+        ('D', 'Divorced'),
+    )
+    marital_status = models.CharField(max_length=60, blank=True, choices=MARITAL_CHOICES)
+    no_of_kids = models.IntegerField(blank=True, default=0,
+        validators=[
+            MaxValueValidator(10),
+            MinValueValidator(0)
+        ])
+    income = models.IntegerField(blank=True, default=0,
+        validators=[
+            MinValueValidator(1)
+        ])
+    family_income = models.IntegerField(blank=True, default=0,
+        validators=[
+            MinValueValidator(1)
+        ])
+    def __str__(self):
+        return self.user.username
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

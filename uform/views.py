@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 # Forms
-from .forms import UserForm, QualificationForm, ProfileForm, PersonalDetailsForm, OccupationForm
+from .forms import UserForm, ProfileForm, PersonalDetailsForm, CareerForm
 from django.forms.models import inlineformset_factory
 
-from people.models import UserProfile, Qualification, PersonalDetails
+from people.models import UserProfile, Career, PersonalDetails
 
 @login_required
 def UserProfileFormView(request):
@@ -41,15 +41,11 @@ def PersonalDetailsFormView(request):
 @login_required
 def CareerFormView(request):
     if request.method == 'POST':
-        qualification_form = QualificationForm(request.POST, instance=request.user.qualification)
-        occupation_form = OccupationForm(request.POST, instance=request.user.userprofile)
-        if qualification_form.is_valid() and occupation_form.is_valid():
-            occupation_form.save()
-            qualification_form.save()
+        career_form = CareerForm(request.POST, instance=request.user.career)
+        if career_form.is_valid():
+            career_form.save()
     else:
-        qualification_form = QualificationForm(instance=request.user.qualification)
-        occupation_form = OccupationForm(instance=request.user.userprofile)
+        career_form = CareerForm(instance=request.user.career)
     return render(request, 'interaction_system/career.html', {
-        'qualification_form': qualification_form,
-        'occupation_form': occupation_form
+        'career_form': career_form,
     })

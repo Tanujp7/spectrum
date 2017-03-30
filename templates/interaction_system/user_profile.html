@@ -8,8 +8,7 @@
 <h1>User Profile</h1>
 <form method="POST" class="form-horizontal">{% csrf_token %}
   {{ user_form|crispy }}
-  {{ location_form.as_p }}
-  {{ qualification_form.as_p }}
+  {{ qualification_form|crispy }}
 {{ profile_form|crispy }}
     <button type="submit" class="save btn btn-default">Save</button> <br>
 </form>

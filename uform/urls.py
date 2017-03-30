@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 # Class Based Views
 # Function Based Views
-from .views import UserProfileFormView
+from .views import UserProfileFormView, PersonalDetailsFormView
 
 urlpatterns = [
     # Function Based Views

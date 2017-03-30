@@ -55,8 +55,9 @@
             {% endif %}
             {% if item.tags %}
               <li class="list-group-item">
+                Tags : 
               {% for tag in item.tags %}
-                Tags : <span>{{ tag }},</span>
+                <span>{{ tag }},</span>
               {% endfor %}
               </li>
             {% endif %}

@@ -78,7 +78,7 @@
         </div>
         <div class="form-group">
           <label for="isbn" class="form-control-label">ISBN</label>
-          <input class="form-control" name="isbn" id="isbn" type="text" value="{{item.isbn}}" />
+          <input class="form-control" name="isbn" id="isbn" type="text" value="{% for id in item.isbn %}{{ id.type }}:{{ id.identifier }},{% endfor %}" />
         </div>
         <div class="form-group">
           <label for="description" class="form-control-label">Description</label>
@@ -86,7 +86,7 @@
         </div>
         <div class="form-group">
           <label for="publication_date" class="form-control-label">Publication Date</label>
-          <input class="form-control" name="publication_date" id="publication_date" type="date" value="{{item.publication_date}}" />
+          <input class="form-control" name="publication_date" id="publication_date" type="date" value="{{item.published_date}}" />
         </div>
         <div class="form-group">
           <label for="tags" class="form-control-label">Tags</label>
@@ -98,11 +98,11 @@
         </div>
         <div class="form-group">
           <label for="rating" class="form-control-label">Rating</label>
-          <input class="form-control" name="rating" id="rating" type="number" value="{{item.rating}}" />
+          <input class="form-control" name="rating" id="rating" type="number" value="{{item.avg_rating}}" />
         </div>
         <div class="form-group">
           <label for="rating_count" class="form-control-label">Rating Count</label>
-          <input class="form-control" name="rating_count" id="rating_count" type="number" value="{{item.rating_count}}" />
+          <input class="form-control" name="rating_count" id="rating_count" type="number" value="{{item.ratings_count}}" />
         </div>
         <div class="form-group">
           <label for="language" class="form-control-label">Language</label>
@@ -110,7 +110,7 @@
         </div>
         <div class="form-group">
           <label for="cost" class="form-control-label">Cost</label>
-          <input class="form-control" name="cost" id="cost" type="text" value="{{item.cost}}" />
+          <input class="form-control" name="cost" id="cost" type="text" value="{{ item.sale_amount.currencyCode }} {{ item.sale_amount.amount }}" />
         </div>
 
         <button type="submit" class="save btn btn-default">Save</button>

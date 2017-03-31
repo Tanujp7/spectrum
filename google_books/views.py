@@ -2,7 +2,10 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic.edit import CreateView
+
 from django.contrib.auth.decorators import permission_required
+from django.http import HttpResponseRedirect
+
 
 from items.models import Book, BookProfile
 from .forms import BookForm

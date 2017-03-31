@@ -23,8 +23,8 @@ def random_book(request):
 def rate_the_book(request, volume="random"):
 
     # Redirect in case /book/rate/random/ doesn't pick 'random_book()'
-    if volume == "random":
-        return HttpResponseRedirect(reverse('book_search'))
+    #if volume == "random":
+    #    return HttpResponseRedirect(reverse('book_search'))
 
     # When book is rated!
     if request.method == 'POST':

@@ -26,13 +26,9 @@
           <div class="card-block">
             <h4 class="card-title">{{item.title}}</h4>
             <h6 class="card-subtitle mb-2">
-              {% if item.author %}
                 {% for a in item.authors %}
                   <span>{{ a }},</span>
                 {% endfor %}
-              {% else %}
-                  <span>unknown</span>
-              {% endif %}
             </h6>
             <p class="card-text">{{ item.description|default:item.alt_description|default:" " }}</p>
           </div>

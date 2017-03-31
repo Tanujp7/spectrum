@@ -61,18 +61,21 @@ def rate_the_book(request, volume=""):
     book_rating_form = BookRatingForm()
     rating_log_form = RatingLogForm()
 
+    # Let's show the page w/ forms and book item.
+    context = { }
+
     # Get Book & BookProfile Object w/ matching volume_id
     if (volume != '' and volume is not None):
         try:
             book = Book.objects.get(volume_id=volume)
             book_profile = BookProfile.objects.get(book=book)
+            context = { 'book' : book,
+                        'book_profile' : book_profile,
+                        'book_rating_form': book_rating_form,
+                        'rating_log_form': rating_log_form
+                        }
         except:
             return HttpResponseRedirect(reverse('home'))
 
-    # Let's show the page w/ forms and book item.
-    context = { 'book' : book,
-                'book_profile' : book_profile,
-                'book_rating_form': book_rating_form,
-                'rating_log_form': rating_log_form
-                }
+
     return render(request, 'interaction_system/rate_book.html', context)

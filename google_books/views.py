@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.views import View
 from django.views.generic.edit import CreateView
 
@@ -52,7 +52,12 @@ def add_book(request):
         form = BookForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            try:
+                form.save()
+            except IntegrityError:
+                messages = []
+                messages.append('The book with same volume_id already exists.')
+                return render_to_response("google_books/add.html", {"messages": messages})
             return HttpResponseRedirect(reverse('book_search') )
 
     elif request.method == 'GET':

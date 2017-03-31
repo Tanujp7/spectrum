@@ -15,3 +15,19 @@
         </form>
       </div>
 {% endblock body %}
+
+{% block page_scripts %}
+      <script src="https://cdn.jsdelivr.net/places.js/1/places.min.js"></script>
+      <script>
+      (function() {
+        var placesAutocomplete = places({
+          container: document.querySelector('#id_location')
+        });
+
+        placesAutocomplete.on('clear', function() {
+          $address.textContent = 'none';
+        });
+
+      })();
+      </script>
+{% endblock page_scripts %}

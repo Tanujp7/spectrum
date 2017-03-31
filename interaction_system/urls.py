@@ -3,5 +3,5 @@ from .views import rate_the_book, random_book
 
 urlpatterns = [
     url(r'^get/random/book/$', random_book, name='rate_random_book'),
-    url(r'^book/rate/(?P<volume>\w+)/$', rate_the_book, name='rate_book'),
+    url(r'^book/rate/(?P<volume>(?:\w+-)+\w+|(\w+))/$', rate_the_book, name='rate_book'),
 ]

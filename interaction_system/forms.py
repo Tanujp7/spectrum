@@ -4,10 +4,10 @@ from .models import BookRating, RatingLog
 
 class BookRatingForm(forms.ModelForm):
     class Meta:
-        model = Book
+        model = BookRating
         fields = ('rating')
 
 class RatingLogForm(forms.ModelForm):
     class Meta:
-        model = BookProfile
+        model = RatingLog
         fields = ('rating')

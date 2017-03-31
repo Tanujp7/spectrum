@@ -13,7 +13,7 @@ from .forms import BookRatingForm, RatingLogForm
 @login_required
 def random_book(request):
     try:
-        book = Book.random.all()[0].get()
+        book = Book.random.all()[0]
         volume_id = book.volume_id
         return redirect(reverse('rate_book',kwargs={'volume':volume_id}))
     except:

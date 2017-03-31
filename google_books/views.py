@@ -51,13 +51,15 @@ def add_book(request):
     if request.method == 'POST':
 
         book_form = BookForm(request.POST)
-        book_profile_form = BookProfileForm(request.POST)
+
+        if book_form.is_valid():
+            book_form.save()
 
         volume_id = request.POST.get('volume_id')
+        book_obj = Book.objects.get(volume_id=volume_id)
+        book_profile_form = BookProfileForm(request.POST, instance=book_obj)
 
         if book_form.is_valid() and book_profile_form.is_valid():
-            book_form.save()
-            book_obj = Book.objects.get(volume_id=volume_id)
             book_profile_form.save()
 
             return HttpResponseRedirect(reverse('book_search'))

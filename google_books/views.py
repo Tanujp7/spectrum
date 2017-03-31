@@ -24,8 +24,6 @@ class Search(View):
 
 class AddBook(CreateView):
     template_name = 'google_books/add.html'
-    success_url = '/'
-    form_class = None
 
     def get(self, request):
         try:
@@ -40,3 +38,28 @@ class AddBook(CreateView):
 
     def form_valid(self, form):
             return super(AddBook, self).form_valid(form)
+
+
+@permission_required('items.add_book')
+def add_book(request):
+
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('book_search') )
+
+    elif request.method == 'GET':
+        form = BookForm()
+        try:
+            volume_id = request.GET.get('volume_id')
+        except:
+            volume_id = ''
+        if (volume_id != '' and volume_id is not None):
+            item = googlebooks.retrieve(volume_id)
+        else:
+            item = None
+        return render(request, 'google_books/add.html', {'item' : item, 'form': form})
+
+    return render(request, 'google_books/add.html', {'form': form})

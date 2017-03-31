@@ -24,10 +24,6 @@ def random_book(request):
 @login_required
 def rate_the_book(request, volume=""):
 
-    # Redirect in case /book/rate/random/ doesn't pick 'random_book()'
-    #if volume == "random":
-    #    return HttpResponseRedirect(reverse('book_search'))
-
     # When book is rated!
     if request.method == 'POST':
         book_rating_form = BookRatingForm(request.POST)
@@ -41,6 +37,8 @@ def rate_the_book(request, volume=""):
             brf.user = user_obj
             brf.save()
             book_rating_form.save_m2m()
+        else:
+            return HttpResponse('An error occured? / book_rating_form isnt valid')
 
         rating = request.POST.get('rating')
 
@@ -55,22 +53,25 @@ def rate_the_book(request, volume=""):
 
             # Success and Now NEXT book
             return HttpResponseRedirect(reverse('rate_random_book'))
+        else:
+            return HttpResponse('An error occured? / rating_log_form isnt valid')
 
         # Form(s) were not valid. Something bad happend. Go home!
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponse('An error occured?')
 
     # Load form on the page
     book_rating_form = BookRatingForm()
     rating_log_form = RatingLogForm()
 
-    # Let's show the page w/ forms and book item.
-    context = { }
+    context = {}
 
     # Get Book & BookProfile Object w/ matching volume_id
     if (volume != '' and volume is not None):
         try:
             book = Book.objects.get(volume_id=volume)
             book_profile = BookProfile.objects.get(book=book)
+
+            # Let's show the page w/ forms and book item.
             context = { 'book' : book,
                         'book_profile' : book_profile,
                         'book_rating_form': book_rating_form,

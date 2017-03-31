@@ -67,7 +67,7 @@ def add_book(request):
 
             return HttpResponseRedirect(reverse('book_search'))
 
-        return render(request, 'google_books/add.html', {'book_form': book_form, 'instance': instance})
+        return render(request, 'google_books/add.html', {'book_form': book_form, 'book_profile_form': book_profile_form})
 
     else:
 

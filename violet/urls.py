@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^books/', include('items.urls')),
 
     # Linking interaction_system's url file
-    url(r'^interactions/', include('interaction_system.urls')),
+    url(r'^interact/', include('interaction_system.urls')),
 
     # Linking google_books' url file
     url(r'^google_books/', include('google_books.urls')),

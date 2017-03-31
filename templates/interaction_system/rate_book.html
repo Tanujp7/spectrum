@@ -6,50 +6,49 @@
 {% block body %}
 
 <div class="query row">
-    <div class="col-lg-4 col-md-6 col-sm-12 my-3 mx-auto">
+    <div class="col-lg-4 col-md-6 col-sm-12 my-3">
       <div class="card">
         <img class="card-img-top" width="100%" src="{{ book_profile.cover_image_link }}">
       </div>
     </div>
-</div>
-<div class="col-lg-4 col-md-6 col-sm-12 my-3 mx-auto">
-  <div class="card">
-    <div class="card-block">
-      <div class="btn-group">
-        <form method="POST" class="form-horizontal">
-          {% csrf_token %}
-          <button class="btn btn-lg btn-danger" type="submit" name="rating" value="-1" autocomplete="off"> Dislike </button>
-        </form>
-        <form method="POST" class="form-horizontal">
-          {% csrf_token %}
-          <button class="btn btn-lg btn-warning" type="submit" name="rating" value="0" autocomplete="off"> Neutral </button>
-        </form>
-        <form method="POST" class="form-horizontal">
-          {% csrf_token %}
-          <button class="btn btn-lg btn-primary" type="submit" name="rating" value="1" autocomplete="off"> Like </button>
-        </form>
+    <div class="col-lg-8 col-md-6 col-sm-12 my-3">
+      <div class="card">
+        <div class="card-block">
+          <div class="btn-group">
+            <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+              <button class="btn btn-lg btn-danger" type="submit" name="rating" value="-1" autocomplete="off"> Dislike </button>
+            </form>
+            <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+              <button class="btn btn-lg btn-warning" type="submit" name="rating" value="0" autocomplete="off"> Neutral </button>
+            </form>
+            <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+              <button class="btn btn-lg btn-primary" type="submit" name="rating" value="1" autocomplete="off"> Like </button>
+            </form>
+          </div>
+        </div>
+        <div class="card-block">
+          <h4 class="card-title">{{book.title}}</h4>
+          <h6 class="card-subtitle mb-2">{{ book_profile.author }}</h6>
+          <p class="card-text">{{ book_profile.description }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Publisher : {{ book_profile.publisher }}</li>
+            <li class="list-group-item">Publication Date : {{ book_profile.publication_date }}</li>
+            <li class="list-group-item">ISBN : {{ book_profile.isbn }}</li>
+            <li class="list-group-item">Tags : {{ book_profile.tags.all|join:", " }}</span></li>
+        </ul>
+        <div class="card-footer text-muted">
+          Pgs. {{ book_profile.page_count }}
+          | Rating : {{ book_profile.rating }} ({{ book_profile.rating_count }} counts)
+          | {{ book_profile.language }}
+          | {{ book_profile.cost }}
+        </div>
       </div>
     </div>
-    <div class="card-block">
-      <h4 class="card-title">{{book.title}}</h4>
-      <h6 class="card-subtitle mb-2">{{ book_profile.author }}</h6>
-      <p class="card-text">{{ book_profile.description }}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Publisher : {{ book_profile.publisher }}</li>
-        <li class="list-group-item">Publication Date : {{ book_profile.publication_date }}</li>
-        <li class="list-group-item">ISBN : {{ book_profile.isbn }}</li>
-        <li class="list-group-item">Tags : {{ book_profile.tags.all|join:", " }}</span></li>
-    </ul>
-    <div class="card-footer text-muted">
-      Pgs. {{ book_profile.page_count }}
-      | Rating : {{ book_profile.rating }} ({{ book_profile.rating_count }} counts)
-      | {{ book_profile.language }}
-      | {{ book_profile.cost }}
-    </div>
-  </div>
 </div>
-
 
 {% endblock body %}
 

@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 
 
 from items.models import Book, BookProfile
-from .forms import BookForm
+from .forms import BookForm, BookProfileForm
 
 from google_books import googlebooks
 
@@ -49,11 +49,13 @@ class AddBook(CreateView):
 def add_book(request):
 
     if request.method == 'POST':
-        form = BookForm(request.POST)
+        book_form = BookForm(request.POST)
+        book_profile_form = BookProfileForm(request.POST)
 
-        if form.is_valid():
+        if book_form.is_valid() and book_profile_form.is_valid():
             try:
-                form.save()
+                book_form.save()
+                book_profile_form.save()
             except IntegrityError:
                 messages = []
                 messages.append('The book with same volume_id already exists.')
@@ -61,7 +63,8 @@ def add_book(request):
             return HttpResponseRedirect(reverse('book_search') )
 
     elif request.method == 'GET':
-        form = BookForm()
+        book_form = BookForm()
+        book_profile_form = BookProfileForm()
         try:
             volume_id = request.GET.get('volume_id')
         except:
@@ -70,6 +73,6 @@ def add_book(request):
             item = googlebooks.retrieve(volume_id)
         else:
             item = None
-        return render(request, 'google_books/add.html', {'item' : item, 'form': form})
+        return render(request, 'google_books/add.html', {'item' : item, 'book_form': book_form, 'book_profile_form': book_profile_form})
 
-    return render(request, 'google_books/add.html', {'form': form})
+    return render(request, 'google_books/add.html', {'book_form': book_form, 'book_profile_form': book_profile_form})

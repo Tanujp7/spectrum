@@ -37,13 +37,13 @@ class AddBook(View):
             item = None
         return render(request, self.template_name, {'item' : item})
 
-    def post(self, request):
-        form = BookForm(request.POST)
+    def post(request):
+        book_form = BookForm(request.POST)
 
-        if form.is_valid():
-            form.save()
+        if book_form.is_valid():
+            book_form.save()
             return redirect('book_search')
         else:
             return render(request, 'google_books/add.html', {
-                'form': form
+                'book_form': book_form
             })

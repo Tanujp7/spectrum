@@ -20,7 +20,7 @@ def random_book(request):
         return HttpResponse('World')
 
 @login_required
-def rate_the_book(request, volume="random"):
+def rate_the_book(request, volume=""):
 
     # Redirect in case /book/rate/random/ doesn't pick 'random_book()'
     #if volume == "random":

@@ -12,13 +12,12 @@ from .forms import BookRatingForm, RatingLogForm
 
 @login_required
 def random_book(request):
-    while True:
-        try:
-            book = Book.random.all()[0].get()
-            volume_id = book.volume_id
-            return redirect(reverse('rate_book',kwargs={'volume':volume_id}))
-        except:
-            pass
+    try:
+        book = Book.random.all()[0].get()
+        volume_id = book.volume_id
+        return redirect(reverse('rate_book',kwargs={'volume':volume_id}))
+    except:
+        return redirect(reverse('home'))
 
 @login_required
 def rate_the_book(request, volume="random"):

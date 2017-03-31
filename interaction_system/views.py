@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from items.models import Book, BookProfile
+from .models import BookRating, RatingLog
 
 from .forms import BookRatingForm, RatingLogForm
 

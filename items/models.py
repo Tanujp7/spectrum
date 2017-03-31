@@ -17,7 +17,7 @@ class Publisher(models.Model):
         return self.name
 
 class Book(models.Model):
-    volume_id = models.CharField(max_length=25)
+    volume_id = models.CharField(max_length=25, unique=True)
     title = models.CharField(max_length=256, null=True, default='unknown')
     #authors = models.ManyToManyField(Author)
     #publishers = models.ManyToManyField(Publisher)

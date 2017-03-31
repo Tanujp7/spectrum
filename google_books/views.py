@@ -53,16 +53,19 @@ def add_book(request):
         book_form = BookForm(request.POST)
         book_profile_form = BookProfileForm(request.POST)
 
+        volume_id = request.POST.get('volume_id')
+
         if book_form.is_valid() and book_profile_form.is_valid():
             book_form.save()
-            book_profile_form.save()
+            book_obj = Book.objects.get(volume_id=volume_id)
+            book_profile_form.save(instance=book_obj)
 
             return HttpResponseRedirect(reverse('book_search'))
 
         return render(request, 'google_books/add.html', {'book_form': book_form, 'book_profile_form': book_profile_form})
 
     else:
-        
+
         book_form = BookForm()
         book_profile_form = BookProfileForm()
 

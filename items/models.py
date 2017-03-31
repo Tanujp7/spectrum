@@ -4,23 +4,9 @@ from django.core.validators import MinLengthValidator, MaxLengthValidator, MinVa
 
 from taggit.managers import TaggableManager
 
-class Author(models.Model):
-    name = models.CharField(max_length=100, null=True, blank=True, default='unknown')
-
-    def __str__(self):
-        return self.name
-
-class Publisher(models.Model):
-    name = models.CharField(max_length=100, null=True, blank=True, default='unknown')
-
-    def __str__(self):
-        return self.name
-
 class Book(models.Model):
     volume_id = models.CharField(max_length=25, unique=True)
     title = models.CharField(max_length=256, null=True, default='unknown')
-    #authors = models.ManyToManyField(Author)
-    #publishers = models.ManyToManyField(Publisher)
 
     def __str__(self):
         return self.title
@@ -28,7 +14,9 @@ class Book(models.Model):
 class BookProfile(models.Model):
     book = models.OneToOneField(Book, on_delete=models.CASCADE)
     isbn = models.CharField(max_length=50, null=True, blank=True, default='')
-    description = models.CharField(max_length=1024, null=True, blank=True, default='')
+    description = models.CharField(max_length=5000, null=True, blank=True, default='')
+    publisher = models.CharField(max_length=256, null=True, blank=True, default='unknown')
+    author = models.CharField(max_length=256, null=True, blank=True, default='unknown')
     publication_date = models.DateField(null=True, blank=True)
     cover_image_link = models.CharField(max_length=360, null=True, blank=True, default='https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg')
     page_count = models.PositiveSmallIntegerField(null=True, blank=True, default=0)

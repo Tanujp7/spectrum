@@ -19,4 +19,6 @@ class BookProfileForm(forms.ModelForm):
                     'rating_count',
                     'language',
                     'cost',
-                    'tags')
+                    'tags',
+                    'author',
+                    'publisher')

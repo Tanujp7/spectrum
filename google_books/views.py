@@ -19,6 +19,7 @@ class Search(View):
 
 class AddBook(View):
     template_name = 'google_books/add.html'
+    success_url = '/'
 
     def get(self, request):
         try:
@@ -32,17 +33,30 @@ class AddBook(View):
         return render(request, self.template_name, {'item' : item})
 
     def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
+        form = self.get_form()
         if form.is_valid():
-            return self.form_valid(form, **kwargs)
+            return self.form_valid(form)
         else:
-            return self.form_invalid(form, **kwargs)
+            return self.form_invalid(form)
 
-    def form_invalid(self, form, **kwargs):
-        context = self.get_context_data(**kwargs)
-        context['form'] = form
-        return self.render_to_response(context)
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
 
-    def form_valid(self, form, **kwargs):
+    def form_valid(self, form):
         return HttpResponseRedirect(self.get_success_url())
+
+    def get_form_class(self):
+        return self.form_class
+
+    def get_form(self, form_class=None):
+        if form_class is None:
+            form_class = self.get_form_class()
+        return form_class(**self.get_form_kwargs())
+
+    def get_success_url(self):
+        if self.success_url:
+            url = force_text(self.success_url)
+        else:
+            raise ImproperlyConfigured(
+                "No URL to redirect to. Provide a success_url.")
+        return url

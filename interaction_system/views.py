@@ -15,7 +15,7 @@ def random_book(request):
     try:
         book = Book.random.all()[0].get()
         volume_id = book.volume_id
-        return redirect(reverse('rate_book',kwargs={'volume':volume_id}))
+        return HttpResponse(reverse('rate_book',kwargs={'volume':volume_id}))
     except:
         return redirect(reverse('home'))
 

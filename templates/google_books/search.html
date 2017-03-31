@@ -7,10 +7,10 @@
 
 <form class="login mb-5" method="GET" action="{% url 'book_search' %}">
   <div class="form-group row">
-    <div class="col-sm-12 col-md-10">
+    <div class="col-sm-12 col-md-10 mb-2">
       <input name="q" class="form-control" type="search" placeholder="The Three Musketeers / isbn:768621369821 / author:Chetan Bhagat" id="search-input">
     </div>
-    <button type="submit" class="btn btn-primary">Search</button>
+    <button type="submit" class="btn btn-primary mx-auto">Search</button>
   </div>
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />

@@ -32,7 +32,7 @@
             <li class="list-group-item">Publisher : {{ book_profile.publisher }}</li>
             <li class="list-group-item">Publication Date : {{ book_profile.publication_date }}</li>
             <li class="list-group-item">ISBN : {{ book_profile.isbn }}</li>
-            <li class="list-group-item">Tags : {% for tag in book_profile.tags.all %}{{ tag.name }},{% endfor %}</span></li>
+            <li class="list-group-item">Tags : {{ book_profile.tags.all|join:", " }}</span></li>
         </ul>
         <div class="card-footer text-muted">
           Pgs. {{ book_profile.page_count }}

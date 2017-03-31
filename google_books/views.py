@@ -21,7 +21,7 @@ class Search(View):
             results = None
         return render(request, self.template_name, {'query' : query, 'results' : results})
 
-class AddBook(View):
+class AddBook(CreateView):
     template_name = 'google_books/add.html'
     success_url = '/'
     form_class = None
@@ -37,13 +37,5 @@ class AddBook(View):
             item = None
         return render(request, self.template_name, {'item' : item})
 
-    def post(request):
-        book_form = BookForm(request.POST)
-
-        if book_form.is_valid():
-            book_form.save()
-            return redirect('book_search')
-        else:
-            return render(request, 'google_books/add.html', {
-                'book_form': book_form
-            })
+    def form_valid(self, form):
+            return super(AddBook, self).form_valid(form)

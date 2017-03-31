@@ -10,6 +10,7 @@
       <div class="col-lg-4 col-md-6 col-sm-12 my-3 mx-auto">
         <div class="card">
           <img class="card-img-top" width="100%" src="{{ item.thumbnail|default:"https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" }}">
+          <div class="card-block btn btn-primary"></div>
           <div class="card-block">
             <h4 class="card-title">{{item.title}}</h4>
             <h6 class="card-subtitle mb-2">
@@ -45,12 +46,6 @@
               </li>
             {% endif %}
           </ul>
-          <div class="card-block text-center">
-            <div class="btn-group" role="group">
-              <a href="/google_books/add/?volume_id={{ item.id|default:"" }}" class="btn btn-primary" role="button">Add to database</a>
-              <a href="{{ item.link|default:"http://google.com/" }}" class="btn btn-secondary" role="button">Link</a>
-            </div>
-          </div>
           <div class="card-footer text-muted">
             {% if item.page_count %}Pgs. {{ item.page_count|default:"-" }}{% endif %}
             {% if item.avg_rating %}| Rating : {{ item.avg_rating|default:"-" }} ({{ item.ratings_count|default:"-" }} counts){% endif %}

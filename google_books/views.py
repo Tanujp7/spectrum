@@ -57,11 +57,13 @@ def add_book(request):
 
         volume_id = request.POST.get('volume_id')
         book_obj = Book.objects.get(volume_id=volume_id)
-        book_profile_form = BookProfileForm(request.POST or None, instance=book_obj)
+        book_profile_form = BookProfileForm(request.POST)
 
         if book_form.is_valid() and book_profile_form.is_valid():
             instance = book_profile_form.save(commit=False)
+            instance.book = book_obj.id
             instance.save()
+            book_profile_form.save_m2m()
 
             return HttpResponseRedirect(reverse('book_search'))
 

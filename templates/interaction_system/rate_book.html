@@ -10,7 +10,7 @@
       <div class="card">
         <img class="card-img-top" width="100%" src="{{ book_profile.cover_image_link }}">
         <div class="card-block">
-          <div class="btn-group" data-toggle="buttons">
+          <div class="btn-group">
             <form method="POST" class="form-horizontal">
               {% csrf_token %}
               <button class="btn btn-danger" type="submit" name="rating" value="-1" autocomplete="off"> Dislike </button>

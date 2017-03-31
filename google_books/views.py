@@ -43,5 +43,5 @@ class AddBook(View):
         if form.is_valid():
             form.save()
             return redirect('book_search')
-
-        return HttpResponse('Error!')
+        else:
+            return HttpResponse('Error!')

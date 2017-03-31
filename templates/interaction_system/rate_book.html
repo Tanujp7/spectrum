@@ -10,12 +10,20 @@
       <div class="card">
         <img class="card-img-top" width="100%" src="{{ book_profile.cover_image_link }}">
         <div class="card-block">
-          <form method="POST" class="form-horizontal">
-            {% csrf_token %}
-            <div class="btn-group" data-toggle="buttons">
-            </div>
-            <button type="submit" name="rating" value="1" class="save btn btn-default">Save &amp; Next</button>
-          </form>
+          <div class="btn-group" data-toggle="buttons">
+            <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+              <button class="btn btn-danger" type="submit" name="rating" value="-1" autocomplete="off"> Dislike </button>
+            </form>
+            <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+              <button class="btn btn-warning" type="submit" name="rating" value="0" autocomplete="off"> Neutral </button>
+            </form>
+            <form method="POST" class="form-horizontal">
+              {% csrf_token %}
+              <button class="btn btn-primary" type="submit" name="rating" value="1" autocomplete="off"> Like </button>
+            </form>
+          </div>
         </div>
         <div class="card-block">
           <h4 class="card-title">{{book.title}}</h4>

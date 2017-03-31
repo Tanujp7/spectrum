@@ -26,7 +26,7 @@
           <div class="card-block">
             <h4 class="card-title">{{item.title}}</h4>
             <h6 class="card-subtitle mb-2">
-              {% if item.isbn %}
+              {% if item.author %}
                 {% for a in item.authors %}
                   <span>{{ a }},</span>
                 {% endfor %}
@@ -55,7 +55,7 @@
             {% endif %}
             {% if item.tags %}
               <li class="list-group-item">
-                Tags : 
+                Tags :
               {% for tag in item.tags %}
                 <span>{{ tag }},</span>
               {% endfor %}

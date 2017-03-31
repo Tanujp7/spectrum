@@ -20,6 +20,7 @@ class Search(View):
 class AddBook(View):
     template_name = 'google_books/add.html'
     success_url = '/'
+    form_class = None
 
     def get(self, request):
         try:

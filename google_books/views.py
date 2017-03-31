@@ -61,7 +61,7 @@ def add_book(request):
 
         if book_form.is_valid() and book_profile_form.is_valid():
             instance = book_profile_form.save(commit=False)
-            instance.book = book_obj.id
+            instance.book = book_obj
             instance.save()
             book_profile_form.save_m2m()
 

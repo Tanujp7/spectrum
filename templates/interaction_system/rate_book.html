@@ -5,57 +5,44 @@
 
 {% block body %}
 
-{% if item %}
-  <div class="query row">
-      <div class="col-lg-4 col-md-6 col-sm-12 my-3 mx-auto">
-        <div class="card">
-          <img class="card-img-top" width="100%" src="{{ item.thumbnail|default:"https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" }}">
-          <div class="card-block btn btn-primary"></div>
-          <div class="card-block">
-            <h4 class="card-title">{{item.title}}</h4>
-            <h6 class="card-subtitle mb-2">
-                {% for a in item.authors %}
-                  <span>{{ a }},</span>
-                {% endfor %}
-            </h6>
-            <p class="card-text">{{ item.description|default:item.alt_description|default:" " }}</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            {% if item.publisher %}
-              <li class="list-group-item">Publisher : {{ item.publisher|default:" - " }}</li>
-            {% endif %}
-            {% if item.published_date %}
-              <li class="list-group-item">Publication Date : {{ item.published_date|default:" - " }}</li>
-            {% endif %}
-            {% if item.isbn %}
-              <li class="list-group-item">
-              {% for id in item.isbn %}
-                <p style="clear:both">{{ id.type }} - {{ id.identifier }}</p>
-              {% endfor %}
-              </li>
-            {% endif %}
-            {% if item.category %}
-              <li class="list-group-item">Categories : {{ item.category|default:" - " }}</li>
-            {% endif %}
-            {% if item.tags %}
-              <li class="list-group-item">
-                Tags :
-              {% for tag in item.tags %}
-                <span>{{ tag }},</span>
-              {% endfor %}
-              </li>
-            {% endif %}
-          </ul>
-          <div class="card-footer text-muted">
-            {% if item.page_count %}Pgs. {{ item.page_count|default:"-" }}{% endif %}
-            {% if item.avg_rating %}| Rating : {{ item.avg_rating|default:"-" }} ({{ item.ratings_count|default:"-" }} counts){% endif %}
-            {% if item.language %}| {{ item.language }}{% endif %}
-            {% if item.sale_amount %}| {{ item.sale_amount.currencyCode }} {{ item.sale_amount.amount }}{% endif %}
-          </div>
+<div class="query row">
+    <div class="col-lg-4 col-md-6 col-sm-12 my-3 mx-auto">
+      <div class="card">
+        <img class="card-img-top" width="100%" src="{{ book_profile.cover_image_link }}">
+        <div class="card-block btn btn-primary">
+          <form method="POST" class="form-horizontal">
+            {% csrf_token %}
+            <button type="submit" name="request" value="-1" class="save btn btn-danger">Dislike</button>
+          </form>
+          <form method="POST" class="form-horizontal">
+            {% csrf_token %}
+            <button type="submit" name="request" value="0" class="save btn btn-warning">Neutral</button>
+          </form>
+          <form method="POST" class="form-horizontal">
+            {% csrf_token %}
+            <button type="submit" name="request" value="1" class="save btn btn-success">Like</button>
+          </form>
+        </div>
+        <div class="card-block">
+          <h4 class="card-title">{{book.title}}</h4>
+          <h6 class="card-subtitle mb-2">{{ book_profile.author }}</h6>
+          <p class="card-text">{{ book_profile.description }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Publisher : {{ book_profile.publisher }}</li>
+            <li class="list-group-item">Publication Date : {{ book_profile.publication_date }}</li>
+            <li class="list-group-item">ISBN : {{ book_profile.isbn }}</li>
+            <li class="list-group-item">Tags : {{ book_profile.tags }},</span></li>
+        </ul>
+        <div class="card-footer text-muted">
+          Pgs. {{ book_profile.page_count }}
+          | Rating : {{ book_profile.rating }} ({{ book_profile.rating_count }} counts)
+          | {{ book_profile.language }}
+          | {{ book_profile.cost }}
         </div>
       </div>
-  </div>
-{% endif %}
+    </div>
+</div>
 
 {% endblock body %}
 

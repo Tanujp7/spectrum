@@ -27,24 +27,6 @@ class Search(View):
             results = None
         return render(request, self.template_name, {'query' : query, 'results' : results})
 
-class AddBook(CreateView):
-    template_name = 'google_books/add.html'
-
-    def get(self, request):
-        try:
-            volume_id = request.GET.get('volume_id')
-        except:
-            volume_id = ''
-        if (volume_id != '' and volume_id is not None):
-            item = googlebooks.retrieve(volume_id)
-        else:
-            item = None
-        return render(request, self.template_name, {'item' : item})
-
-    def form_valid(self, form):
-            return super(AddBook, self).form_valid(form)
-
-
 @permission_required('items.add_book')
 def add_book(request):
 

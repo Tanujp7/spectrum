@@ -59,10 +59,10 @@ def add_book(request):
             except IntegrityError:
                 messages = []
                 messages.append('The book with same volume_id already exists.')
-                return render_to_response("google_books/add.html", {"messages": messages})
+                return render_to_response("google_books/add.html", {"messages": messages, 'book_form': book_form, 'book_profile_form': book_profile_form})
             return HttpResponseRedirect(reverse('book_search') )
 
-    elif request.method == 'GET':
+    else:
         book_form = BookForm()
         book_profile_form = BookProfileForm()
         try:

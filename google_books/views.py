@@ -49,31 +49,33 @@ class AddBook(CreateView):
 def add_book(request):
 
     if request.method == 'POST':
+
         book_form = BookForm(request.POST)
         book_profile_form = BookProfileForm(request.POST)
 
         if book_form.is_valid() and book_profile_form.is_valid():
-            try:
-                book_form.save()
-                book_profile_form.save()
-            except IntegrityError:
-                messages = []
-                messages.append('The book with same volume_id already exists.')
-                return render_to_response("google_books/add.html", {"messages": messages, 'book_form': book_form, 'book_profile_form': book_profile_form})
-            return HttpResponseRedirect(reverse('book_search') )
+            book_form.save()
+            book_profile_form.save()
+
+            return HttpResponseRedirect(reverse('book_search'))
 
         return render(request, 'google_books/add.html', {'book_form': book_form, 'book_profile_form': book_profile_form})
+
     else:
+        
         book_form = BookForm()
         book_profile_form = BookProfileForm()
+
         try:
             volume_id = request.GET.get('volume_id')
         except:
             volume_id = ''
+
         if (volume_id != '' and volume_id is not None):
             item = googlebooks.retrieve(volume_id)
         else:
             item = None
+
         return render(request, 'google_books/add.html', {'item' : item, 'book_form': book_form, 'book_profile_form': book_profile_form})
 
     return render(request, 'google_books/add.html', {'book_form': book_form, 'book_profile_form': book_profile_form})

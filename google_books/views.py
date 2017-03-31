@@ -56,8 +56,8 @@ def add_book(request):
             book_form.save()
 
         volume_id = request.POST.get('volume_id')
-        book_obj = Book.objects.get(volume_id=volume_id)
-        book_profile_form = BookProfileForm(request.POST, instance=book_obj)
+        # book_obj = Book.objects.get(volume_id=volume_id)
+        book_profile_form = BookProfileForm(request.POST, instance=request.book.bookprofile)
 
         if book_form.is_valid() and book_profile_form.is_valid():
             book_profile_form.save()

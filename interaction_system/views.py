@@ -17,7 +17,7 @@ def random_book(request):
         volume_id = book.volume_id
         return HttpResponse(reverse('rate_book',kwargs={'volume':volume_id}))
     except:
-        return redirect(reverse('home'))
+        return HttpResponse(reverse('home'))
 
 @login_required
 def rate_the_book(request, volume="random"):

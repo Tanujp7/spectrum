@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.views import View
 
 from items.models import Book, BookProfile
@@ -42,3 +43,5 @@ class AddBook(View):
         if form.is_valid():
             form.save()
             return redirect('book_search')
+
+        return HttpResponse('Error!')

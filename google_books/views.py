@@ -44,4 +44,6 @@ class AddBook(View):
             form.save()
             return redirect('book_search')
         else:
-            return HttpResponse('Error!')
+            return render(request, 'google_books/add.html', {
+                'form': form
+            })

@@ -15,9 +15,9 @@ def random_book(request):
     try:
         book = Book.random.all()[0].get()
         volume_id = book.volume_id
-        return HttpResponse('Hello')
+        return redirect(reverse('rate_book',kwargs={'volume':volume_id}))
     except:
-        return HttpResponse('World')
+        return redirect(reverse('home'))
 
 @login_required
 def rate_the_book(request, volume=""):

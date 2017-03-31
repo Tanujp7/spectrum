@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView
 
 from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 
 from items.models import Book, BookProfile

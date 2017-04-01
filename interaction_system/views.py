@@ -6,9 +6,9 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from items.models import Book, BookProfile
-from .models import BookRating, RatingLog
+from .models import BookRating
 
-from .forms import BookRatingForm, RatingLogForm
+from .forms import BookRatingForm
 
 import random
 
@@ -34,31 +34,13 @@ def rate_the_book(request, volume=""):
             brf.user = user_obj
             brf.save()
             book_rating_form.save_m2m()
-        else:
-            return HttpResponse('An error occured? / book_rating_form isnt valid')
-
-        rating = request.POST.get('rating')
-
-        rating_log_form = RatingLogForm(request.POST)
-
-        if rating_log_form.is_valid():
-            rlf = rating_log_form.save(commit=False)
-            rlf.book_rating = BookRating.objects.order_by('book', 'user').distinct('book', 'user')[:1].get()
-            rlf.rating = rating
-            rlf.save()
-            rating_log_form.save_m2m()
-
             # Success and Now NEXT book
             return HttpResponseRedirect(reverse('rate_random_book'))
         else:
-            return HttpResponse('An error occured? / rating_log_form isnt valid')
-
-        # Form(s) were not valid. Something bad happend. Go home!
-        return HttpResponse('An error occured?')
+            return HttpResponse('An error occured? / book_rating_form isnt valid')
 
     # Load form on the page
     book_rating_form = BookRatingForm()
-    rating_log_form = RatingLogForm()
 
     context = {}
 
@@ -71,8 +53,7 @@ def rate_the_book(request, volume=""):
             # Let's show the page w/ forms and book item.
             context = { 'book' : book,
                         'book_profile' : book_profile,
-                        'book_rating_form': book_rating_form,
-                        'rating_log_form': rating_log_form
+                        'book_rating_form': book_rating_form
                         }
         except:
             return HttpResponseRedirect(reverse('home'))

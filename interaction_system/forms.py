@@ -1,13 +1,8 @@
 from django import forms
 
-from .models import BookRating, RatingLog
+from .models import BookRating
 
 class BookRatingForm(forms.ModelForm):
     class Meta:
         model = BookRating
-        fields = ('rating',)
-
-class RatingLogForm(forms.ModelForm):
-    class Meta:
-        model = RatingLog
         fields = ('rating',)

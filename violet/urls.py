@@ -34,6 +34,9 @@ urlpatterns = [
     # Linking interaction_system's url file
     url(r'^interact/', include('interaction_system.urls')),
 
+    # Linking recommenders' url file
+    url(r'^recommender/', include('recommenders.urls')),
+
     # Linking google_books' url file
     url(r'^google_books/', include('google_books.urls')),
 

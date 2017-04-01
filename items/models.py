@@ -11,8 +11,7 @@ class RandomManager(models.Manager):
     def random(self):
         count = self.aggregate(count=Count('id'))['count']
         random_index = randint(0, count - 1)
-        return self.all()[45]
-
+        return self.objects.all()[random_index]
 
 class Book(models.Model):
     volume_id = models.CharField(max_length=25, unique=True)

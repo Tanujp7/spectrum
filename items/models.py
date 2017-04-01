@@ -4,21 +4,9 @@ from django.core.validators import MinLengthValidator, MaxLengthValidator, MinVa
 
 from taggit.managers import TaggableManager
 
-from django.db.models.aggregates import Count
-from random import randint
-
-class RandomManager(models.Manager):
-    def random(self):
-        count = self.aggregate(count=Count('id'))['count']
-        random_index = randint(0, count - 1)
-        return self.objects.all()[random_index]
-
 class Book(models.Model):
     volume_id = models.CharField(max_length=25, unique=True)
     title = models.CharField(max_length=256, null=True, default='unknown')
-
-    objects = models.Manager() # The default manager.
-    random = RandomManager() # The random-specific manager.
 
     def __str__(self):
         return self.title

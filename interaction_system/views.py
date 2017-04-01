@@ -14,8 +14,19 @@ import random
 
 @login_required
 def random_book(request):
-    book = random.choice(Book.objects.all())
-    volume_id = book.volume_id
+    books = Book.objects.all()
+
+    current_user = request.user
+    bookratings_by_currentuser = BookRating.objects.filter(user=current_user)
+    booklist_by_user = []
+
+    for r in bookratings_by_currentuser.values('book'):
+        booklist_by_user.append(r['book'])
+
+    books_not_rated_by_user = books.exclude(id__in=booklist_by_user)
+    random_book = random.choice(books_not_rated_by_user)
+    volume_id = random_book.volume_id
+
     return redirect(reverse('rate_book',kwargs={'volume':volume_id}))
 
 @login_required

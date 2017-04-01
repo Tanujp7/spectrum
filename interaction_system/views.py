@@ -13,14 +13,9 @@ from .forms import BookRatingForm, RatingLogForm
 
 @login_required
 def random_book(request):
-    book = None
-    while True:
-        try:
-            book = random.choice(Book.objects.all())
-            volume_id = book.volume_id
-            return redirect(reverse('rate_book',kwargs={'volume':volume_id}))
-        except:
-            pass
+    book = random.choice(Book.objects.all())
+    volume_id = book.volume_id
+    return redirect(reverse('rate_book',kwargs={'volume':volume_id}))
 
 @login_required
 def rate_the_book(request, volume=""):

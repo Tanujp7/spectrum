@@ -10,6 +10,7 @@ from .models import BookRating, RatingLog
 
 from .forms import BookRatingForm, RatingLogForm
 
+import random
 
 @login_required
 def random_book(request):

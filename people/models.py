@@ -48,6 +48,12 @@ class Hobbies(models.Model):
     def __str__(self):
         return self.user.username
 
+class Interest(models.Model):
+    keyword = models.CharField(max_length=256, blank=True, null=True, unique=True)
+
+    def __str__(self):
+        return (str(self.keyword))
+
 class PersonalDetails(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
     MARITAL_CHOICES = (
@@ -85,12 +91,6 @@ class UserProfile(models.Model):
     interest_keywords = models.ManyToManyField(Interest, default=None)
     def __str__(self):
         return self.user.username
-
-class Interest(models.Model):
-    keyword = models.CharField(max_length=256, blank=True, null=True, unique=True)
-
-    def __str__(self):
-        return (str(self.keyword))
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

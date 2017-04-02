@@ -10,7 +10,6 @@
           {% csrf_token %}
           {% for k in interest_form.interest_keywords %}
             {{ k }}
-            <input type="checkbox" class="custom" value="{{k.keyword}}" name="interest_keywords">
           {% endfor %}
           <button type="submit" class="save btn btn-default">Save</button>
         </form>

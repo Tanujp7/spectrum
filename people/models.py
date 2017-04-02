@@ -86,7 +86,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 class Interest(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default='1')
+    user = models.ManyToManyField(User)
     keyword = models.CharField(max_length=256, blank=True, null=True)
 
     def __str__(self):

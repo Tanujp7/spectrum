@@ -8,7 +8,7 @@
       <div class="col-md-6 col-sm-12 p-3">
         <form method="POST" class="form-horizontal">
           {% csrf_token %}
-          {{ interest_form|crispy }}
+          {{ interest_form }}
           <button type="submit" class="save btn btn-default">Save</button>
         </form>
       </div>

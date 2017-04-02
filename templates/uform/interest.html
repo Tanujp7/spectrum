@@ -9,7 +9,7 @@
         <form method="POST" class="form-horizontal">
           {% csrf_token %}
           {% for k in interest_form.interest_keywords %}
-            {{ k }} {% if k.value %} <- {{ k.value }} {% endif %} -> {{ k.value }}<br/>
+            {{ k }} {% if k.value %} <- {{ k.value }} {% endif %} -> {{ interest_form.interest_keywords.value }}<br/>
           {% endfor %}
           <button type="submit" class="save btn btn-default">Save</button>
         </form>

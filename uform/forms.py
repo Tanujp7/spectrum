@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from people.models import UserProfile, Career, PersonalDetails, Hobbies, Interest
+from people.models import UserProfile, Career, PersonalDetails, Hobbies
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -37,5 +37,5 @@ class PersonalDetailsForm(forms.ModelForm):
 class InterestForm(forms.ModelForm):
     #keyword = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(),required=False, queryset=Interest.objects.all())
     class Meta:
-        model = Interest
+        model = UserProfile
         fields = ('keyword',)

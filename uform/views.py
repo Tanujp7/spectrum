@@ -65,11 +65,11 @@ def HobbiesFormView(request):
 @login_required
 def InterestFormView(request):
     if request.method == 'POST':
-        interest_form = InterestForm(request.POST)
+        interest_form = InterestForm(request.POST, instance=request.user)
         if interest_form.is_valid():
             interest_form.save()
     else:
-        interest_form = InterestForm()
+        interest_form = InterestForm(instance=request.user)
     return render(request, 'uform/interest.html', {
         'interest_form': interest_form,
     })

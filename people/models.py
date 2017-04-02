@@ -82,11 +82,11 @@ class UserProfile(models.Model):
         ('F', 'Female'),
     )
     gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES)
+    interest_keywords = models.ManyToManyField(Interest, default=None)
     def __str__(self):
         return self.user.username
 
 class Interest(models.Model):
-    user = models.ManyToManyField(User)
     keyword = models.CharField(max_length=256, blank=True, null=True, unique=True)
 
     def __str__(self):

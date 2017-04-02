@@ -37,4 +37,4 @@ class PersonalDetailsForm(forms.ModelForm):
 class InterestForm(forms.ModelForm):
     class Meta:
         model = Interest
-        fields = ('keyword')
+        fields = ('keyword',)

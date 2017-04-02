@@ -8,9 +8,21 @@
       <div class="col-md-6 col-sm-12 p-3">
         <form method="POST" class="form-horizontal">
           {% csrf_token %}
+
           {% for k in interest_form.interest_keywords %}
-            <pre>{{ k }}</pre><br/>
-            {{ k }} {% if k.choice_value in k.value %}{% endif %}<br/>
+
+            <label for="id_interest_keywords_4">
+              <input {% if k.choice_value in k.value %}checked="checked"{% endif %}
+                    id="{{ k.id }}"
+                    name="{{ k.name }}"
+                    type="checkbox"
+                    value="{{ k.choice_value }}" />
+              Mystery
+            </label>
+            <br/>
+
+            {{ k }}<br/>
+
           {% endfor %}
           <button type="submit" class="save btn btn-default">Save</button>
         </form>

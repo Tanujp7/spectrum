@@ -8,7 +8,10 @@
       <div class="col-md-6 col-sm-12 p-3">
         <form method="POST" class="form-horizontal">
           {% csrf_token %}
-          {{ interest_form }}
+          {% for k in interest_form.interest_keywords %}
+            {{ k }}
+            <input type="checkbox" class="custom" value="{{k.keyword}}" name="interest_keywords">
+          {% endfor %}
           <button type="submit" class="save btn btn-default">Save</button>
         </form>
       </div>

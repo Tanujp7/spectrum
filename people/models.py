@@ -87,7 +87,7 @@ class UserProfile(models.Model):
 
 class Interest(models.Model):
     user = models.ManyToManyField(User)
-    keyword = models.CharField(max_length=256, blank=True, null=True)
+    keyword = models.CharField(max_length=256, blank=True, null=True, unique=True)
 
     def __str__(self):
         return (str(self.keyword))

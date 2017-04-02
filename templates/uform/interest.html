@@ -11,13 +11,13 @@
 
           {% for k in interest_form.interest_keywords %}
 
-            <label for="id_interest_keywords_4">
+            <label for="id_interest_keywords_{{ k.choice_value }}_{{ k.label_tag }}">
               <input {% if k.choice_value in k.value %}checked="checked"{% endif %}
-                    id="{{ k.id }}"
+                    id="id_interest_keywords_{{ k.choice_value }}_{{ k.label_tag }}"
                     name="{{ k.name }}"
                     type="checkbox"
                     value="{{ k.choice_value }}" />
-              {{ k.data }} / {{k.label}} / {{k.label_id}}
+              {{ k.label_tag }}
             </label>
             <br/>
 

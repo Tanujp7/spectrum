@@ -38,4 +38,4 @@ class InterestForm(forms.ModelForm):
     #keyword = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(),required=False, queryset=Interest.objects.all())
     class Meta:
         model = UserProfile
-        fields = ('keyword',)
+        fields = ('interest_keywords',)

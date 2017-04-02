@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from people.models import UserProfile, Career, PersonalDetails, Hobbies
+from people.models import UserProfile, Career, PersonalDetails, Hobbies, Interest
 
 class DateInput(forms.DateInput):
     input_type = 'date'

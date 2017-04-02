@@ -67,7 +67,12 @@ def InterestFormView(request):
     if request.method == 'POST':
         interest_form = InterestForm(request.POST)
         if interest_form.is_valid():
-            interest_form.save()
+            inter = interest_form.save(commit=False)
+            for u in request.POST.getlist('user'):
+                inter.user.add(u)
+
+            inter.save()
+            interest_form.save_m2m()
     else:
         interest_form = InterestForm()
     return render(request, 'uform/interest.html', {

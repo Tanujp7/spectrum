@@ -5,16 +5,20 @@
 {% block sub_navigation_title %}5. Interest Form{% endblock sub_navigation_title %}
 
 {% block body %}
-      <div class="col-md-6 col-sm-12 p-3">
+      <div class="col-sm-12 p-3">
         <form method="POST" class="form-horizontal">
           {% csrf_token %}
 
-          {% for k in interest_form.interest_keywords %}
+          <div id="interest-checks" class="justify-content-center mx-auto text-center">
+            {% for k in interest_form.interest_keywords %}
 
-            {{ k }}
+              {{ k }}
 
-          {% endfor %}
-          <button type="submit" class="save btn btn-default">Save</button>
+            {% endfor %}
+          </div>
+          <div class="justify-content-center mx-auto text-center">
+            <button type="submit" class="save btn btn-default content">Save</button>
+          </div>
         </form>
       </div>
 {% endblock body %}

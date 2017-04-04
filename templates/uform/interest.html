@@ -11,12 +11,12 @@
 
           <div id="interest-checks" class="justify-content-center mx-auto text-center">
             {% for k in interest_form.interest_keywords %}
-              <span class="mx-3 my-1 btn btn-sm pt-2 {% if k.choice_value in k.value %}btn-primary{% else %}btn-default{% endif %}">
+              <span class="mx-3 my-2 btn btn-sm pt-2 {% if k.choice_value in k.value %}btn-primary{% endif %}">
                 {{ k }}
               </span>
             {% endfor %}
           </div>
-          <div class="justify-content-center mx-auto text-center">
+          <div class="justify-content-center mx-auto text-center my-3">
             <button type="submit" class="save btn btn-success content">Save</button>
           </div>
         </form>

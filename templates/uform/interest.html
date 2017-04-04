@@ -21,7 +21,9 @@
             </label>
             <br/>
 
-            {{ interests }}<br/>
+            {% for i in interests %}
+              {{ i.keyword }}
+            {% endfor %}<br/>
 
           {% endfor %}
           <button type="submit" class="save btn btn-default">Save</button>

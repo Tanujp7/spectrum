@@ -70,6 +70,7 @@ def InterestFormView(request):
             interest_form.save()
     else:
         interest_form = InterestForm(instance=request.user.userprofile)
+    interests = Interest.objects.all()
     return render(request, 'uform/interest.html', {
-        'interest_form': interest_form,
+        'interest_form': interest_form, 'interests': interests,
     })

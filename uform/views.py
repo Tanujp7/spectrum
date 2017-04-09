@@ -74,7 +74,7 @@ def InterestFormView(request):
         interest_form = InterestForm(request.POST, instance=request.user.userprofile)
         if interest_form.is_valid():
             interest_form.save()
-            return HttpResponseRedirect(reverse('rate_book'))
+            return HttpResponseRedirect('/interact/get/random/book/')
     else:
         interest_form = InterestForm(instance=request.user.userprofile)
     return render(request, 'uform/interest.html', {

@@ -15,6 +15,7 @@
           {{ user_form|crispy }}
           {{ qualification_form|crispy }}
           {{ profile_form|crispy }}
+          <input type="hidden" name="next" value="/" />
           <button type="submit" class="save btn btn-default">Save</button>
         </form>
       </div>

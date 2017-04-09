@@ -6,13 +6,10 @@ from django.dispatch import receiver
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Career(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
-    qualification_name = models.CharField(max_length=60, blank=True, default='')
-    qualification_stream = models.CharField(max_length=60, blank=True, default='')
-    occupation = models.CharField(max_length=100, blank=True)
+    keyword = models.CharField(max_length=256, blank=True, null=True, unique=True)
 
     def __str__(self):
-        return (str(self.qualification_stream))
+        return (str(self.keyword))
 
 class Hobbies(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
@@ -81,6 +78,7 @@ class UserProfile(models.Model):
     )
     gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES, default=None)
     interest_keywords = models.ManyToManyField(Interest, default=None)
+    career_keywords = models.ManyToManyField(Career, default=None)
     def __str__(self):
         return self.user.username
 

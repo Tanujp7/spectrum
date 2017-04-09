@@ -8,8 +8,17 @@
       <div class="col-md-6 col-sm-12 p-3">
         <form method="POST" class="form-horizontal">
           {% csrf_token %}
-          {{ career_form|crispy }}
-          <button type="submit" class="save btn btn-default">Save &amp; Continue</button>
+
+          <div id="career-checks" class="justify-content-center mx-auto text-center">
+            {% for k in career_form.interest_keywords %}
+              <span class="mx-3 my-2 btn btn-sm pt-2 {% if k.choice_value in k.value %}btn-primary{% endif %}">
+                {{ k }}
+              </span>
+            {% endfor %}
+          </div>
+          <div class="justify-content-center mx-auto text-center my-3">
+            <button type="submit" class="save btn btn-success content">Save &amp; Continue</button>
+          </div>
         </form>
       </div>
 {% endblock body %}

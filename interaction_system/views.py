@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
+from django.db import IntegrityError
+
 from items.models import Book, BookProfile
 from .models import BookRating
 
@@ -43,7 +45,10 @@ def rate_the_book(request, volume=""):
             brf = book_rating_form.save(commit=False)
             brf.book = book_obj
             brf.user = user_obj
-            brf.save()
+            try:
+                brf.save()
+            except IntegrityError as e:
+                return render_to_response('interaction_system/rate_book.html', {"messages" : ["You've already rated this book.", e.message]})
             book_rating_form.save_m2m()
             # Success and Now NEXT book
             return HttpResponseRedirect(reverse('rate_random_book'))

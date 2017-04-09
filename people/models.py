@@ -20,17 +20,17 @@ class Hobbies(models.Model):
         validators=[
             MaxValueValidator(24),
             MinValueValidator(0)
-        ])
+        ], choices=[(i,i) for i in range(11)])
     family_hrs = models.IntegerField("How much time do you spend with your family?", blank=True, default=0,
         validators=[
             MaxValueValidator(24),
             MinValueValidator(0)
-        ])
+        ], choices=[(i,i) for i in range(11)])
     own_hrs = models.IntegerField("How much time do you spend for yourself?", blank=True, default=0,
         validators=[
             MaxValueValidator(24),
             MinValueValidator(0)
-        ])
+        ], choices=[(i,i) for i in range(11)])
     ALMOST_NEVER = '5'
     SOMETIMES = '15'
     FEW_TIMES_A_MONTH = '50'
@@ -67,7 +67,7 @@ class PersonalDetails(models.Model):
         validators=[
             MaxValueValidator(10),
             MinValueValidator(0)
-        ])
+        ], choices=[(i,i) for i in range(11)])
     def __str__(self):
         return self.user.username
 

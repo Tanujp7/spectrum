@@ -55,14 +55,14 @@ class Interest(models.Model):
         return (str(self.keyword))
 
 class PersonalDetails(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     MARITAL_CHOICES = (
         ('S', 'Single'),
         ('M', 'Married'),
         ('D', 'Divorced'),
         ('W', 'Widowed'),
     )
-    marital_status = models.CharField(max_length=60, blank=True, choices=MARITAL_CHOICES)
+    marital_status = models.CharField(max_length=60, blank=True, choices=MARITAL_CHOICES, default=None)
     no_of_kids = models.IntegerField(blank=True, default=0,
         validators=[
             MaxValueValidator(10),
@@ -87,7 +87,7 @@ class UserProfile(models.Model):
         ('M', 'Male'),
         ('F', 'Female'),
     )
-    gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES, default=None)
     interest_keywords = models.ManyToManyField(Interest, default=None)
     def __str__(self):
         return self.user.username

@@ -68,14 +68,6 @@ class PersonalDetails(models.Model):
             MaxValueValidator(10),
             MinValueValidator(0)
         ])
-    income = models.IntegerField(blank=True, default=0,
-        validators=[
-            MinValueValidator(0)
-        ])
-    family_income = models.IntegerField(blank=True, default=0,
-        validators=[
-            MinValueValidator(0)
-        ])
     def __str__(self):
         return self.user.username
 

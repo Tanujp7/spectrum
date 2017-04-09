@@ -32,7 +32,7 @@ class ProfileForm(forms.ModelForm):
 class PersonalDetailsForm(forms.ModelForm):
     class Meta:
         model = PersonalDetails
-        fields = ('marital_status', 'no_of_kids', 'income', 'family_income')
+        fields = ('marital_status', 'no_of_kids')
         widgets = {
             'marital_status': forms.RadioSelect(),
         }

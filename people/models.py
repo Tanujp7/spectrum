@@ -16,17 +16,17 @@ class Career(models.Model):
 
 class Hobbies(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
-    working_hrs = models.IntegerField("No. of Working Hours", blank=True, default=0,
+    working_hrs = models.IntegerField("No. of Working Hours", default=0,
         validators=[
             MaxValueValidator(24),
             MinValueValidator(0)
         ], choices=[(i,i) for i in range(11)])
-    family_hrs = models.IntegerField("How much time do you spend with your family?", blank=True, default=0,
+    family_hrs = models.IntegerField("How much time do you spend with your family?", default=0,
         validators=[
             MaxValueValidator(24),
             MinValueValidator(0)
         ], choices=[(i,i) for i in range(11)])
-    own_hrs = models.IntegerField("How much time do you spend for yourself?", blank=True, default=0,
+    own_hrs = models.IntegerField("How much time do you spend for yourself?", default=0,
         validators=[
             MaxValueValidator(24),
             MinValueValidator(0)

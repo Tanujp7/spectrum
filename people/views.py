@@ -7,7 +7,6 @@ class AuthLoginView(LoginView):
     template_name = 'allauth/login.html'
 
 class AuthLogoutView(LogoutView):
-    success_url = '/'
     template_name = 'allauth/logout.html'
 
 class AuthSignupView(SignupView):

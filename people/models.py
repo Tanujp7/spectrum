@@ -62,7 +62,7 @@ class PersonalDetails(models.Model):
         ('D', 'Divorced'),
         ('W', 'Widowed'),
     )
-    marital_status = models.CharField(max_length=60, blank=True, choices=MARITAL_CHOICES, default=None)
+    marital_status = models.CharField(max_length=60, null=True, choices=MARITAL_CHOICES, default=None)
     no_of_kids = models.IntegerField(blank=True, default=0,
         validators=[
             MaxValueValidator(10),
@@ -87,7 +87,7 @@ class UserProfile(models.Model):
         ('M', 'Male'),
         ('F', 'Female'),
     )
-    gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES, default=None)
+    gender = models.CharField(max_length=1, null=True, choices=GENDER_CHOICES, default=None)
     interest_keywords = models.ManyToManyField(Interest, default=None)
     def __str__(self):
         return self.user.username

@@ -69,11 +69,11 @@ def rate_the_book(request, volume=""):
             try:
                 brf.save()
             except IntegrityError as e:
-                show_book(messages=["You've already rated this book.", "Click on 'Rate Books' to go to a random Book."])
+                return show_book(messages=["You've already rated this book.", "Click on 'Rate Books' to go to a random Book."])
             book_rating_form.save_m2m()
             # Success and Now NEXT book
             return HttpResponseRedirect(reverse('rate_random_book'))
         else:
             return HttpResponse('An error occured? / book_rating_form isnt valid')
 
-    show_book()
+    return show_book()

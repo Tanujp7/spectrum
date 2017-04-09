@@ -19,9 +19,10 @@ class HobbiesForm(forms.ModelForm):
         }
 
 class CareerForm(forms.ModelForm):
+    career_keywords = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(),required=False, queryset=Career.objects.all())
     class Meta:
-        model = Career
-        fields = ('qualification_name', 'qualification_stream', 'occupation')
+        model = UserProfile
+        fields = ('career_keywords',)
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -41,7 +42,7 @@ class PersonalDetailsForm(forms.ModelForm):
         widgets = {
             'marital_status': forms.RadioSelect(),
         }
-        
+
 class InterestForm(forms.ModelForm):
     interest_keywords = forms.ModelMultipleChoiceField(label="Tell us Something about your Interests", widget=forms.CheckboxSelectMultiple(),required=False, queryset=Interest.objects.all())
     class Meta:

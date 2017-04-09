@@ -10,7 +10,7 @@
           {% csrf_token %}
 
           <div id="career-checks" class="justify-content-center mx-auto text-center">
-            {% for k in career_form.interest_keywords %}
+            {% for k in career_form.career_keywords %}
               <span class="mx-3 my-2 btn btn-sm pt-2 {% if k.choice_value in k.value %}btn-primary{% endif %}">
                 {{ k }}
               </span>

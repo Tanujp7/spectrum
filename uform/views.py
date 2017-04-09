@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 # Decorators
 from django.contrib.auth.models import User
@@ -18,6 +20,7 @@ def UserProfileFormView(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            return HttpResponseRedirect(reverse('PersonalDetailsFormView'))
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.userprofile)
@@ -32,6 +35,7 @@ def PersonalDetailsFormView(request):
         personaldetails_form = PersonalDetailsForm(request.POST, instance=request.user.personaldetails)
         if personaldetails_form.is_valid():
             personaldetails_form.save()
+            return HttpResponseRedirect(reverse('CareerFormView'))
     else:
         personaldetails_form = PersonalDetailsForm(instance=request.user.personaldetails)
     return render(request, 'uform/user_personaldetails.html', {
@@ -44,6 +48,7 @@ def CareerFormView(request):
         career_form = CareerForm(request.POST, instance=request.user.career)
         if career_form.is_valid():
             career_form.save()
+            return HttpResponseRedirect(reverse('HobbiesFormView'))
     else:
         career_form = CareerForm(instance=request.user.career)
     return render(request, 'uform/career.html', {
@@ -56,6 +61,7 @@ def HobbiesFormView(request):
         hobbies_form = HobbiesForm(request.POST, instance=request.user.hobbies)
         if hobbies_form.is_valid():
             hobbies_form.save()
+            return HttpResponseRedirect(reverse('InterestFormView'))
     else:
         hobbies_form = HobbiesForm(instance=request.user.hobbies)
     return render(request, 'uform/hobbies.html', {
@@ -68,6 +74,7 @@ def InterestFormView(request):
         interest_form = InterestForm(request.POST, instance=request.user.userprofile)
         if interest_form.is_valid():
             interest_form.save()
+            return HttpResponseRedirect(reverse('rate_book'))
     else:
         interest_form = InterestForm(instance=request.user.userprofile)
     return render(request, 'uform/interest.html', {

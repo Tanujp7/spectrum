@@ -34,18 +34,75 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
   <script type="text/javascript">
   $( function() {
-    var select = $( "#id_reading_frequency" );
-    var slider = $( "<div id='slider'></div>" ).insertAfter( select ).slider({
+    var select1 = $( "#id_no_of_kids" );
+    var select2 = $( "#id_working_hrs" );
+    var select3 = $( "#id_family_hrs" );
+    var select4 = $( "#id_own_hrs" );
+    var select5 = $( "#id_reading_frequency" );
+
+    var slider1 = $( "<div id='slider1'></div>" ).insertAfter( select1 ).slider({
       min: 1,
       max: 6,
       range: "min",
-      value: select[ 0 ].selectedIndex + 1,
+      value: select1[ 0 ].selectedIndex + 1,
       slide: function( event, ui ) {
-        select[ 0 ].selectedIndex = ui.value - 1;
+        select1[ 0 ].selectedIndex = ui.value - 1;
+      }
+    });
+    $( "#id_no_of_kids" ).on( "change", function() {
+      slider1.slider( "value", this.selectedIndex + 1 );
+    });
+
+    var slider2 = $( "<div id='slider2'></div>" ).insertAfter( select2 ).slider({
+      min: 1,
+      max: 6,
+      range: "min",
+      value: select2[ 0 ].selectedIndex + 1,
+      slide: function( event, ui ) {
+        select2[ 0 ].selectedIndex = ui.value - 1;
+      }
+    });
+    $( "#id_working_hrs" ).on( "change", function() {
+      slider2.slider( "value", this.selectedIndex + 1 );
+    });
+
+    var slider3 = $( "<div id='slider3'></div>" ).insertAfter( select3 ).slider({
+      min: 1,
+      max: 6,
+      range: "min",
+      value: select3[ 0 ].selectedIndex + 1,
+      slide: function( event, ui ) {
+        select3[ 0 ].selectedIndex = ui.value - 1;
+      }
+    });
+    $( "#id_family_hrs" ).on( "change", function() {
+      slider3.slider( "value", this.selectedIndex + 1 );
+    });
+
+    var slider4 = $( "<div id='slider4'></div>" ).insertAfter( select4 ).slider({
+      min: 1,
+      max: 6,
+      range: "min",
+      value: select4[ 0 ].selectedIndex + 1,
+      slide: function( event, ui ) {
+        select4[ 0 ].selectedIndex = ui.value - 1;
+      }
+    });
+    $( "#id_own_hrs" ).on( "change", function() {
+      slider4.slider( "value", this.selectedIndex + 1 );
+    });
+
+    var slider5 = $( "<div id='slider5'></div>" ).insertAfter( select5 ).slider({
+      min: 1,
+      max: 6,
+      range: "min",
+      value: select5[ 0 ].selectedIndex + 1,
+      slide: function( event, ui ) {
+        select5[ 0 ].selectedIndex = ui.value - 1;
       }
     });
     $( "#id_reading_frequency" ).on( "change", function() {
-      slider.slider( "value", this.selectedIndex + 1 );
+      slider5.slider( "value", this.selectedIndex + 1 );
     });
   } );
   </script>

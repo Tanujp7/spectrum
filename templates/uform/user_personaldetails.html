@@ -40,7 +40,13 @@
     var select4 = $( "#id_own_hrs" );
     var select5 = $( "#id_reading_frequency" );
 
-    var slider1 = $( "<div id='slider1'></div>" ).insertAfter( select1 ).slider({
+    var select1help = $( "#hint_id_no_of_kids" );
+    var select2help = $( "#hint_id_working_hrs" );
+    var select3help = $( "#hint_id_family_hrs" );
+    var select4help = $( "#hint_id_own_hrs" );
+    var select5help = $( "#hint_id_reading_frequency" );
+
+    var slider1 = $( "<div id='slider1'></div>" ).insertAfter( select1help ).slider({
       min: 1,
       max: 11,
       range: "min",
@@ -53,7 +59,7 @@
       slider1.slider( "value", this.selectedIndex + 1 );
     });
 
-    var slider2 = $( "<div id='slider2'></div>" ).insertAfter( select2 ).slider({
+    var slider2 = $( "<div id='slider2'></div>" ).insertAfter( select2help ).slider({
       min: 1,
       max: 21,
       range: "min",
@@ -66,7 +72,7 @@
       slider2.slider( "value", this.selectedIndex + 1 );
     });
 
-    var slider3 = $( "<div id='slider3'></div>" ).insertAfter( select3 ).slider({
+    var slider3 = $( "<div id='slider3'></div>" ).insertAfter( select3help ).slider({
       min: 1,
       max: 21,
       range: "min",
@@ -79,7 +85,7 @@
       slider3.slider( "value", this.selectedIndex + 1 );
     });
 
-    var slider4 = $( "<div id='slider4'></div>" ).insertAfter( select4 ).slider({
+    var slider4 = $( "<div id='slider4'></div>" ).insertAfter( select4help ).slider({
       min: 1,
       max: 21,
       range: "min",
@@ -92,7 +98,7 @@
       slider4.slider( "value", this.selectedIndex + 1 );
     });
 
-    var slider5 = $( "<div id='slider5'></div>" ).insertAfter( select5 ).slider({
+    var slider5 = $( "<div id='slider5'></div>" ).insertAfter( select5help ).slider({
       min: 1,
       max: 6,
       range: "min",

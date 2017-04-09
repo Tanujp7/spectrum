@@ -20,17 +20,17 @@ class Hobbies(models.Model):
         validators=[
             MaxValueValidator(24),
             MinValueValidator(0)
-        ], choices=[(i,i) for i in range(20)])
+        ], choices=[(i,i) for i in range(21)])
     family_hrs = models.IntegerField("How much time do you spend with your family?", default=0,
         validators=[
             MaxValueValidator(24),
             MinValueValidator(0)
-        ], choices=[(i,i) for i in range(20)])
+        ], choices=[(i,i) for i in range(21)])
     own_hrs = models.IntegerField("How much time do you spend for yourself?", default=0,
         validators=[
             MaxValueValidator(24),
             MinValueValidator(0)
-        ], choices=[(i,i) for i in range(20)])
+        ], choices=[(i,i) for i in range(21)])
     ALMOST_NEVER = '5'
     SOMETIMES = '15'
     FEW_TIMES_A_MONTH = '50'

@@ -49,12 +49,12 @@ def PersonalDetailsFormView(request):
 @login_required
 def CareerFormView(request):
     if request.method == 'POST':
-        career_form = CareerForm(request.POST, instance=request.user.career)
+        career_form = CareerForm(request.POST, instance=request.user.userprofile)
         if career_form.is_valid():
             career_form.save()
             return HttpResponseRedirect(reverse('InterestFormView'))
     else:
-        career_form = CareerForm(instance=request.user.career)
+        career_form = CareerForm(instance=request.user.userprofile)
     return render(request, 'uform/career.html', {
         'career_form': career_form,
     })

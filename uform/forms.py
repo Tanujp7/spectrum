@@ -25,6 +25,9 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('location', 'birth_date', 'gender')
+        help_texts = {
+                'birth_date': ('Date should be of the format yyyy-mm-dd ; ex: 1994-03-31'),
+        }
         widgets = {
             'birth_date': DateInput()
         }

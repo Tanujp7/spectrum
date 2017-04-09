@@ -25,11 +25,17 @@ class ProfileForm(forms.ModelForm):
         help_texts = {
                 'birth_date': ('Date should be of the format yyyy-mm-dd ; ex: 1994-03-31'),
         }
+        widgets = {
+            'gender': forms.RadioSelect(),
+        }
 
 class PersonalDetailsForm(forms.ModelForm):
     class Meta:
         model = PersonalDetails
         fields = ('marital_status', 'no_of_kids', 'income', 'family_income')
+        widgets = {
+            'marital_status': forms.RadioSelect(),
+        }
 
 class InterestForm(forms.ModelForm):
     interest_keywords = forms.ModelMultipleChoiceField(label="Tell us Something about your Interests", widget=forms.CheckboxSelectMultiple(),required=False, queryset=Interest.objects.all())

@@ -22,11 +22,8 @@
       <a class="navbar-brand" href="/">Spectrum Survey</a>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-          </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Forms
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -41,8 +38,8 @@
             <a class="nav-link" href="/interact/get/random/book/">Rate Books</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Rate Recommendations
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Recommendations
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="#">1. Normal</a>
@@ -51,12 +48,11 @@
               <a class="dropdown-item" href="#">4. Evolutionary</a>
             </div>
           </li>
+          {% if perms.items.add_book %}
           <li class="nav-item">
-            <a class="nav-link" href="#">Help</a>
+            <a class="nav-link" href="/google_books/search/">Search &amp; Add Books</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">WIN PRIZES</a>
-          </li>
+          {% endif %}
         </ul>
       </div>
     </nav>

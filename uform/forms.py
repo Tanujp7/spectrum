@@ -12,6 +12,11 @@ class HobbiesForm(forms.ModelForm):
     class Meta:
         model = Hobbies
         fields = ('working_hrs', 'family_hrs', 'own_hrs', 'reading_frequency')
+        help_texts = {
+                'working_hrs': ('Time in Hours'),
+                'family_hrs': ('Time in Hours'),
+                'own_hrs': ('Time in Hours'),
+        }
 
 class CareerForm(forms.ModelForm):
     class Meta:
@@ -36,7 +41,7 @@ class PersonalDetailsForm(forms.ModelForm):
         widgets = {
             'marital_status': forms.RadioSelect(),
         }
-
+        
 class InterestForm(forms.ModelForm):
     interest_keywords = forms.ModelMultipleChoiceField(label="Tell us Something about your Interests", widget=forms.CheckboxSelectMultiple(),required=False, queryset=Interest.objects.all())
     class Meta:

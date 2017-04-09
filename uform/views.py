@@ -33,13 +33,17 @@ def UserProfileFormView(request):
 def PersonalDetailsFormView(request):
     if request.method == 'POST':
         personaldetails_form = PersonalDetailsForm(request.POST, instance=request.user.personaldetails)
-        if personaldetails_form.is_valid():
+        hobbies_form = HobbiesForm(request.POST, instance=request.user.hobbies)
+        if personaldetails_form.is_valid() and hobbies_form.is_valid():
             personaldetails_form.save()
+            hobbies_form.save()
             return HttpResponseRedirect(reverse('CareerFormView'))
     else:
         personaldetails_form = PersonalDetailsForm(instance=request.user.personaldetails)
+        hobbies_form = HobbiesForm(instance=request.user.hobbies)
     return render(request, 'uform/user_personaldetails.html', {
-        'personaldetails_form': personaldetails_form
+        'personaldetails_form': personaldetails_form,
+        'hobbies_form': hobbies_form,
     })
 
 @login_required
@@ -48,24 +52,11 @@ def CareerFormView(request):
         career_form = CareerForm(request.POST, instance=request.user.career)
         if career_form.is_valid():
             career_form.save()
-            return HttpResponseRedirect(reverse('HobbiesFormView'))
+            return HttpResponseRedirect(reverse('InterestFormView'))
     else:
         career_form = CareerForm(instance=request.user.career)
     return render(request, 'uform/career.html', {
         'career_form': career_form,
-    })
-
-@login_required
-def HobbiesFormView(request):
-    if request.method == 'POST':
-        hobbies_form = HobbiesForm(request.POST, instance=request.user.hobbies)
-        if hobbies_form.is_valid():
-            hobbies_form.save()
-            return HttpResponseRedirect(reverse('InterestFormView'))
-    else:
-        hobbies_form = HobbiesForm(instance=request.user.hobbies)
-    return render(request, 'uform/hobbies.html', {
-        'hobbies_form': hobbies_form,
     })
 
 @login_required

@@ -15,17 +15,13 @@
       <div class="card">
         <div class="card-block text-center">
           <div class="btn-group">
-            <form method="POST" class="form-horizontal">
+            <form method="POST" class="form-horizontal mr-3">
               {% csrf_token %}
-              <button class="btn btn-danger" type="submit" name="rating" value="-1" autocomplete="off"> Dislike </button>
-            </form>
-            <form method="POST" class="form-horizontal mx-3">
-              {% csrf_token %}
-              <button class="btn btn-warning" type="submit" name="rating" value="0" autocomplete="off"> Neutral </button>
+              <button class="btn btn-danger" type="submit" name="rating" value="0" autocomplete="off"> Not Interesting </button>
             </form>
             <form method="POST" class="form-horizontal">
               {% csrf_token %}
-              <button class="btn btn-primary" type="submit" name="rating" value="1" autocomplete="off"> Like </button>
+              <button class="btn btn-success" type="submit" name="rating" value="1" autocomplete="off"> Interesting </button>
             </form>
           </div>
         </div>

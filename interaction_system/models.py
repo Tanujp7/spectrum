@@ -6,7 +6,7 @@ from items.models import Book
 class BookRating(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rating = models.SmallIntegerField(choices=[(i, i) for i in range(-1, 2)], default=0)
+    rating = models.SmallIntegerField(choices=[(i, i) for i in range(0, 2)], default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

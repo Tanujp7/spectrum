@@ -48,7 +48,7 @@ def rate_the_book(request, volume=""):
             try:
                 brf.save()
             except IntegrityError as e:
-                return render_to_response('interaction_system/rate_book.html', {"messages" : ["You've already rated this book.", e.message]})
+                return render_to_response('interaction_system/rate_book.html', {"messages" : ["You've already rated this book.", "Click on 'Rate Books' to continue"]})
             book_rating_form.save_m2m()
             # Success and Now NEXT book
             return HttpResponseRedirect(reverse('rate_random_book'))

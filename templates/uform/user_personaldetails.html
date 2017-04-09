@@ -1,8 +1,15 @@
 {% extends "uform/base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block page_title %}2. Personal Details Form{% endblock page_title %}
 {% block sub_navigation_title %}2. Personal Details Form{% endblock sub_navigation_title %}
+
+{% block page_head %}
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/hot-sneaks/jquery-ui.css" type="text/css" />
+  <link rel="stylesheet" href="{% static 'css/range_slider.css' %}" type="text/css" />
+{% endblock page_head %}
+
 
 {% block body %}
       <div class="col-md-6 col-sm-12 p-3">
@@ -14,3 +21,16 @@
         </form>
       </div>
 {% endblock body %}
+
+{% block page_scripts %}
+  <script
+    src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+  <script src="{% static 'js/range_slider.js' %}"></script>
+  <script type="text/javascript">
+  $(function(){
+    $('#id_reading_frequency').selectToUISlider();
+  });
+  </script>
+{% endblock page_scripts %}

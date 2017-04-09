@@ -8,6 +8,11 @@
 {% block page_head %}
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/hot-sneaks/jquery-ui.css" type="text/css" />
   <link rel="stylesheet" href="{% static 'css/range_slider.css' %}" type="text/css" />
+  <style type="text/CSS">
+    .ui-slider {
+      margin: 2rem 0 3rem 0;
+    }
+  </style>
 {% endblock page_head %}
 
 
@@ -37,7 +42,7 @@
   <script src="{% static 'js/range_slider.js' %}"></script>
   <script type="text/javascript">
   $(function(){
-    $('#id_reading_frequency').selectToUISlider();
+    $('#id_reading_frequency').selectToUISlider({labels:5});
   });
   </script>
 {% endblock page_scripts %}

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/hot-sneaks/jquery-ui.css" type="text/css" />
   <style type="text/CSS">
     .ui-slider {
-      margin: 0.2rem 0 2.5rem 0;
+      margin: 0.8rem 0 2.5rem 0;
     }
   </style>
 {% endblock page_head %}
@@ -40,13 +40,11 @@
     var select4 = $( "#id_own_hrs" );
     var select5 = $( "#id_reading_frequency" );
 
-    var select1help = $( "#hint_id_no_of_kids" );
     var select2help = $( "#hint_id_working_hrs" );
     var select3help = $( "#hint_id_family_hrs" );
     var select4help = $( "#hint_id_own_hrs" );
-    var select5help = $( "#hint_id_reading_frequency" );
 
-    var slider1 = $( "<div id='slider1'></div>" ).insertAfter( select1help ).slider({
+    var slider1 = $( "<div id='slider1'></div>" ).insertAfter( select1 ).slider({
       min: 1,
       max: 11,
       range: "min",
@@ -98,7 +96,7 @@
       slider4.slider( "value", this.selectedIndex + 1 );
     });
 
-    var slider5 = $( "<div id='slider5'></div>" ).insertAfter( select5help ).slider({
+    var slider5 = $( "<div id='slider5'></div>" ).insertAfter( select5 ).slider({
       min: 1,
       max: 6,
       range: "min",

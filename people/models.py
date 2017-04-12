@@ -76,7 +76,7 @@ class UserProfile(models.Model):
         ('M', 'Male'),
         ('F', 'Female'),
     )
-    gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES, default=None)
+    gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES, null=True, default=None)
     interest_keywords = models.ManyToManyField(Interest, default=None)
     career_keywords = models.ManyToManyField(Career, default=None)
     def __str__(self):

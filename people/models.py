@@ -59,7 +59,7 @@ class PersonalDetails(models.Model):
         ('D', 'Divorced'),
         ('W', 'Widowed'),
     )
-    marital_status = models.CharField(max_length=60, blank=True, choices=MARITAL_CHOICES, default=None)
+    marital_status = models.CharField(max_length=60, blank=True, null=True, choices=MARITAL_CHOICES, default=None)
     no_of_kids = models.IntegerField(default=0,
         validators=[
             MaxValueValidator(10),

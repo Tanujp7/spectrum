@@ -11,7 +11,7 @@ class BookRating(models.Model):
     rating = models.SmallIntegerField(choices=[(i, i) for i in range(0, 2)], default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    objects = DataFrameManager()
+    #objects = DataFrameManager()
 
     class Meta:
         unique_together = ('user', 'book')

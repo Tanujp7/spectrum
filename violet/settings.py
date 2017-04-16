@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'people',
     'items',
     'uform',
+    'recommenders',
 
 
     # Required by : Django-allauth

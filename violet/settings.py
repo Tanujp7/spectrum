@@ -225,7 +225,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'debug.log',
+            'filename': os.path.join(DJANGO_ROOT, 'debug.log'),
         },
     },
     'loggers': {

@@ -1,7 +1,35 @@
 {% extends "allauth/base.html" %}
 
-{% block body %}
-<h1>Profile</h1>
+{% block page_title %}Welcome{% endblock page_title %}
+{% block sub_navigation_title %}Welcome {% if request.user %}{{ request.user.first_name }}!{% else %}Guest!{% endif %}{% endblock sub_navigation_title %}
 
-<p>Your profile</p>
+{% block body %}
+
+
+<div class="col-md-6 col-sm-12">
+  <h1>Instructions</h1>
+  <h6>Please follow the steps</h6>
+  <ol>
+  	<li><a href="{% url 'account_login' %}">Login</a> using Facebook, Google or <a href="{% url 'account_signup' %}">Signup</a> using your Email.</li>
+  	<li>Fill all the forms precisely starting from <a href="/forms/profile/">Profile Form</a>. (Note : We do not share any of your information)</li>
+  	<li>Once all the forms are filled and saved; You'll be redirected to <a href="/interact/get/random/book/">Rate Books</a>.</li>
+  	<li>Please mark each book as <strong>Interesting</strong> or <strong>Not Interesting</strong>. The books are shown at random. Please rate at least 50 books.</li>
+  	<li>This data will be used to create an advanced recommender system.</li>
+  </ol>
+
+  <span>Your help is really appreciated.</span>
+
+  <h1>Frequently Asked Questions</h1>
+  <h5>How many books can I rate?</h5>
+  <p>You can rate as many books as you want. Please try and rate atleast 50 books.</p>
+  <h5>On what basis should I rate the book?</h5>
+  <p>"Don't judge the book by it's cover", that's exactly what we are going to do. You have to make a judgement based on the topic, title, and description of the book. If you think a book seems really interesting to you then you may give a positive rating.</p>
+  <h5>These books are not my type! Should I give them a negative rating?</h5>
+  <p>Yes. Imagine you have the opertunity to pick few books for free. Which books would you choose?<br/>I am sure you would'nt want to read a book that does not interest you.</p>
+  <h5>Is it safe to give away my personal information?</h5>
+  <p>Yes we use state of the art security mechanism and your information is safe with us. You can delete your account any time. Just email us at <i>recommendersystemprototype at gmail</i></p>
+
+
+</div>
+
 {% endblock %}

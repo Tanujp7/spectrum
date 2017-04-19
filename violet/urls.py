@@ -20,7 +20,7 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     # Home Page
-    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+    url(r'^$', TemplateView.as_view(template_name='allauth/profile.html'), name='home'),
 
     # Linking Django Admin's url file
     url(r'^admin/', admin.site.urls),

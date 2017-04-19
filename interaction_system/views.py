@@ -38,6 +38,9 @@ def rate_the_book(request, volume=""):
         book_rating_form = BookRatingForm()
         context = {}
 
+        current_user = request.user
+        bookratings_count_by_currentuser = BookRating.objects.filter(user=current_user).count()
+        if bookratings_count_by_currentuser is None: bookratings_count_by_currentuser = 0
         # Get Book & BookProfile Object w/ matching volume_id
         if (volume != '' and volume is not None):
             try:
@@ -48,7 +51,8 @@ def rate_the_book(request, volume=""):
                 context = { 'book' : book,
                             'book_profile' : book_profile,
                             'book_rating_form': book_rating_form,
-                            'messages' : messages
+                            'messages' : messages,
+                            'count' : bookratings_count_by_currentuser
                             }
             except:
                 return HttpResponseRedirect(reverse('home'))

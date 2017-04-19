@@ -22,6 +22,9 @@ urlpatterns = [
     # Home Page
     url(r'^$', TemplateView.as_view(template_name='allauth/profile.html'), name='home'),
 
+    # Contact Page
+    url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
+
     # Linking Django Admin's url file
     url(r'^admin/', admin.site.urls),
 

@@ -1,0 +1,14 @@
+{% extends "interaction_system/base.html" %}
+
+{% block page_title %}Book Rating History{% endblock page_title %}
+{% block sub_navigation_title %}Book Rating History - <em>You have rated {{ count }} Book(s)</em>{% endblock sub_navigation_title %}
+
+{% block body %}
+
+<div class="query row">
+  {{ df }}
+</div>
+
+{% endblock body %}
+
+{% block page_scripts %}{% endblock page_scripts %}

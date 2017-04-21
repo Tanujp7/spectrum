@@ -6,7 +6,7 @@
 {% block body %}
 
 <div class="query row">
-  {{ book_rating_history }}
+  {{ book_rating_history | safe }}
 </div>
 
 {% endblock body %}

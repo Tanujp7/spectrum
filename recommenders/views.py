@@ -17,7 +17,7 @@ def bookrating_history(request):
     context = {}
     current_user = request.user
 
-    df = dataframe(BookRating.objects.filter(user=current_user), fieldnames=['rating', 'user', 'book'], index='id')
-    context['book_rating_history'], context['count'] = df.to_html(), BookRating.objects.filter(user=current_user).count()
+    df = dataframe(BookRating.objects.filter(user=current_user), fieldnames=['rating', 'book', 'created_at'], index='id')
+    context['book_rating_history'], context['count'] = df, BookRating.objects.filter(user=current_user).count()
 
     return render(request, 'recommenders/bookrating_history.html', context)

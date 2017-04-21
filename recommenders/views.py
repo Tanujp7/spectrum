@@ -1,3 +1,23 @@
+# Http Libraries
 from django.shortcuts import render
 
-# Create your views here.
+# Auth
+from django.contrib.auth.decorators import login_required
+
+# Models
+from interaction_system.models import BookRating
+
+# Panda!
+from recommenders.data import dataframe
+
+## Functional Views start here..
+@login_required
+def bookrating_history(request):
+
+    context = {}
+    current_user = request.user
+
+    df = dataframe(BookRating.objects.filter(user=current_user), fieldnames=['rating', 'user', 'book'], index='id')
+    context['bookrating_history'] = df
+
+    return render(request, 'recommenders/bookrating_history.html', context)

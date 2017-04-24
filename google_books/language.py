@@ -4,7 +4,7 @@ from google.cloud import language
 #credentials = GoogleCredentials.get_application_default()
 
 def request_entity(text):
-    language_client = language.Client()
+    language_client = language.Client(version="v1beta2")
     document = language_client.document_from_text(text)
     response = document.analyze_entity_sentiment()
     return response

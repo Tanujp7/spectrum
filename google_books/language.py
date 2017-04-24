@@ -13,7 +13,7 @@ text = "Mia has come to live with her Grandma in a land of forests and snow. It 
 
 r = request_entity(text)
 
-for entity in entity_response.entities:
+for entity in r.entities:
     print('=' * 20)
     print('         name: %s' % (entity.name,))
     print('         type: %s' % (entity.entity_type,))

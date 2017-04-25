@@ -57,7 +57,7 @@ def add_book(request):
             instance = book_profile_form.save(commit=False)
             instance.book = book_obj
             if len(entity_objects) > 0:
-                instance.entity.add(*entity_objects)
+                instance.entities.add(*entity_objects)
             instance.save()
             book_profile_form.save_m2m()
 

@@ -13,6 +13,8 @@ from .forms import BookForm, BookProfileForm
 
 from google_books import googlebooks
 
+from . import language as gnlp
+
 class Search(View):
     template_name = 'google_books/search.html'
 
@@ -32,18 +34,30 @@ def add_book(request):
 
     if request.method == 'POST':
 
+        # Saving Book object
         book_form = BookForm(request.POST)
-
         if book_form.is_valid():
             book_form.save()
 
+        # Calling just-saved Book object
         volume_id = request.POST.get('volume_id')
         book_obj = Book.objects.get(volume_id=volume_id)
-        book_profile_form = BookProfileForm(request.POST)
 
+        # Google Natural Language Processing on Book's description
+        description = request.POST.get('description')
+        language_analysis = gnlp.filter_entities(gnlp.request_entity(description))
+        entity_objects = []
+        for entity in language_analysis:
+            entity_objects.append(gnlp.get_or_create_entity(entity))
+
+
+        # Modifying & Saving BookProfile object
+        book_profile_form = BookProfileForm(request.POST)
         if book_form.is_valid() and book_profile_form.is_valid():
             instance = book_profile_form.save(commit=False)
             instance.book = book_obj
+            if len(entity_objects) > 0:
+                instance.entity.add(*entity_objects)
             instance.save()
             book_profile_form.save_m2m()
 

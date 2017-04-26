@@ -17,6 +17,7 @@ def bulk_migrate():
     old_entries = BookProfile.objects.filter(entities=None)
 
     for book in old_entries:
+        print('Fetching ' + str(book.book) + '...')
         entity_objects = request_gnlp(book.description)
         if len(entity_objects) > 0:
             book.entities.add(*entity_objects)

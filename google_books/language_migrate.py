@@ -21,5 +21,5 @@ def bulk_migrate():
         if len(entity_objects) > 0:
             book.entities.add(*entity_objects)
         book.save()
-        print('Saving ' + book.book + '...')
+        print('Saving ' + str(book.book) + '...')
     print('Done!')

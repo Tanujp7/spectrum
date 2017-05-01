@@ -53,16 +53,15 @@ class GoogleEntity(document=None):
 class MeaningCloudClassifier(document=None):
 
     self.url = "http://api.meaningcloud.com/class-1.1"
-    self.api_key = os.environ['SPECTRUM_MEANINGCLOUD_SECRET_KEY']
     self.document = document
 
 
     def request(self):
 
-        payload = 'key=' + self.api_key + '&txt=' + self.document.description + '&title=' + self.document.book.title + '&model=IPTC_en'
+        payload = 'key=' + os.environ['SPECTRUM_MEANINGCLOUD_SECRET_KEY'] + '&txt=' + self.document.description + '&title=' + self.document.book.title + '&model=IPTC_en'
         headers = {'content-type': 'application/x-www-form-urlencoded'}
 
-        self.response = requests.request("POST", url, data=payload, headers=headers).json()
+        self.response = requests.request("POST", self.url, data=payload, headers=headers).json()
         return self.response
 
 

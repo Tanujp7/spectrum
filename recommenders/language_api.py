@@ -61,7 +61,7 @@ class MeaningCloudClassifier:
 
     def request(self):
 
-        payload = 'key=' + os.environ['SPECTRUM_MEANINGCLOUD_SECRET_KEY'] + '&txt=' + (self.document.description).encode('utf-8') + '&title=' + (self.document.book.title).encode('utf-8') + '&model=IPTC_en'
+        payload = 'key=' + os.environ['SPECTRUM_MEANINGCLOUD_SECRET_KEY'] + '&txt=' + self.document.description + '&title=' + self.document.book.title + '&model=IPTC_en'
         headers = {'content-type': 'application/x-www-form-urlencoded'}
 
         self.response = requests.request("POST", self.url, data=payload, headers=headers).json()

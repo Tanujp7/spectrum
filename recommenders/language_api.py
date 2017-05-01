@@ -60,7 +60,7 @@ class MeaningCloudClassifier:
         self.url = "http://api.meaningcloud.com/class-1.1"
 
     def request(self):
-        title = self.document.book.title
+        title = self.document.book.title.encode('utf-8')
         description = self.document.description
         payload = 'key=' + os.environ['SPECTRUM_MEANINGCLOUD_SECRET_KEY'] + '&txt=' + description.encode() + '&title=' + title + '&model=IPTC_en'
         headers = {'content-type': 'application/x-www-form-urlencoded'}

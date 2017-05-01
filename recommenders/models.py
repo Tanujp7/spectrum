@@ -6,10 +6,7 @@ class Link(models.Model):
     origin = models.CharField(max_length=512, null=True, blank=True, default=None)
 
     def __str__(self):
-        if hasattr(self, "item1")
-        and hasattr(self, "item2")
-        and isinstance(self.item1, models.Field)
-        and isinstance(self.item2, models.Field):
+        if hasattr(self, "item1") and hasattr(self, "item2") and isinstance(self.item1, models.Field) and isinstance(self.item2, models.Field):
             return (str(self.item1) + ' | ' + str(self.item1) + ' w = ' + self.weight + ' origin : ' + self.origin)
 
     class Meta:

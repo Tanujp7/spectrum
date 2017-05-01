@@ -13,7 +13,7 @@ from .forms import BookForm, BookProfileForm
 
 from google_books import googlebooks
 
-from . import language as gnlp
+from recommenders import language_api as gnlp
 
 class Search(View):
     template_name = 'google_books/search.html'
@@ -57,8 +57,12 @@ def add_book(request):
             instance = book_profile_form.save(commit=False)
             instance.book = book_obj
             instance.save()
-            if len(entity_objects) > 0:
-                instance.entities.add(*entity_objects)
+
+            # Previously, BookProfile.entities was used.
+            # Now KeyToDocLink model is being used to attach both items.
+            #if len(entity_objects) > 0:
+            #    instance.entities.add(*entity_objects)
+
             book_profile_form.save_m2m()
 
             return HttpResponseRedirect(reverse('book_search'))

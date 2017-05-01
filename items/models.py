@@ -11,12 +11,11 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-class Entity(models.Model):
+class Key(models.Model):
     name = models.CharField(max_length=256, null=True, blank=True, default=None)
-    kind = models.CharField(max_length=256, null=True, blank=True, default=None)
 
     def __str__(self):
-        return (str(self.name))
+        return (str(self.name)
 
 class BookProfile(models.Model):
     book = models.OneToOneField(Book, on_delete=models.CASCADE)
@@ -31,7 +30,6 @@ class BookProfile(models.Model):
     rating_count = models.PositiveIntegerField(null=True, blank=True, default=0)
     language = models.CharField(max_length=4, null=True, blank=True, default='en')
     cost = models.CharField(max_length=20, null=True, blank=True, default='0')
-    entities = models.ManyToManyField(Entity, default=None)
     tags = TaggableManager()
 
     class Meta:

@@ -16,9 +16,12 @@ class BigHugeThesaurus:
 
         self.url = self.url + os.environ['SPECTRUM_BIGHUGELABS_SECRET_KEY'] + '/' + str(self.key.name) + '/json'
 
-        self.response = requests.get(self.url).json()
-        return self.response
-
+        self.response = requests.get(self.url)
+        if self.response.status_code == 200 or self.response.status_code == 301:
+            return self.response.json()
+        else:
+            self.response = {'err':'404,500,etc'}
+            return self.response
 
     def filter(self):
 

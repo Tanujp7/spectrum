@@ -137,7 +137,6 @@ def api_call(key):
             print('Calling Synonym BigHugeThesaurus API..')
             with BigHugeThesaurus(key=key) as k:
                 k.analyse()
-                print(', '.join(k))
                 k.stop_bighuge = True
                 k.save()
         print('Skipping Synonym BigHugeThesaurus API..')
@@ -147,7 +146,6 @@ def api_call(key):
             print('Calling Symantec WordsAPI..')
             with WordsAPI(key=key) as k:
                 k.analyse()
-                print(', '.join(k))
                 k.stop_wordsapi = True
                 k.save()
         print('Skipping Symantec WordsAPI..')

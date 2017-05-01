@@ -12,14 +12,12 @@ def api_call(document):
         print('Calling Google Natural Language API..')
         entities = GoogleEntity(document=document)
         entities.analyse()
-        print(', '.join(entities))
 
     def meaningcloud(document):
 
         print('Calling MeaningCloud Text Classification API..')
         with MeaningCloudClassifier(document=document) as iptc_label:
             iptc_label.analyse()
-            print(', '.join(iptc_label))
 
     # Schedule Jobs here..
     print('Calling attempt...')

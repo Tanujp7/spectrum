@@ -5,11 +5,12 @@ from items.models import Key
 from recommenders.models import KeyToKeyLink
 
 
-class BigHugeThesaurus(key=None):
+class BigHugeThesaurus:
 
-    self.url = "http://words.bighugelabs.com/api/2/"
-    self.key = key
 
+    def __init__(self, key=None):
+        self.url = "http://words.bighugelabs.com/api/2/"
+        self.key = key
 
     def request(self):
 
@@ -66,10 +67,11 @@ class BigHugeThesaurus(key=None):
         return response
 
 
-class WordsAPI(key=None):
+class WordsAPI:
 
-    self.url = "https://wordsapiv1.p.mashape.com/words/"
-    self.key = key
+    def __init__(self, key=None):
+        self.url = "https://wordsapiv1.p.mashape.com/words/"
+        self.key = key
 
 
     def request(self):

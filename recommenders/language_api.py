@@ -5,13 +5,13 @@ import os # For Key (inside Environment variable)
 from items.models import Key
 from recommenders.models import KeyToDocLink
 
-class GoogleEntity(document=None):
+class GoogleEntity:
 
-    self.document = document
-    title = str(document.book.title)
-    description = str(document.description)
-    self.query_text = (title + ' | ' + description) if document else ''
-
+    def __init__(self, document=None):
+        self.document = document
+        title = str(document.book.title)
+        description = str(document.description)
+        self.query_text = (title + ' | ' + description) if document else ''
 
     def request(self):
 
@@ -52,11 +52,12 @@ class GoogleEntity(document=None):
 
         return self.entities
 
-class MeaningCloudClassifier(document=None):
+class MeaningCloudClassifier:
 
-    self.url = "http://api.meaningcloud.com/class-1.1"
-    self.document = document
 
+    def __init__(self, document=None):
+        self.document = document
+        self.url = "http://api.meaningcloud.com/class-1.1"
 
     def request(self):
 

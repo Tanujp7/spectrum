@@ -16,8 +16,8 @@ class Link(models.Model):
         abstract = True
 
 class KeyToKeyLink(Link):
-    item1 = models.ForeignKey(Key)
-    item2 = models.ForeignKey(Key)
+    item1 = models.ForeignKey(Key, related_name='%(class)s_item1')
+    item2 = models.ForeignKey(Key, related_name='%(class)s_item2')
 
 class KeyToDocLink(Link):
     item1 = models.ForeignKey(Key)
@@ -28,13 +28,13 @@ class KeyToUserLink(Link):
     item2 = models.ForeignKey(UserProfile)
 
 class DocToDocLink(Link):
-    item1 = models.ForeignKey(BookProfile)
-    item2 = models.ForeignKey(BookProfile)
+    item1 = models.ForeignKey(BookProfile, related_name='%(class)s_item1')
+    item2 = models.ForeignKey(BookProfile, related_name='%(class)s_item2')
 
 class DocToUserLink(Link):
     item1 = models.ForeignKey(BookProfile)
     item2 = models.ForeignKey(UserProfile)
 
 class UserToUserLink(Link):
-    item1 = models.ForeignKey(UserProfile)
-    item2 = models.ForeignKey(UserProfile)
+    item1 = models.ForeignKey(UserProfile, related_name='%(class)s_item1')
+    item2 = models.ForeignKey(UserProfile, related_name='%(class)s_item2')

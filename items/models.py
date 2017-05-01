@@ -13,6 +13,8 @@ class Book(models.Model):
 
 class Key(models.Model):
     name = models.CharField(max_length=256, null=True, blank=True, default=None)
+    stop_bighuge = models.NullBooleanField(blank=True, default=False)
+    stop_wordsapi = models.NullBooleanField(blank=True, default=False)
 
     def __str__(self):
         return (str(self.name)

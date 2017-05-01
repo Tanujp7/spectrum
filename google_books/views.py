@@ -13,7 +13,7 @@ from .forms import BookForm, BookProfileForm
 
 from google_books import googlebooks
 
-from recommenders import language_api as gnlp
+from recommenders import language_api_migrate as nl
 
 class Search(View):
     template_name = 'google_books/search.html'
@@ -43,26 +43,13 @@ def add_book(request):
         volume_id = request.POST.get('volume_id')
         book_obj = Book.objects.get(volume_id=volume_id)
 
-        # Google Natural Language Processing on Book's description
-        description = request.POST.get('description')
-        language_analysis = gnlp.filter_entities(gnlp.request_entity(description))
-        entity_objects = []
-        for entity in language_analysis:
-            entity_objects.append(gnlp.get_or_create_entity(entity))
-
-
         # Modifying & Saving BookProfile object
         book_profile_form = BookProfileForm(request.POST)
         if book_form.is_valid() and book_profile_form.is_valid():
             instance = book_profile_form.save(commit=False)
             instance.book = book_obj
             instance.save()
-
-            # Previously, BookProfile.entities was used.
-            # Now KeyToDocLink model is being used to attach both items.
-            #if len(entity_objects) > 0:
-            #    instance.entities.add(*entity_objects)
-
+            nl.api_call(instance)       # For G-NLP & MC-IPTC
             book_profile_form.save_m2m()
 
             return HttpResponseRedirect(reverse('book_search'))

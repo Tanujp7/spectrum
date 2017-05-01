@@ -4,6 +4,7 @@ import os
 from items.models import Key
 from recommenders.models import KeyToKeyLink
 
+
 class BigHugeThesaurus(key=None):
 
     self.url = "http://words.bighugelabs.com/api/2/"
@@ -12,7 +13,7 @@ class BigHugeThesaurus(key=None):
 
     def request(self):
 
-        self.url = self.url + os.environ['SPECTRUM_BIGHUGELABS_SECRET_KEY'] + '/' + self.key + '/json'
+        self.url = self.url + os.environ['SPECTRUM_BIGHUGELABS_SECRET_KEY'] + '/' + str(self.key) + '/json'
 
         self.response = requests.get(self.url).json()
         return self.response
@@ -45,8 +46,10 @@ class BigHugeThesaurus(key=None):
 
         try:
             listing = Key.objects.get(name__iexact=str(keyword))
+            listing.stop_bighuge = True
+            listing.save()
         except Key.DoesNotExist:
-            listing = Key.objects.create(name=str(keyword))
+            listing = Key.objects.create(name=str(keyword), stop_bighuge=True)
 
         KeyToKeyLink.objects.create(item1=listing, item2=self.key, raw_weight=weight, calculated_weight=weight, origin='BigHuge Synonyms')
 
@@ -71,7 +74,7 @@ class WordsAPI(key=None):
 
     def request(self):
 
-        self.url = self.url + self.key
+        self.url = self.url + str(self.key)
         self.response = requests.get( self.url,
                                       headers={
                                         "X-Mashape-Key": os.environ['SPECTRUM_MASHAPE_SECRET_KEY'],
@@ -103,8 +106,10 @@ class WordsAPI(key=None):
 
         try:
             listing = Key.objects.get(name__iexact=str(keyword))
+            listing.stop_wordsapi = True
+            listing.save()
         except Key.DoesNotExist:
-            listing = Key.objects.create(name=str(keyword))
+            listing = Key.objects.create(name=str(keyword), stop_wordsapi=True)
 
         KeyToKeyLink.objects.create(item1=listing, item2=self.key, raw_weight=weight, calculated_weight=weight, origin='WordsAPI Symantec Relatedness '+ _type)
 
@@ -126,18 +131,24 @@ class WordsAPI(key=None):
 def api_call(key):
 
     def big(key):
-
-        print('Calling Synonym BigHugeThesaurus API..')
-        with BigHugeThesaurus(key=key) as k:
-            k.analyse()
-            print(', '.join(k))
+        if not key.stop_bighuge:
+            print('Calling Synonym BigHugeThesaurus API..')
+            with BigHugeThesaurus(key=key) as k:
+                k.analyse()
+                print(', '.join(k))
+                k.stop_bighuge = True
+                k.save()
+        print('Skipping Synonym BigHugeThesaurus API..')
 
     def words(key):
-
-        print('Calling Symantec WordsAPI..')
-        with WordsAPI(key=key) as k:
-            k.analyse()
-            print(', '.join(k))
+        if not key.stop_wordsapi:
+            print('Calling Symantec WordsAPI..')
+            with WordsAPI(key=key) as k:
+                k.analyse()
+                print(', '.join(k))
+                k.stop_wordsapi = True
+                k.save()
+        print('Skipping Symantec WordsAPI..')
 
     # Schedule Jobs here..
     print('Calling attempt...')
@@ -145,13 +156,14 @@ def api_call(key):
     words(key)
     print('Calling completed.')
 
+
 def migration():
 
     keyword_list = Key.objects.all()
 
     for keyword in keyword_list:
-        print('Keyword : ' + str(keyword.name))
-        api_call(keyword.name)
+        print('Keyword : ' + str(keyword))
+        api_call(keyword)
         print('-- next() --> ? ')
 
     print('-- All Tasks Completed --')

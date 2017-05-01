@@ -1,5 +1,8 @@
 from django.db import models
 
+from items.models import Key, BookProfile
+from people.models import UserProfile
+
 class Link(models.Model):
     raw_weight = models.FloatField()
     calculated_weight = models.FloatField()

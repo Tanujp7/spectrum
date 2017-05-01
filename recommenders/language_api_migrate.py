@@ -9,11 +9,10 @@ from recommenders.language_api import GoogleEntity, MeaningCloudClassifier
 def api_call(document):
 
     def gnlp(document):
-
         print('Calling Google Natural Language API..')
-        with GoogleEntity(document=document) as entities:
-            entities.analyse()
-            print(', '.join(entities))
+        entities = GoogleEntity(document=document)
+        entities.analyse()
+        print(', '.join(entities))
 
     def meaningcloud(document):
 

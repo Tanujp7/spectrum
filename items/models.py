@@ -17,7 +17,7 @@ class Key(models.Model):
     stop_wordsapi = models.NullBooleanField(blank=True, default=False)
 
     def __str__(self):
-        return (str(self.name)
+        return (str(self.name))
 
 class BookProfile(models.Model):
     book = models.OneToOneField(Book, on_delete=models.CASCADE)

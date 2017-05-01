@@ -8,7 +8,7 @@ from recommenders.models import KeyToDocLink
 class GoogleEntity(document=None):
 
     self.document = document
-    self.query_text = (lambda document.book.title: str(document.book.title) or '') + ' | ' + (lambda document.description: str(document.description) or '') if document else ''
+    self.query_text = ((lambda document.book.title: str(document.book.title) or '') + ' | ' + (lambda document.description: str(document.description) or '')) if document else ''
 
 
     def request(self):

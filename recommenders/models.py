@@ -16,7 +16,7 @@ class KeyToKeyLink(Link):
     item2 = models.ForeignKey(Key, related_name='%(class)s_item2')
 
     def __str__(self):
-        return (str(self.item1) + ' | ' + str(self.item1) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
+        return (str(self.item1) + ' | ' + str(self.item2) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
 
 
 class KeyToDocLink(Link):
@@ -24,7 +24,7 @@ class KeyToDocLink(Link):
     item2 = models.ForeignKey(BookProfile)
 
     def __str__(self):
-        return (str(self.item1) + ' | ' + str(self.item1) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
+        return (str(self.item1) + ' | ' + str(self.item2) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
 
 
 class KeyToUserLink(Link):
@@ -32,7 +32,7 @@ class KeyToUserLink(Link):
     item2 = models.ForeignKey(UserProfile)
 
     def __str__(self):
-        return (str(self.item1) + ' | ' + str(self.item1) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
+        return (str(self.item1) + ' | ' + str(self.item2) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
 
 
 class DocToDocLink(Link):
@@ -40,7 +40,7 @@ class DocToDocLink(Link):
     item2 = models.ForeignKey(BookProfile, related_name='%(class)s_item2')
 
     def __str__(self):
-        return (str(self.item1) + ' | ' + str(self.item1) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
+        return (str(self.item1) + ' | ' + str(self.item2) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
 
 
 class DocToUserLink(Link):
@@ -48,7 +48,7 @@ class DocToUserLink(Link):
     item2 = models.ForeignKey(UserProfile)
 
     def __str__(self):
-        return (str(self.item1) + ' | ' + str(self.item1) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
+        return (str(self.item1) + ' | ' + str(self.item2) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
 
 
 class UserToUserLink(Link):
@@ -56,4 +56,4 @@ class UserToUserLink(Link):
     item2 = models.ForeignKey(UserProfile, related_name='%(class)s_item2')
 
     def __str__(self):
-        return (str(self.item1) + ' | ' + str(self.item1) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
+        return (str(self.item1) + ' | ' + str(self.item2) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))

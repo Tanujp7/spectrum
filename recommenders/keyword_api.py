@@ -136,18 +136,18 @@ def api_call(key):
         if not key.stop_bighuge:
             print('Calling Synonym BigHugeThesaurus API..')
             k = BigHugeThesaurus(key=key)
-                k.analyse()
-                k.stop_bighuge = True
-                k.save()
+            k.analyse()
+            k.stop_bighuge = True
+            k.save()
         print('Skipping Synonym BigHugeThesaurus API..')
 
     def words(key):
         if not key.stop_wordsapi:
             print('Calling Symantec WordsAPI..')
             k = WordsAPI(key=key)
-                k.analyse()
-                k.stop_wordsapi = True
-                k.save()
+            k.analyse()
+            k.stop_wordsapi = True
+            k.save()
         print('Skipping Symantec WordsAPI..')
 
     # Schedule Jobs here..

@@ -33,6 +33,9 @@ class BookProfile(models.Model):
     language = models.CharField(max_length=4, null=True, blank=True, default='en')
     cost = models.CharField(max_length=20, null=True, blank=True, default='0')
     tags = TaggableManager()
+    stop_meaningcloud = models.NullBooleanField(blank=True, default=False)
+    stop_gnlp = models.NullBooleanField(blank=True, default=False)
+
 
     class Meta:
         verbose_name = 'Book Profile'

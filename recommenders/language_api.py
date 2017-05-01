@@ -91,4 +91,4 @@ class MeaningCloudClassifier:
             for cat in response.get('category_list'):
                 self.category.append(self._get_or_create(cat))
 
-        return self.category
+        return self.category if self.category else None

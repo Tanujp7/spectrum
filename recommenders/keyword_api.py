@@ -14,7 +14,7 @@ class BigHugeThesaurus:
 
     def request(self):
 
-        self.url = self.url + os.environ['SPECTRUM_BIGHUGELABS_SECRET_KEY'] + '/' + self.key.name + '/json'
+        self.url = self.url + os.environ['SPECTRUM_BIGHUGELABS_SECRET_KEY'] + '/' + str(self.key.name) + '/json'
 
         self.response = requests.get(self.url).json()
         return self.response
@@ -76,7 +76,7 @@ class WordsAPI:
 
     def request(self):
 
-        self.url = self.url + self.key.name
+        self.url = self.url + str(self.key.name)
         self.response = requests.get( self.url,
                                       headers={
                                         "X-Mashape-Key": os.environ['SPECTRUM_MASHAPE_SECRET_KEY'],

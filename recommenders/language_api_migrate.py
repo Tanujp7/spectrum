@@ -4,7 +4,7 @@ This file is only meant to be run once. To migrate old models (BookProfile) into
 """
 
 from items.models import BookProfile
-from recommenders.language import GoogleEntity, MeaningCloudClassifier
+from recommenders.language_api import GoogleEntity, MeaningCloudClassifier
 
 def api_call(document):
 

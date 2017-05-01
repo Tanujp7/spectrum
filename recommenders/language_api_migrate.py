@@ -16,8 +16,8 @@ def api_call(document):
     def meaningcloud(document):
 
         print('Calling MeaningCloud Text Classification API..')
-        with MeaningCloudClassifier(document=document) as iptc_label:
-            iptc_label.analyse()
+        iptc_label = MeaningCloudClassifier(document=document)
+        iptc_label.analyse()
 
     # Schedule Jobs here..
     print('Calling attempt...')

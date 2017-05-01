@@ -85,7 +85,7 @@ class MeaningCloudClassifier:
 
         response = self.request()
 
-        if response.get('status', default="{'code':'666',}").get('code') == '0':
+        if response.get('status', "{'code':'666',}").get('code') == '0':
 
             self.category = []
             for cat in response.get('category_list'):

@@ -156,10 +156,10 @@ def api_call(key):
             print('Skipping Symantec WordsAPI..')
 
     # Schedule Jobs here..
-    print('Calling attempt...')
+    print('Attempt...')
     big(key)
     words(key)
-    print('Calling completed.')
+    print('Completed.')
 
 
 def migration():

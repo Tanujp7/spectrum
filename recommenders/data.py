@@ -1,7 +1,7 @@
 # Django-pandas
 from django_pandas.io import read_frame
 
-from recommenders import models as md
+from recommenders import models as mo
 
 import numpy as np
 

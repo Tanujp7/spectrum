@@ -3,10 +3,14 @@ from django.db import models
 from items.models import Key, BookProfile
 from people.models import UserProfile
 
+from django_pandas.managers import DataFrameManager
+
 class Link(models.Model):
     raw_weight = models.FloatField()
     calculated_weight = models.FloatField()
     origin = models.CharField(max_length=512, null=True, blank=True, default=None)
+
+    objects = DataFrameManager()
 
     class Meta:
         abstract = True

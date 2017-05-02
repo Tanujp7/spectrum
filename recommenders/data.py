@@ -1,6 +1,10 @@
 # Django-pandas
 from django_pandas.io import read_frame
 
+from recommenders import models as md
+
+import numpy as np
+
 def dataframe(query_set,fieldnames=None,index=None):
     if fieldnames:
         if index:
@@ -13,3 +17,9 @@ def dataframe(query_set,fieldnames=None,index=None):
         else:
             data_frame = read_frame(query_set)
     return data_frame
+
+if __name__ == '__main__':
+    # k2d = KeyToDocLink
+    k2d_qs = mo.KeyToDocLink.objects.all()
+    k2d = dataframe(k2d_qs)
+    print(k2d)

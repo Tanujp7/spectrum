@@ -12,7 +12,7 @@ class Career(models.Model):
         return (str(self.keyword))
 
 class Hobbies(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default='1')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     working_hrs = models.IntegerField("How much time do you spend on work?", default=0,
         validators=[
             MaxValueValidator(24),

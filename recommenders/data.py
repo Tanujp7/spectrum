@@ -21,7 +21,7 @@ def dataframe(query_set,fieldnames=None,index=None):
 def get_data():
     # k2d = KeyToDocLink
     k2d_qs = mo.KeyToDocLink.objects.all()
-    k2d = dataframe(k2d_qs)
+    k2d = dataframe(k2d_qs, index='id')
     print(k2d)
 
 if __name__ == '__main__':

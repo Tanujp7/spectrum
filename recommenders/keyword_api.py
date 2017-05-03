@@ -1,6 +1,7 @@
 import requests, os, nltk, math
 from items.models import Key
-from recommenders.models import KeyToKeyLink
+from people.models import UserProfile
+from recommenders.models import KeyToKeyLink, KeyToUserLink
 
 class BigHugeThesaurus:
 
@@ -204,12 +205,56 @@ def api_call(key):
     words(key)
     print('Completed.')
 
+
 def nltk_distance(key1,key2):
     if not key1.stop_nltkdistance:
         if not Key.objects.filter(item1=key1, item2=key2, origin='NLTK distance') and not Key.objects.filter(item1=key2, item2=key1, origin='NLTK distance'):
             print('Calling NLTK distance..')
             k = WordsAPI(key1, key2)
             k.analyse()
+
+def destroy_k2u_links(keys, user):
+
+    for k in keys:
+        try:
+            element = KeyToUserLink.objects.get(item1__name__iexact=str(k), item2=user, raw_weight=weight, calculated_weight=weight, origin='User Interest/Career')
+            element.delete()
+        except KeyToUserLink.DoesNotExist:
+            pass
+
+def add_k2u_links_by_key(keys, user):
+
+    weight = 0.8
+    for k in keys:
+        try:
+            listing = Key.objects.get(name__iexact=str(k))
+        except Key.DoesNotExist:
+            listing = Key.objects.create(name=str(k))
+
+        KeyToUserLink.objects.create(item1=listing, item2=user, raw_weight=weight, calculated_weight=weight, origin='User Interest/Career')
+
+def add_k2u_links_by_user(user):
+
+    weight = 0.8
+    keys = [x.keyword for x in user.interest_keywords.all()] + [x.keyword for x in user.career_keywords.all()]
+    for k in keys:
+        if KeyToUserLink.objects.get(item1__name__iexact=str(k), item2=user, origin='User Interest/Career'):
+            try:
+                listing = Key.objects.get(name__iexact=str(k))
+            except Key.DoesNotExist:
+                listing = Key.objects.create(name=str(k))
+
+            KeyToUserLink.objects.create(item1=listing, item2=user, raw_weight=weight, calculated_weight=weight, origin='User Interest/Career')
+
+def user_migration():
+    user_list = UserProfile.objects.all()
+    for u in user_list:
+        print('User : ' + str(u))
+        try:
+            add_k2u_links_by_user(u)
+            print('Linked keywords.')
+        except:
+            pass
 
 def migration():
 

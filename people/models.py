@@ -5,6 +5,9 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+from recommenders.models import KeyToUserLink
+from recommenders.keyword_api import destroy_k2u_links, add_k2u_links_by_key
+
 class Career(models.Model):
     keyword = models.CharField(max_length=256, blank=True, null=True, unique=True)
 
@@ -94,3 +97,25 @@ def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
     instance.personaldetails.save()
     instance.hobbies.save()
+
+@receiver(post_save, sender=UserProfile, dispatch_uid="update_K2Ulinks")
+def update_k2ulinks(sender, instance, **kwargs):
+    latest_interest = [x.keyword for x in instance.interest_keywords.all()]
+    previous_interest = [x.item1.name for x in KeyToUserLink.objects.filter(item2=instance, origin='User Interest/Career')]
+    removed_interest = [item for item in previous_interest if item not in set(latest_interest)]
+    added_interest = [item for item in latest_interest if item not in set(previous_interest)]
+
+    latest_career = [x.keyword for x in instance.career_keywords.all()]
+    previous_career = [x.item1.name for x in KeyToUserLink.objects.filter(item2=instance, origin='User Interest/Career')]
+    removed_career = [item for item in previous_career if item not in set(latest_career)]
+    added_career = [item for item in latest_career if item not in set(previous_career)]
+
+    destroy_list = removed_career + removed_interest
+    added_list = added_career + added_interest
+
+    destroy_k2u_links(destroy_list, instance)
+    add_k2u_links_by_key(added_list, instance)
+
+    for k in latest_interests:
+        KeyToUserLink.objects.get(item1__name__iexact=k.keyword, item2=instance, origin='User Interest/Career')
+    instance.product.save()

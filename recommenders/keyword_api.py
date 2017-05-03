@@ -1,12 +1,8 @@
-import requests
-import os
-
+import requests, os, nltk, math
 from items.models import Key
 from recommenders.models import KeyToKeyLink
 
-
 class BigHugeThesaurus:
-
 
     def __init__(self, key=None):
         self.url = "http://words.bighugelabs.com/api/2/"
@@ -45,20 +41,18 @@ class BigHugeThesaurus:
 
         return response
 
-
-    def _get_or_create(self, keyword, weight=0.5):
+    def _get_or_create(self, keyword, weight=None):
 
         try:
             listing = Key.objects.get(name__iexact=str(keyword))
             listing.stop_bighuge = True
             listing.save()
         except Key.DoesNotExist:
-            listing = Key.objects.create(name=str(keyword), stop_bighuge=True)
+            listing = Key.objects.create(name=str(keyword), base_level=False)
 
         KeyToKeyLink.objects.create(item1=listing, item2=self.key, raw_weight=weight, calculated_weight=weight, origin='BigHuge Synonyms')
 
         return listing
-
 
     def analyse(self):
 
@@ -69,16 +63,13 @@ class BigHugeThesaurus:
 
         return response
 
-
 class WordsAPI:
 
     def __init__(self, key=None):
         self.url = "https://wordsapiv1.p.mashape.com/words/"
         self.key = key
 
-
     def request(self):
-
         self.url = self.url + str(self.key.name)
         self.response = requests.get( self.url,
                                       headers={
@@ -88,9 +79,7 @@ class WordsAPI:
                                     ).json()
         return self.response
 
-
     def filter(self):
-
         raw_response = self.request()
         typeof_response = []
         hastypes_response = []
@@ -106,8 +95,7 @@ class WordsAPI:
 
         return typeof_response, hastypes_response
 
-
-    def _get_or_create(self, keyword, weight=0.5, _type='Top Down'):
+    def _get_or_create(self, keyword, weight=None, _type='Top Down'):
 
         try:
             listing = Key.objects.get(name__iexact=str(keyword))
@@ -120,7 +108,6 @@ class WordsAPI:
 
         return listing
 
-
     def analyse(self):
 
         typeof_response, hastypes_response = self.filter()
@@ -132,28 +119,84 @@ class WordsAPI:
 
         return (typeof_response + hastypes_response)
 
+class NltkDistance:
+
+    def __init__(self, key1=None, key2=None):
+        self.k1 = key1
+        self.k2 = key2
+        self.key1 = self.key1.name
+        self.key2 = self.key2.name
+
+    def split(self,text):
+        clean_text = ''.join(e for e in text if e.isalnum() or e == ' ') # Removes punctuation
+        word_list = []
+        for i in clean_text:
+            if not i.isdigit(): # Removes digits
+                word_list.append(i)
+        return word_list
+
+    def calculate(self):
+        keywords1 = self.split.(self.key1)
+        keywords2 = self.split.(self.key2)
+
+        similarity_constant = 4
+
+        minimum = 1 / math.e
+        maximum = 1
+
+        score_list = []
+
+        for i in keywords1:
+            for j in keywords2:
+                x = len(i)
+                y = len(j)
+                distance = nltk.edit_distance(i, j)
+
+                if ((x + y) / similarity_constant) >= distance:
+                    raw_score = 2/( math.e**( x/distance ) + ( math.e**( y/distance ) ) )
+                    scaled_score = (raw_score - minimum) / (maximum - minimum)
+                    score_list.append(scaled_score)
+        if score_list:
+            return max(score_list)
+        else:
+            return None
+
+    def _get(self, keyword, weight=None):
+
+        try:
+            self.k1.stop_nltkdistance = True
+            self.k1.save()
+            KeyToKeyLink.objects.create(item1=self.k1, item2=self.k2, raw_weight=weight, calculated_weight=weight, origin='NLTK Distance')
+        except Key.DoesNotExist:
+            pass
+
+    def analyse(self):
+
+        score = self.calculate()
+        if score is not None and score >= 0.4:
+            self._get(k, weight=score)
+
+        return score
 
 def api_call(key):
 
     def big(key):
-        if not key.stop_bighuge:
-            print('Calling Synonym BigHugeThesaurus API..')
-            k = BigHugeThesaurus(key=key)
-            k.analyse()
-            key.stop_bighuge = True
-            key.save()
-        else:
-            print('Skipping Synonym BigHugeThesaurus API..')
+        if key.base_level is True:
+            if not key.stop_bighuge:
+                print('Calling Synonym BigHugeThesaurus API..')
+                k = BigHugeThesaurus(key=key)
+                k.analyse()
+                key.stop_bighuge = True
+                key.save()
 
     def words(key):
-        if not key.stop_wordsapi:
-            print('Calling Symantec WordsAPI..')
-            k = WordsAPI(key=key)
-            k.analyse()
-            key.stop_wordsapi = True
-            key.save()
-        else:
-            print('Skipping Symantec WordsAPI..')
+        if key.base_level is True:
+            if not key.stop_wordsapi:
+                print('Calling Symantec WordsAPI..')
+                k = WordsAPI(key=key)
+                k.analyse()
+                key.stop_wordsapi = True
+                key.save()
 
     # Schedule Jobs here..
     print('Attempt...')
@@ -161,6 +204,12 @@ def api_call(key):
     words(key)
     print('Completed.')
 
+def nltk_distance(key1,key2):
+    if not key1.stop_nltkdistance:
+        if not Key.objects.filter(item1=key1, item2=key2, origin='NLTK distance') and not Key.objects.filter(item1=key2, item2=key1, origin='NLTK distance'):
+            print('Calling NLTK distance..')
+            k = WordsAPI(key1, key2)
+            k.analyse()
 
 def migration():
 

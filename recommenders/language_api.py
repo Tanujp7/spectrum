@@ -76,7 +76,7 @@ class MeaningCloudClassifier:
         except Key.DoesNotExist:
             listing = Key.objects.create(name=str(category.get('label')))
 
-        KeyToDocLink.objects.create(item1=listing, item2=self.document, raw_weight=float(category.get('abs_relevance')), calculated_weight=(float(category.get('relevance'))/100.00), origin='IPTC Classification')
+        KeyToDocLink.objects.create(item1=listing, item2=self.document, raw_weight=float(category.get('relevance')), calculated_weight=(float(category.get('relevance'))/100.00), origin='IPTC Classification')
 
         return listing
 

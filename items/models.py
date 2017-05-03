@@ -37,6 +37,7 @@ class BookProfile(models.Model):
     tags = TaggableManager()
     stop_meaningcloud = models.NullBooleanField(blank=True, default=False)
     stop_gnlp = models.NullBooleanField(blank=True, default=False)
+    stop_docsim = models.NullBooleanField(blank=True, default=False)
 
 
     class Meta:

@@ -205,12 +205,11 @@ def api_call(key):
     words(key)
     print('Completed.')
 
-
 def nltk_distance(key1,key2):
     if not key1.stop_nltkdistance:
         if not Key.objects.filter(item1=key1, item2=key2, origin='NLTK distance') and not Key.objects.filter(item1=key2, item2=key1, origin='NLTK distance'):
             print('Calling NLTK distance..')
-            k = WordsAPI(key1, key2)
+            k = NltkDistance(key1, key2)
             k.analyse()
 
 def destroy_k2u_links(keys, user):

@@ -82,6 +82,7 @@ class UserProfile(models.Model):
     gender = models.CharField(max_length=1, blank=True, choices=GENDER_CHOICES, null=True, default=None)
     interest_keywords = models.ManyToManyField(Interest, default=None)
     career_keywords = models.ManyToManyField(Career, default=None)
+    stop_usersim = models.NullBooleanField(blank=True, default=False)
     def __str__(self):
         return self.user.username
 

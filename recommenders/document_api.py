@@ -34,7 +34,7 @@ class DocumentSimilarity:
 
         score = self.calculate_cosine()
         if score >= 0.5:
-            self._get(d, weight=score)
+            self._get(weight=score)
 
 
 def migrate_d2d():

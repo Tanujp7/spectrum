@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-from recommenders.models import KeyToUserLink
+#from recommenders.models import KeyToUserLink
 from recommenders.keyword_api import destroy_k2u_links, add_k2u_links_by_key
 
 class Career(models.Model):
@@ -99,6 +99,7 @@ def save_user_profile(sender, instance, **kwargs):
     instance.personaldetails.save()
     instance.hobbies.save()
 
+"""
 @receiver(post_save, sender=UserProfile, dispatch_uid="update_K2Ulinks")
 def update_k2ulinks(sender, instance, **kwargs):
     latest_interest = [x.keyword for x in instance.interest_keywords.all()]
@@ -120,3 +121,4 @@ def update_k2ulinks(sender, instance, **kwargs):
     for k in latest_interests:
         KeyToUserLink.objects.get(item1__name__iexact=k.keyword, item2=instance, origin='User Interest/Career')
     instance.product.save()
+"""

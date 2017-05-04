@@ -1,7 +1,7 @@
 from django.db import models
 
 from items.models import Key, BookProfile
-from people.models import UserProfile
+#from people.models import UserProfile
 
 from django_pandas.managers import DataFrameManager
 
@@ -33,7 +33,8 @@ class KeyToDocLink(Link):
 
 class KeyToUserLink(Link):
     item1 = models.ForeignKey(Key)
-    item2 = models.ForeignKey(UserProfile)
+    #item2 = models.ForeignKey(UserProfile)
+    item2 = 'dummy'
 
     def __str__(self):
         return (str(self.item1) + ' | ' + str(self.item2) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))

@@ -50,15 +50,16 @@ class DocToDocLink(Link):
 
 class DocToUserLink(Link):
     item1 = models.ForeignKey(BookProfile)
-    item2 = models.ForeignKey(UserProfile)
+    #item2 = models.ForeignKey(UserProfile)
+    item2 = 'user'
 
     def __str__(self):
         return (str(self.item1) + ' | ' + str(self.item2) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
 
 
 class UserToUserLink(Link):
-    item1 = models.ForeignKey(UserProfile, related_name='%(class)s_item1')
-    item2 = models.ForeignKey(UserProfile, related_name='%(class)s_item2')
+    #item1 = models.ForeignKey(UserProfile, related_name='%(class)s_item1')
+    #item2 = models.ForeignKey(UserProfile, related_name='%(class)s_item2')
 
     def __str__(self):
-        return (str(self.item1) + ' | ' + str(self.item2) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))
+        return #(str(self.item1) + ' | ' + str(self.item2) + ' |~~~> raw_weight = ' + str(self.raw_weight) + ' , learned_weight = ' + str(self.calculated_weight) + ', origin : ' + str(self.origin))

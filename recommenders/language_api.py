@@ -114,7 +114,7 @@ def api_call(document):
     # Schedule Jobs here..
     print('Calling attempt...')
     gnlp(document)
-    meaningcloud(document)
+    #meaningcloud(document)
     print('Calling completed.')
 
 def migration():

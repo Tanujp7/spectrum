@@ -1,6 +1,6 @@
 import requests, os, nltk, math
 from items.models import Key
-from people.models import UserProfile
+#from people.models import UserProfile
 from recommenders.models import KeyToKeyLink, KeyToUserLink
 
 class BigHugeThesaurus:
@@ -246,7 +246,7 @@ def add_k2u_links_by_user(user):
             KeyToUserLink.objects.create(item1=listing, item2=user, raw_weight=weight, calculated_weight=weight, origin='User Interest/Career')
 
 def user_migration():
-    user_list = UserProfile.objects.all()
+    user_list = [] #UserProfile.objects.all()
     for u in user_list:
         print('User : ' + str(u))
         try:

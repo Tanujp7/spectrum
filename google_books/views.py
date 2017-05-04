@@ -13,7 +13,7 @@ from .forms import BookForm, BookProfileForm
 
 from google_books import googlebooks
 
-from recommenders import language_api_migrate as nl
+from recommenders import language_api as nl
 
 class Search(View):
     template_name = 'google_books/search.html'

@@ -137,8 +137,8 @@ class NltkDistance:
         return word_list
 
     def calculate(self):
-        keywords1 = self.split.(self.key1)
-        keywords2 = self.split.(self.key2)
+        keywords1 = self.split(self.key1)
+        keywords2 = self.split(self.key2)
 
         similarity_constant = 4
 

@@ -1,6 +1,6 @@
 import requests, os, nltk, math
 from items.models import Key
-#from people.models import UserProfile
+# from people.models import UserProfile
 from recommenders.models import KeyToKeyLink, KeyToUserLink
 
 class BigHugeThesaurus:

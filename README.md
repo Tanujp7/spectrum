@@ -1,2 +1,2 @@
 # spectrum
-Research Project : Recommendation Engine
+Research Project : Recommendation Engine (Book Database)
